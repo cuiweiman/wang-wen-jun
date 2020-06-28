@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BinaryOperator;
-import java.util.function.DoubleToIntFunction;
 import java.util.stream.Collectors;
 
 /**
