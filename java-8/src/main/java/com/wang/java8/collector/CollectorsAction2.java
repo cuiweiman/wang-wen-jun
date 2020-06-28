@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  * @date: 2020/6/26 9:38
  * @author: weiman cui
  */
-public class CollecorsAction2 {
+public class CollectorsAction2 {
     public static void main(String[] args) {
         // testGroupingByConcurrentWithFunction();
         // testGroupingByConcurrentWithFunctionAndCollector();
