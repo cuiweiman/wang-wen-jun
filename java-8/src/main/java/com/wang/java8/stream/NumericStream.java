@@ -28,7 +28,6 @@ public class NumericStream {
                 .mapToObj(b -> new int[]{a, b, (int) Math.sqrt(a * a + b * b)})
                 .forEach(r -> System.out.println("a=" + r[0] + ", b=" + r[1] + ", c=" + r[2]));
 
-
     }
 
 

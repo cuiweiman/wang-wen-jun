@@ -21,7 +21,6 @@ public class CollectorsAction2 {
         testGroupingByConcurrentWithFunctionAndSupplierAndCollector();
     }
 
-
     /**
      * ConcurrentHashMap
      */

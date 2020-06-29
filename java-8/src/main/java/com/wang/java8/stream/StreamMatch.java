@@ -20,5 +20,4 @@ public class StreamMatch {
         System.out.println(b2);
     }
 
-
 }

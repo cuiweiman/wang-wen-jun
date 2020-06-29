@@ -22,6 +22,5 @@ public class StreamFind {
         stream = Arrays.stream(new Integer[]{1, 2, 3, 4, 5, 6, 7, 7, 1});
         Optional<Integer> first = stream.filter(i -> i % 2 == 0).findFirst();
         System.out.println(first.isPresent());
-
     }
 }

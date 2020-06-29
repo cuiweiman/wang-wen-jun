@@ -35,5 +35,4 @@ public class StreamDemo1 {
         System.out.println(result);
     }
 
-
 }

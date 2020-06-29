@@ -26,7 +26,5 @@ public class StreamRreduce {
         Optional.of(result2).ifPresent(System.out::println);
         // Optional.ofNullable(result2).ifPresent(System.out::println);
 
-
-
     }
 }

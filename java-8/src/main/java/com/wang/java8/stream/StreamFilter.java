@@ -30,5 +30,4 @@ public class StreamFilter {
         System.out.println(collect);
     }
 
-
 }

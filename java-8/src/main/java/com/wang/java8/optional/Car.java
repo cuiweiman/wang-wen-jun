@@ -11,5 +11,7 @@ import java.util.Optional;
  */
 @Getter
 public class Car {
+
     private Optional<Insurance> insuranceOptional;
+
 }

@@ -3,7 +3,6 @@ package com.wang.java8.collector;
 import com.wang.java8.common.DataUtil;
 import com.wang.java8.lambda.Apple;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

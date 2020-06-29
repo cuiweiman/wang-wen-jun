@@ -91,7 +91,6 @@ public class CollectorsAction4 {
     }
 
     private static void testToList() {
-
         Optional.ofNullable(DataUtil.menuList.stream().filter(Dish::isVegetarian).collect(
                 Collectors.toList())).ifPresent(System.out::println);
     }

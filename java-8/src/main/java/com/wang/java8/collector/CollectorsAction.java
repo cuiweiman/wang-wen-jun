@@ -80,6 +80,4 @@ public class CollectorsAction {
                 Collectors.groupingBy(Dish::getType, TreeMap::new, Collectors.averagingDouble(Dish::getCalories)));
         System.out.println(map2.getClass());
     }
-
-
 }

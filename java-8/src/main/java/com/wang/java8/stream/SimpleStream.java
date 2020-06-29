@@ -63,7 +63,6 @@ public class SimpleStream {
         return Stream.generate(new ObjSupplier()).limit(100);
     }
 
-
     public static void main(String[] args) {
         // System.out.println(createStreamFromFile());
         // createStreamFromFile();

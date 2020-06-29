@@ -31,5 +31,4 @@ public class CreateStream2 {
         // createStreamFromValues().forEach(System.out::println);
         createStreamFromArrays().forEach(System.out::println);
     }
-
 }
