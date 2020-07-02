@@ -5,5 +5,5 @@ package com.wang.guava.utilities;
  * @date: 2020/7/2 23:00
  * @author: weiman cui
  */
-public class Splitter {
+public class SplitterTest {
 }
