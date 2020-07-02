@@ -11,6 +11,7 @@
 
     <modules>
         <module>java-8</module>
+        <module>google-guava</module>
     </modules>
 
     <properties>
