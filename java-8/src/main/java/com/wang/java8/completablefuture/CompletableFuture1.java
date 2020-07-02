@@ -34,7 +34,9 @@ public class CompletableFuture1 {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return random.nextDouble();
+        Double result = random.nextDouble();
+        System.out.println(result);
+        return result;
     }
 
 }
