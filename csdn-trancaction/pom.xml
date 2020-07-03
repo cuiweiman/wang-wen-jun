@@ -7,22 +7,15 @@
         <groupId>com.wang</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>google-guava</artifactId>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <artifactId>csdn-trancaction</artifactId>
+    <packaging>pom</packaging>
+    <description>CSDN学院：SpringBoot数据本地事务与多数据源事务 电商系统高阶实战</description>
+    <modules>
+        <module>csdn-transaction-jpa</module>
+    </modules>
 
 
 </project>

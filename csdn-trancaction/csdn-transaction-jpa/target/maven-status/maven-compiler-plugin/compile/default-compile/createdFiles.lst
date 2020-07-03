@@ -1,0 +1,6 @@
+com\wang\transaction\entity\OrdersDetail.class
+com\wang\transaction\repository\OrdersDetailRepository.class
+com\wang\transaction\repository\OrdersRepository.class
+com\wang\transaction\entity\Orders.class
+com\wang\transaction\JpaApplication.class
+com\wang\transaction\service\OrdersService.class
