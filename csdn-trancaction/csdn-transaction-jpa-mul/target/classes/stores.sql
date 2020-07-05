@@ -16,3 +16,10 @@ create table `mulOrders`.`mulOrders`(
    `goods_note` varchar(256) NOT NULL DEFAULT '' COMMENT '商品备注',
    PRIMARY KEY (`id`)
  );
+ -- 商品库存 数据表设计，模拟多数据源下，SpringBoot对事物的管理机制
+ create table `mulStores`.`store`(
+   `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '物理主键',
+   `goods_id` bigint(20) DEFAULT '0' COMMENT '货品ID',
+   `store` bigint(20) DEFAULT '0' COMMENT '货品库存',
+   PRIMARY KEY (`id`)
+ );

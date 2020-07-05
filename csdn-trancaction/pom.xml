@@ -15,6 +15,7 @@
     <description>CSDN学院：SpringBoot数据本地事务与多数据源事务 电商系统高阶实战</description>
     <modules>
         <module>csdn-transaction-jpa</module>
+        <module>csdn-transaction-jpa-mul</module>
     </modules>
 
 
