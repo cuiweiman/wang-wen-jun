@@ -19,7 +19,6 @@
         <module>java-8</module>
         <module>google-guava</module>
         <module>csdn-trancaction</module>
-        <module>csdn-transaction-mul</module>
     </modules>
 
     <properties>
