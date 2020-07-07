@@ -18,7 +18,7 @@ import java.util.function.*;
  * @author: weiman cui
  * @date: 2020/7/7 10:17
  */
-public class NormalApi {
+public class NormalApiTest {
     List<String> list;
 
     @Before
