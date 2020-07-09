@@ -28,6 +28,7 @@
         <java.version>1.8</java.version>
         <sprintboot.version>2.3.1.RELEASE</sprintboot.version>
         <mysql.version>8.0.20</mysql.version>
+        <fastjson.version>1.2.66</fastjson.version>
     </properties>
 
     <dependencyManagement>
@@ -77,6 +78,11 @@
                 <artifactId>lombok</artifactId>
                 <version>1.18.12</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
             <!-- common end -->
         </dependencies>
