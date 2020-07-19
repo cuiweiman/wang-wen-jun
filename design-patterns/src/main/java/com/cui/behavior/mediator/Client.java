@@ -1,4 +1,4 @@
-package com.cui.structural.mediator;
+package com.cui.behavior.mediator;
 
 /**
  * @description: 测试类

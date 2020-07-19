@@ -1,4 +1,4 @@
-package com.cui.structural.command.c;
+package com.cui.behavior.command.c;
 
 /**
  * @description: 客户端测试类

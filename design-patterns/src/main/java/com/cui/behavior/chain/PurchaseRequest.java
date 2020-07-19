@@ -1,4 +1,4 @@
-package com.cui.structural.chain;
+package com.cui.behavior.chain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

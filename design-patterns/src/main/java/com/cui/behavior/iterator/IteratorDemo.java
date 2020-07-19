@@ -1,4 +1,4 @@
-package com.cui.structural.iterator;
+package com.cui.behavior.iterator;
 
 import java.util.*;
 

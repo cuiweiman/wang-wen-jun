@@ -1,4 +1,4 @@
-package com.cui.structural.chain;
+package com.cui.behavior.chain;
 
 /**
  * @description: 副董事长类：具体处理者

@@ -1,4 +1,4 @@
-package com.cui.structural.chain;
+package com.cui.behavior.chain;
 
 /**
  * @description: 客户端测试类

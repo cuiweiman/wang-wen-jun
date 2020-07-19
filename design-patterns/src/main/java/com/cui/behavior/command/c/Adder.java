@@ -1,4 +1,4 @@
-package com.cui.structural.command.c;
+package com.cui.behavior.command.c;
 
 import java.util.ArrayList;
 import java.util.List;

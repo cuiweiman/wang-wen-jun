@@ -1,4 +1,4 @@
-package com.cui.structural.command.a;
+package com.cui.behavior.command.a;
 
 /**
  * @description: 测试

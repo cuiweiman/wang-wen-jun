@@ -1,4 +1,4 @@
-package com.cui.structural.chain;
+package com.cui.behavior.chain;
 
 /**
  * @description: 审批者类 抽象处理者

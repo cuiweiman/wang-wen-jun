@@ -1,4 +1,4 @@
-package com.cui.structural.command.b;
+package com.cui.behavior.command.b;
 
 /**
  * @description: 求发送者类Invoker
