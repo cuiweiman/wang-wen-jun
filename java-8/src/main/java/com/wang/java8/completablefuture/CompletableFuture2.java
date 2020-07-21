@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @description: CompletableFuture的异步调用
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/1 17:21
  */
 public class CompletableFuture2 {

@@ -21,7 +21,7 @@ import java.util.Properties;
  * @description: 库存数据库 数据源配置
  * EnableJpaRepositories：配置jpa接口包名、实体管理工厂、事务管理器
  * @date: 2020/7/5 10:42
- * @author: weiman cui
+ * @author: wei·man cui
  */
 @Configuration
 @EnableJpaRepositories(basePackages = "com.wang.transaction.mul.stores.repository",

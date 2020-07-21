@@ -9,7 +9,7 @@ import java.util.stream.Collector;
 
 /**
  * @description: 自定义Collector接口方法
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/30 14:58
  */
 public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {

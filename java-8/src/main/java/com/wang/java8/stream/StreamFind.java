@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * @description: find
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/23 13:39
  */
 public class StreamFind {

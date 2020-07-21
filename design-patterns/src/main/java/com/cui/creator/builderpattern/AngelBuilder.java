@@ -3,7 +3,7 @@ package com.cui.creator.builderpattern;
 /**
  * @description: 天使角色建造器：具体建造者
  * @date: 2020/7/9 23:23
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class AngelBuilder extends ActorBuilder {
     @Override

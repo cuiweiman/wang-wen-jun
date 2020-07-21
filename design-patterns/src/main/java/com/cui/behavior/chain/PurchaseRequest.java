@@ -14,7 +14,7 @@ import lombok.Data;
  *
  * @description: 采购单 请求类
  * @date: 2020/7/15 21:49
- * @author: weiman cui
+ * @author: wei·man cui
  */
 @Data
 @AllArgsConstructor

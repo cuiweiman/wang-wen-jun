@@ -3,7 +3,7 @@ package com.cui.creator.builderpattern;
 /**
  * @description: 游戏角色创建控制器：指挥者
  * @date: 2020/7/9 23:24
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class ActorController {
 

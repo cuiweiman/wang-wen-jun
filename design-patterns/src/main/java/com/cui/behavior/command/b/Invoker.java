@@ -3,7 +3,7 @@ package com.cui.behavior.command.b;
 /**
  * @description: 求发送者类Invoker
  * @date: 2020/7/15 22:41
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class Invoker {
     // 维持一个CommandQueue对象的引用

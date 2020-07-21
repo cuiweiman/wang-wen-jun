@@ -4,7 +4,7 @@ import java.util.concurrent.*;
 
 /**
  * @description: JDK自带的Future
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/1 11:29
  */
 public class JdkFutureInAction {

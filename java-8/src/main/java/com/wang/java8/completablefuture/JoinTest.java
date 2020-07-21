@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * @description: Thread.join()方法测试
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/1 17:49
  */
 public class JoinTest extends Thread {

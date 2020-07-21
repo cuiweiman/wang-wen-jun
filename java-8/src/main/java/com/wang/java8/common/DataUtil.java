@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @description: demo中时用到的 数据
  * @date: 2020/6/23 20:04
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class DataUtil {
     public static List<Apple> appleList = Arrays.asList(

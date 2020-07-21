@@ -6,7 +6,7 @@ import java.util.stream.Collector;
 
 /**
  * @description: 测试自定义的Collector方法
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/30 15:30
  */
 public class ToListCollectorTest {

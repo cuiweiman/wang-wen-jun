@@ -2,7 +2,7 @@ package com.cui.creator.singleton;
 
 /**
  * @description: 单例demo  任务管理器单例
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 16:23
  */
 public class TaskManager {

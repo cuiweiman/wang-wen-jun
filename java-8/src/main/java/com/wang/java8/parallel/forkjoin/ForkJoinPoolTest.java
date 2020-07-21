@@ -4,7 +4,7 @@ import java.util.concurrent.ForkJoinPool;
 
 /**
  * @description: Fork Join分而治之
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/30 16:47
  */
 public class ForkJoinPoolTest {

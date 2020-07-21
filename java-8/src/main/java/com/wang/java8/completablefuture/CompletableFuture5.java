@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 /**
  * @description: CompletableFuture 常用API 2
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/2 9:03
  */
 public class CompletableFuture5 {

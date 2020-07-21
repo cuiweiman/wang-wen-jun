@@ -7,7 +7,7 @@ package com.cui.structural.flyweight;
  *
  * @description: 字符串 享元模式示例
  * @date: 2020/7/14 22:15
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class StringFlyweightClient {
     public static void main(String[] args) {

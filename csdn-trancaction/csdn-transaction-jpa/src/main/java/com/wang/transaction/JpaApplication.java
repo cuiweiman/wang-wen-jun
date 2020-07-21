@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 /**
  * @description: 事务模块 启动类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/3 10:18
  */
 @SpringBootApplication

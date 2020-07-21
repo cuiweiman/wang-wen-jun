@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 /**
  * @description: Lambda表达式语法
  * @date: 2020/6/21 20:12
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class LambdaExpression {
 

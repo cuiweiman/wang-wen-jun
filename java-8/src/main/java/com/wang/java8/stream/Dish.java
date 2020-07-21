@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @description: stream流 菜肴 实体类
  * @date: 2020/6/22 20:01
- * @author: weiman cui
+ * @author: wei·man cui
  */
 @Data
 public class Dish {

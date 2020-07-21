@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @description: 手写 Future ，了解Future设计模式的原理
  * @date: 2020/6/30 22:56
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class MyFutureInAction {
     public static void main(String[] args) throws InterruptedException {

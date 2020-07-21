@@ -10,7 +10,7 @@ import java.util.stream.StreamSupport;
 
 /**
  * @description: Spliterator接口介绍
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/30 17:31
  */
 public class SpliteratorInAction {

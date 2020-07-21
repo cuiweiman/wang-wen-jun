@@ -5,7 +5,7 @@ import java.util.Hashtable;
 /**
  * @description: 围棋棋子工厂类：享元工厂类，使用单例模式进行设计
  * @date: 2020/7/14 21:38
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class IgoChessmanFactory {
 

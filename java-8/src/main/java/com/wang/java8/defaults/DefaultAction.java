@@ -3,7 +3,7 @@ package com.wang.java8.defaults;
 /**
  * @description: Default接口 示例
  * @date: 2020/6/30 22:16
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class DefaultAction {
 

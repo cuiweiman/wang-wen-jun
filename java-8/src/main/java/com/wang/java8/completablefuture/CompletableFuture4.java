@@ -5,7 +5,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * @description: CompletableFuture 常用API
  * @date: 2020/7/1 22:36
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class CompletableFuture4 {
 

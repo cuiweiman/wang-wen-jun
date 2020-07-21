@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * @description: Integer包装类相较于int，内存占用更多
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/23 17:07
  */
 public class NumericStream {

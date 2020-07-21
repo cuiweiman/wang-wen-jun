@@ -3,7 +3,7 @@ package com.wang.java8.defaults;
 /**
  * @description: Default 示例2
  * @date: 2020/6/30 22:41
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class DefaultInAction {
 

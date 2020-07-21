@@ -3,7 +3,7 @@ package com.cui.structural.flyweight;
 /**
  * @description: 客户端测试代码
  * @date: 2020/7/14 22:06
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class Client {
 

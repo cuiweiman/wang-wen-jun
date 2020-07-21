@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * @description: 客户端测试代码
  * @date: 2020/7/9 23:25
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class Client {
     public static void main(String[] args) {

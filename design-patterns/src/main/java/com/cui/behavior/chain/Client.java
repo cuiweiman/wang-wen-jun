@@ -3,7 +3,7 @@ package com.cui.behavior.chain;
 /**
  * @description: 客户端测试类
  * @date: 2020/7/15 22:01
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class Client {
     public static void main(String[] args) {

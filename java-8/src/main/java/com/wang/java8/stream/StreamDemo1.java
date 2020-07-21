@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * @description: stream 案例
  * @date: 2020/6/22 20:02
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class StreamDemo1 {
 

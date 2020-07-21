@@ -3,7 +3,7 @@ package com.cui.behavior.chain;
 /**
  * @description: 副董事长类：具体处理者
  * @date: 2020/7/15 21:58
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class VicePresident extends Approver {
     public VicePresident(String name) {

@@ -2,7 +2,7 @@ package com.cui.structural.adapterpattern;
 
 /**
  * @description: 客户端测试代码
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/10 10:23
  */
 public class Client {

@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 /**
  * @description:
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/3 10:44
  */
 @SpringBootTest

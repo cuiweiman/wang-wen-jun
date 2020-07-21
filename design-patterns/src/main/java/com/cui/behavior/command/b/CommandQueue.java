@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @description: 命令队列
  * @date: 2020/7/15 22:38
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class CommandQueue {
     class Command {

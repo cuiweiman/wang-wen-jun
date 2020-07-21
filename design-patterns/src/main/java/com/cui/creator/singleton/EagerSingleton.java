@@ -2,7 +2,7 @@ package com.cui.creator.singleton;
 
 /**
  * @description: 饿汉式 单例类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 16:28
  */
 public class EagerSingleton {

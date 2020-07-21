@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * @description:
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/23 13:49
  */
 public class StreamRreduce {

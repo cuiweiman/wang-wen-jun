@@ -3,7 +3,7 @@ package com.cui.creator.builderpattern;
 /**
  * @description: 英雄角色建造器：具体建造者
  * @date: 2020/7/9 23:21
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class HeroBuilder extends ActorBuilder {
     @Override

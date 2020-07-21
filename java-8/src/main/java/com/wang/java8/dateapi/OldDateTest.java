@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * @description: 旧 Date API
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/2 11:37
  */
 public class OldDateTest {

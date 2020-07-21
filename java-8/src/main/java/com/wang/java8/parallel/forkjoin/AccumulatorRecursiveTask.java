@@ -4,7 +4,7 @@ import java.util.concurrent.RecursiveTask;
 
 /**
  * @description: 自定义 Fork Join 累加器
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/30 16:49
  */
 public class AccumulatorRecursiveTask extends RecursiveTask<Integer> {

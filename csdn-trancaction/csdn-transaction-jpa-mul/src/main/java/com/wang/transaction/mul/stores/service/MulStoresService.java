@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 /**
  * @description: 库存类 服务接口
  * @date: 2020/7/5 11:45
- * @author: weiman cui
+ * @author: wei·man cui
  */
 @Service
 public class MulStoresService {

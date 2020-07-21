@@ -3,7 +3,7 @@ package com.cui.behavior.chain;
 /**
  * @description: 审批者类 抽象处理者
  * @date: 2020/7/15 21:51
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public abstract class Approver {
 

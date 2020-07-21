@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 
 /**
  * @description: 订单详情服务
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/3 14:29
  */
 @Service

@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * @description: 苹果 实体类
  * @date: 2020/6/21 17:28
- * @author: weiman cui
+ * @author: wei·man cui
  */
 @Data
 @NoArgsConstructor

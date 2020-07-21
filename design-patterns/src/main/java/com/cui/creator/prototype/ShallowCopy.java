@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 /**
  * @description: 模型模式 浅拷贝
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 13:48
  */
 

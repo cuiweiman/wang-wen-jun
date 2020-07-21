@@ -3,7 +3,7 @@ package com.cui.structural.decoratorpattern;
 /**
  * @description: 黑色边框装饰类：具体装饰类
  * @date: 2020/7/13 23:00
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class BlackBorderDecorator extends ComponentDecorator {
 

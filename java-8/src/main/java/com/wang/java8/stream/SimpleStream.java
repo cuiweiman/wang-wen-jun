@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 /**
  * @description: stream demo
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/22 9:40
  */
 public class SimpleStream {

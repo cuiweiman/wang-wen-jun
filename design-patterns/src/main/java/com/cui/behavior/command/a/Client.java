@@ -3,7 +3,7 @@ package com.cui.behavior.command.a;
 /**
  * @description: 测试
  * @date: 2020/7/15 22:31
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class Client {
     public static void main(String args[]) {

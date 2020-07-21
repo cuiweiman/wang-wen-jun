@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 /**
  * @description: Collectors
  * @date: 2020/6/28 21:27
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class CollectorsAction4 {
     public static void main(String[] args) {

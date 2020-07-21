@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 /**
  * @description: Stream Filter
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/23 13:08
  */
 public class StreamFilter {

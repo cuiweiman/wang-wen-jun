@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @description: 自定义 Fork Join累加器实现2
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/30 17:09
  */
 public class AccumulatorRecursiveAction extends RecursiveAction {

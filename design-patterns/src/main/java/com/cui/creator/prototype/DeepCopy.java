@@ -6,7 +6,7 @@ import lombok.Data;
 
 /**
  * @description: 模型模式 深拷贝
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 13:48
  */
 

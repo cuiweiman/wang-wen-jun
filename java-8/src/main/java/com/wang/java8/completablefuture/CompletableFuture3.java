@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 /**
  * @description: Completable 流水线，任务处理完成后对数据继续进行处理
  * @date: 2020/7/1 22:08
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class CompletableFuture3 {
 

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 /**
  * @description: Collector API介绍
  * @date: 2020/6/23 20:03
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class CollectorsAction {
     public static void main(String[] args) {

@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @description: 异步 基于事件回调的 Future程序
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/1 12:37
  */
 public class FutureInAction {

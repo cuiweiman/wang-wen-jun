@@ -4,7 +4,7 @@ package com.cui.creator.singleton;
  * 可以实现对象的延迟加载，并在保证线程安全的情况下使系统性能不受到影响。
  *
  * @description: Initialization on Demand Holder
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 17:16
  */
 public class Singleton {

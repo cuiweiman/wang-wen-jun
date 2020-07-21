@@ -15,7 +15,7 @@ import java.util.function.*;
 
 /**
  * @description: Java8 常见函数式接口的 使用demo
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/7 10:17
  */
 public class NormalApiTest {
@@ -89,8 +89,6 @@ public class NormalApiTest {
     @Test
     public void testSupplier() {
         // T get();
-        Supplier<StringBuilder> sbSupplier = StringBuilder::new;
-        StringBuilder sb = sbSupplier.get();
         Supplier<Date> sup = Date::new;
         Date date1 = sup.get();
         Date date2 = sup.get();
@@ -105,7 +103,7 @@ public class NormalApiTest {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-
+                e.printStackTrace();
             }
             System.out.println("测试一下了");
         });
@@ -130,16 +128,12 @@ public class NormalApiTest {
 
     public static <T, R> List<R> function1(List<T> ts, Function<T, R> function) {
         List<R> list = Lists.newArrayList();
-        ts.forEach(s -> {
-            list.add(function.apply(s));
-        });
+        ts.forEach(s -> list.add(function.apply(s)));
         return list;
     }
 
     public static void consumer1(List<Person> person, Consumer<Person> consumer) {
-        person.forEach(p -> {
-            consumer.accept(p);
-        });
+        person.forEach(consumer);
     }
 
 }

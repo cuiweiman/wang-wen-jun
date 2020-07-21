@@ -7,7 +7,7 @@ import java.util.concurrent.ExecutionException;
 
 /**
  * @description: CompletableFuture 简单示例
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/1 13:43
  */
 public class CompletableFuture1 {

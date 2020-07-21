@@ -7,7 +7,7 @@ import java.time.temporal.TemporalUnit;
 
 /**
  * @description: LocalDate API 常用API介绍
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/2 13:22
  */
 public class LocalDateApi {

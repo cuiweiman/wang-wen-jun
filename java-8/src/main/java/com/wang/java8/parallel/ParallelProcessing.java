@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * @description: Java8的并行编程 Demo
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/30 15:40
  */
 public class ParallelProcessing {

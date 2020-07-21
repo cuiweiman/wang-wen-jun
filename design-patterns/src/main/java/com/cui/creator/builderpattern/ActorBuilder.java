@@ -3,7 +3,7 @@ package com.cui.creator.builderpattern;
 /**
  * @description: 角色 建造起 抽象建造者
  * @date: 2020/7/9 23:20
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public abstract class ActorBuilder {
 

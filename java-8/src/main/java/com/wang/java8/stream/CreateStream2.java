@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 /**
  * @description: Stream方法 自定义 构建
  * @date: 2020/6/22 20:55
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class CreateStream2 {
 

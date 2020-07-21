@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 
 /**
  * @description: match
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/6/23 13:32
  */
 public class StreamMatch {

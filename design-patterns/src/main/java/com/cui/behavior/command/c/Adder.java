@@ -11,7 +11,7 @@ import java.util.List;
  * </p>
  *
  * @description: 简易计算器 加法操作
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 public class Adder {
@@ -24,7 +24,7 @@ public class Adder {
 
 /**
  * @description: 抽象命令类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 abstract class AbstractCommand {
@@ -38,7 +38,7 @@ abstract class AbstractCommand {
 
 /**
  * @description: 具体命令类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 class ConCreateCommand extends AbstractCommand {
@@ -68,7 +68,7 @@ class ConCreateCommand extends AbstractCommand {
 
 /**
  * @description: 计算机界面类：请求发送者
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 class CalculatorForm {

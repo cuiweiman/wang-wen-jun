@@ -2,7 +2,7 @@ package com.cui.creator.singleton;
 
 /**
  * @description: 懒汉式 延迟加载
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 16:30
  */
 public class LazySingleton {

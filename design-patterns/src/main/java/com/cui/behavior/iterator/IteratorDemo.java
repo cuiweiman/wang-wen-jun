@@ -4,7 +4,7 @@ import java.util.*;
 
 /**
  * @description: 迭代器模式
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 public class IteratorDemo {

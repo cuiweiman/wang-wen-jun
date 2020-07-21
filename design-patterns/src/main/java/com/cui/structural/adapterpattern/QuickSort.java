@@ -2,7 +2,7 @@ package com.cui.structural.adapterpattern;
 
 /**
  * @description: 快速排序：适配者
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/10 9:40
  */
 public class QuickSort {

@@ -13,7 +13,7 @@ import java.util.ArrayList;
  *
  * @description: 功能键设置窗口类
  * @date: 2020/7/15 22:24
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class FBSettingWindow {
     // 窗口标题
@@ -47,7 +47,7 @@ public class FBSettingWindow {
 
 /**
  * @description: 功能键类：请求发送者
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/15 22:27
  */
 class FunctionButton {
@@ -78,7 +78,7 @@ class FunctionButton {
 
 /**
  * @description: 抽象命令类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/15 22:28
  */
 abstract class Command {
@@ -87,7 +87,7 @@ abstract class Command {
 
 /**
  * @description: 帮助命令类：具体命令类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/15 22:29
  */
 class HelpCommand extends Command {
@@ -106,7 +106,7 @@ class HelpCommand extends Command {
 
 /**
  * @description: 最小化命令类：具体命令类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/15 22:29
  */
 class MinimizeCommand extends Command {
@@ -125,7 +125,7 @@ class MinimizeCommand extends Command {
 
 /**
  * @description: 窗口处理类：请求接收者
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/15 22:29
  */
 class WindowHanlder {
@@ -136,7 +136,7 @@ class WindowHanlder {
 
 /**
  * @description: 帮助文档处理类：请求接收者
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/15 22:29
  */
 class HelpHandler {

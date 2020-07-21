@@ -2,7 +2,7 @@ package com.cui.structural.adapterpattern;
 
 /**
  * @description: 操作适配器：适配器
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/10 10:21
  */
 public class OperationAdapter implements ScoreOperation {

@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * @description:
  * @date: 2020/7/5 11:51
- * @author: weiman cui
+ * @author: wei·man cui
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)

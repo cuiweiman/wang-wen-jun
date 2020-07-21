@@ -2,7 +2,7 @@ package com.cui.behavior.mediator;
 
 /**
  * @description: 抽象中介者
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 public abstract class Mediator {
@@ -11,7 +11,7 @@ public abstract class Mediator {
 
 /**
  * @description: 具体中介者 维持对各个同事对象的引用
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 class ConcreteMediator extends Mediator {
@@ -51,7 +51,7 @@ class ConcreteMediator extends Mediator {
 
 /**
  * @description: 抽象组件类：抽象同事类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 abstract class Component {
@@ -71,7 +71,7 @@ abstract class Component {
 
 /**
  * @description: 按钮类：具体同事类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 class Button extends Component {
@@ -83,7 +83,7 @@ class Button extends Component {
 
 /**
  * @description: 列表框类：具体同事类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 class List extends Component {
@@ -99,7 +99,7 @@ class List extends Component {
 
 /**
  * @description: 组合框类：具体同事类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 class ComboBox extends Component {
@@ -115,7 +115,7 @@ class ComboBox extends Component {
 
 /**
  * @description: 文本框类：具体同事类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 class TextBox extends Component {

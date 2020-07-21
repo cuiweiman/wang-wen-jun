@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * @description: 库存类 jpa接口
  * @date: 2020/7/5 11:44
- * @author: weiman cui
+ * @author: wei·man cui
  */
 @Repository
 public interface MulStoresRepository extends CrudRepository<MulStores, Long> {

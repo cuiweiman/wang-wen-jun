@@ -2,7 +2,7 @@ package com.cui.creator.simplefactory;
 
 /**
  * @description: 简单/静态工厂模式  静态工厂类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 15:07
  */
 public class Factory {

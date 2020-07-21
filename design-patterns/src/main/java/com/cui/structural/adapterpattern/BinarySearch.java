@@ -2,7 +2,7 @@ package com.cui.structural.adapterpattern;
 
 /**
  * @description: 二分查找类：适配者
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/10 10:20
  */
 public class BinarySearch {

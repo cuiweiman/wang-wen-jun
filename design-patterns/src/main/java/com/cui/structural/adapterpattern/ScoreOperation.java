@@ -2,7 +2,7 @@ package com.cui.structural.adapterpattern;
 
 /**
  * @description: 抽象成绩操作类，目标接口
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/10 9:36
  */
 public interface ScoreOperation {

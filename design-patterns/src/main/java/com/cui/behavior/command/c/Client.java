@@ -2,7 +2,7 @@ package com.cui.behavior.command.c;
 
 /**
  * @description: 客户端测试类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/16
  */
 public class Client {

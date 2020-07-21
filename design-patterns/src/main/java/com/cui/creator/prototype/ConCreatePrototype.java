@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * @description: 模型模式 具体原型类
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/9 13:32
  */
 @Data

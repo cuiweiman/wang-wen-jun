@@ -5,7 +5,7 @@ import java.util.Optional;
 /**
  * @description:
  * @date: 2020/6/23 19:32
- * @author: weiman cui
+ * @author: wei·man cui
  */
 public class OptionalInAction {
     public static void main(String[] args) {

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @description: 订单详情
- * @author: weiman cui
+ * @author: wei·man cui
  * @date: 2020/7/3 10:35
  */
 @Repository
