@@ -20,7 +20,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
 /**
- * @description: Joiner 示例
+ * @description: Joiner 字符串连接
  * @date: 2020/7/2 22:24
  * @author: wei·man cui
  */
