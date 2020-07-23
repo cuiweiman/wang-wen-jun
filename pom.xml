@@ -20,6 +20,7 @@
         <module>google-guava</module>
         <module>csdn-trancaction</module>
         <module>design-patterns</module>
+        <module>power-mock</module>
     </modules>
 
     <properties>
@@ -29,6 +30,7 @@
         <sprintboot.version>2.3.1.RELEASE</sprintboot.version>
         <mysql.version>8.0.20</mysql.version>
         <fastjson.version>1.2.66</fastjson.version>
+        <mock.version>2.0.7</mock.version>
     </properties>
 
     <dependencyManagement>
@@ -86,6 +88,20 @@
                 <version>${fastjson.version}</version>
             </dependency>
             <!-- common end -->
+
+            <!-- PowerMock -->
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${mock.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>1.7.4</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
