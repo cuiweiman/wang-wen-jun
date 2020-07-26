@@ -3,6 +3,8 @@ package com.wang.guava.utilities;
 import com.google.common.base.Joiner;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Files;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -13,11 +15,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.sameInstance;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 /**
  * @description: Joiner 字符串连接
@@ -42,7 +39,7 @@ public class JoinerTest {
     @Test
     public void testJoinerOnJoin() {
         String result = Joiner.on("#").join(stringList);
-        assertThat(result, equalTo("Google#Guava#Java#Scala#Kafka"));
+        Assert.assertThat(result, CoreMatchers.equalTo("Google#Guava#Java#Scala#Kafka"));
     }
 
     /**
@@ -52,7 +49,7 @@ public class JoinerTest {
     public void testJoinerOnJoinWithNullValue() {
         String result = Joiner.on("#").join(stringListWithNullValue);
         System.out.println(result);
-        assertThat(result, equalTo("Google#Guava#Java#Scala#Kafka"));
+        Assert.assertThat(result, CoreMatchers.equalTo("Google#Guava#Java#Scala#Kafka"));
     }
 
     /**
@@ -62,7 +59,7 @@ public class JoinerTest {
     public void testJoinerOnJoinWithNullValueButSkip() {
         String result = Joiner.on("#").skipNulls().join(stringListWithNullValue);
         System.out.println(result);
-        assertThat(result, equalTo("Google#Guava#Java#Scala"));
+        Assert.assertThat(result, CoreMatchers.equalTo("Google#Guava#Java#Scala"));
     }
 
     /**
@@ -73,7 +70,7 @@ public class JoinerTest {
     public void testJoinerOnJoinWithNullValueButUseDefaultValue() {
         String result = Joiner.on("#").useForNull("Default").join(stringListWithNullValue);
         System.out.println(result);
-        assertThat(result, equalTo("Google#Guava#Java#Scala#Default"));
+        Assert.assertThat(result, CoreMatchers.equalTo("Google#Guava#Java#Scala#Default"));
     }
 
     /**
@@ -86,7 +83,7 @@ public class JoinerTest {
         StringBuilder resultBuilder = Joiner.on("#").useForNull("Default")
                 .appendTo(sb, stringListWithNullValue);
         System.out.println(resultBuilder.toString());
-        assertThat(resultBuilder, sameInstance(sb));
+        Assert.assertThat(resultBuilder, CoreMatchers.sameInstance(sb));
     }
 
 
@@ -99,7 +96,7 @@ public class JoinerTest {
             Joiner.on("#").useForNull("Default").appendTo(writer, stringListWithNullValue);
             // assertThat(Files.isFile().test(new File(targetFileName)), equalTo(true));
         } catch (IOException e) {
-            fail("append to the writer occur fetal error.");
+            Assert.fail("append to the writer occur fetal error.");
         }
     }
 
@@ -152,7 +149,7 @@ public class JoinerTest {
             Joiner.on('#').withKeyValueSeparator("=").appendTo(writer, stringMap);
             System.out.println(Files.isFile().test(new File(targetFileName)));
         } catch (IOException e) {
-            fail("append to the writer occur fetal error.");
+            Assert.fail("append to the writer occur fetal error.");
         }
     }
 }

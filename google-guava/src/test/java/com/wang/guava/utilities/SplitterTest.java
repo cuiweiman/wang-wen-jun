@@ -1,15 +1,13 @@
 package com.wang.guava.utilities;
 
 import com.google.common.base.Splitter;
-import org.junit.Test;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
 
 /**
  * @description: 按照指定的分隔符，将字符串分隔成一个集合
@@ -24,10 +22,10 @@ public class SplitterTest {
     @Test
     public void testSplitOnSplit() {
         List<String> result = Splitter.on("|").splitToList("hello|world");
-        assertThat(result, notNullValue());
-        assertThat(result.size(), equalTo(2));
-        assertThat(result.get(0), equalTo("hello"));
-        assertThat(result.get(1), equalTo("world"));
+        Assert.assertThat(result, Matchers.notNullValue());
+        Assert.assertThat(result.size(), Matchers.equalTo(2));
+        Assert.assertThat(result.get(0), Matchers.equalTo("hello"));
+        Assert.assertThat(result.get(1), Matchers.equalTo("world"));
         result.forEach(System.out::println);
     }
 
@@ -37,9 +35,9 @@ public class SplitterTest {
     @Test
     public void testSplitOnSplitOmitEmpty() {
         List<String> result = Splitter.on("|").splitToList("hello|world|||");
-        assertThat(result.size(), equalTo(5));
+        Assert.assertThat(result.size(), Matchers.equalTo(5));
         result = Splitter.on("|").omitEmptyStrings().splitToList("hello|world|||");
-        assertThat(result.size(), equalTo(2));
+        Assert.assertThat(result.size(), Matchers.equalTo(2));
     }
 
     /**
@@ -49,12 +47,12 @@ public class SplitterTest {
     public void testSplitOnSplitOmitEmptyTrimResult() {
         List<String> result = Splitter.on("|").omitEmptyStrings()
                 .splitToList(" hello|world |||");
-        assertThat(result.size(), equalTo(2));
-        assertThat(result.get(0), equalTo(" hello"));
-        assertThat(result.get(1), equalTo("world "));
+        Assert.assertThat(result.size(), Matchers.equalTo(2));
+        Assert.assertThat(result.get(0), Matchers.equalTo(" hello"));
+        Assert.assertThat(result.get(1), Matchers.equalTo("world "));
         result = Splitter.on("|").omitEmptyStrings().trimResults().splitToList(" hello|world |||");
-        assertThat(result.get(0), equalTo("hello"));
-        assertThat(result.get(1), equalTo("world"));
+        Assert.assertThat(result.get(0), Matchers.equalTo("hello"));
+        Assert.assertThat(result.get(1), Matchers.equalTo("world"));
     }
 
     /**
@@ -64,9 +62,9 @@ public class SplitterTest {
     public void testSplitFixLength() {
         List<String> result = Splitter.fixedLength(4)
                 .splitToList("aaaabbbbccccdddd");
-        assertThat(result.size(), equalTo(4));
-        assertThat(result.get(0), equalTo("aaaa"));
-        assertThat(result.get(3), equalTo("dddd"));
+        Assert.assertThat(result.size(), Matchers.equalTo(4));
+        Assert.assertThat(result.get(0), Matchers.equalTo("aaaa"));
+        Assert.assertThat(result.get(3), Matchers.equalTo("dddd"));
     }
 
     /**
@@ -77,10 +75,10 @@ public class SplitterTest {
         List<String> result = Splitter.on("#").limit(3)
                 .splitToList("hello#world#java#google#scala");
         System.out.println(result);
-        assertThat(result.size(), equalTo(3));
-        assertThat(result.get(0), equalTo("hello"));
-        assertThat(result.get(1), equalTo("world"));
-        assertThat(result.get(2), equalTo("java#google#scala"));
+        Assert.assertThat(result.size(), Matchers.equalTo(3));
+        Assert.assertThat(result.get(0), Matchers.equalTo("hello"));
+        Assert.assertThat(result.get(1), Matchers.equalTo("world"));
+        Assert.assertThat(result.get(2), Matchers.equalTo("java#google#scala"));
     }
 
     /**
@@ -91,9 +89,9 @@ public class SplitterTest {
         List<String> result = Splitter.onPattern("\\|")
                 .trimResults().omitEmptyStrings()
                 .splitToList("Hello | World||||");
-        assertThat(result.size(), equalTo(2));
-        assertThat(result.get(0), equalTo("Hello"));
-        assertThat(result.get(1), equalTo("World"));
+        Assert.assertThat(result.size(), Matchers.equalTo(2));
+        Assert.assertThat(result.get(0), Matchers.equalTo("Hello"));
+        Assert.assertThat(result.get(1), Matchers.equalTo("World"));
     }
 
     @Test
@@ -101,9 +99,9 @@ public class SplitterTest {
         List<String> result = Splitter.on(Pattern.compile("\\|"))
                 .trimResults().omitEmptyStrings()
                 .splitToList("Hello | World||||");
-        assertThat(result.size(), equalTo(2));
-        assertThat(result.get(0), equalTo("Hello"));
-        assertThat(result.get(1), equalTo("World"));
+        Assert.assertThat(result.size(), Matchers.equalTo(2));
+        Assert.assertThat(result.get(0), Matchers.equalTo("Hello"));
+        Assert.assertThat(result.get(1), Matchers.equalTo("World"));
     }
 
     /**
@@ -115,8 +113,8 @@ public class SplitterTest {
                 .trimResults().omitEmptyStrings()
                 .withKeyValueSeparator("=")
                 .split("hello=HELLO | world=WORLD|||");
-        assertThat(result.size(), equalTo(2));
-        assertThat(result.get("hello"), equalTo("HELLO"));
-        assertThat(result.get("world"), equalTo("WORLD"));
+        Assert.assertThat(result.size(), Matchers.equalTo(2));
+        Assert.assertThat(result.get("hello"), Matchers.equalTo("HELLO"));
+        Assert.assertThat(result.get("world"), Matchers.equalTo("WORLD"));
     }
 }

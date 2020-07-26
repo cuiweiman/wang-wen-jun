@@ -2,15 +2,12 @@ package com.wang.guava.utilities;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Objects;
-
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 /**
  * @description: 断言
@@ -60,7 +57,7 @@ public class PreconditionsTest {
             Preconditions.checkArgument(false, "错误");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            assertThat(e.getClass(), is(IllegalArgumentException.class));
+            Assert.assertThat(e.getClass(), Matchers.is(IllegalArgumentException.class));
         }
     }
 
@@ -68,10 +65,10 @@ public class PreconditionsTest {
     public void testCheckState() {
         try {
             Preconditions.checkState(false, "错误");
-            fail("should not process to here");
+            Assert.fail("should not process to here");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            assertThat(e.getClass(), is(IllegalStateException.class));
+            Assert.assertThat(e.getClass(), Matchers.is(IllegalStateException.class));
         }
     }
 
@@ -81,7 +78,7 @@ public class PreconditionsTest {
             Preconditions.checkElementIndex(5, list2.size());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            assertThat(e.getClass(), is(IndexOutOfBoundsException.class));
+            Assert.assertThat(e.getClass(), Matchers.is(IndexOutOfBoundsException.class));
         }
     }
 
@@ -102,7 +99,7 @@ public class PreconditionsTest {
             assert list != null : "The list should not be null.";
         } catch (Error e) {
             System.out.println(e.getMessage());
-            assertThat(e.getClass(), is(AssertionError.class));
+            Assert.assertThat(e.getClass(), Matchers.is(AssertionError.class));
         }
     }
 
