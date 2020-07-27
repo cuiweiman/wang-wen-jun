@@ -4,9 +4,14 @@ import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.base.Preconditions;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.function.Supplier;
+
+import static org.junit.Assert.assertThat;
 
 /**
  * @description: Function api
@@ -16,6 +21,13 @@ import java.net.ServerSocket;
 public class FunctionExample {
 
     public static void main(String[] args) throws IOException {
+
+        Supplier<String> supplier = String::new;
+        Class<? extends String> aClass = supplier.get().getClass();
+        Class<? extends String> aClass1 = supplier.get().getClass();
+        Assert.assertThat(aClass==aClass1, Matchers.equalTo(true));
+
+
         // 函数式 逻辑处理
         Function<String, Integer> function = new Function<String, Integer>() {
             @Nullable
