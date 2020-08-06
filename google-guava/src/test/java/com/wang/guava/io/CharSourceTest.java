@@ -12,7 +12,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 /**
- * @description: CharSource 字符流 读取
+ * @description: CharSource 字符流 读取 Reader
  * @date: 2020/8/5 23:32
  * @author: wei·man cui
  */

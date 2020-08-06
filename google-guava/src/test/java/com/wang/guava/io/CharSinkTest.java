@@ -4,7 +4,7 @@ import com.google.common.io.CharSink;
 import org.junit.Test;
 
 /**
- * @description: CharSink 字符流  输出
+ * @description: CharSink 字符流  输出 Writer
  * @date: 2020/8/5 23:45
  * @author: wei·man cui
  */
