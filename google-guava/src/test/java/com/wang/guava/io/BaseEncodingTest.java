@@ -3,6 +3,9 @@ package com.wang.guava.io;
 import com.google.common.io.BaseEncoding;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 /**
  * @description: Base64编码 与 反编码
  * @date: 2020/8/8 17:55
@@ -24,8 +27,10 @@ public class BaseEncodingTest {
 
     @Test
     public void testSelfEncoding() {
-        String encode64 = Base64.encode("hello");
-        System.out.println(encode64);
+        String source = "hello";
+        String encode64 = Base64.encode(source);
+        String decode = Base64.decode(encode64);
+        assertThat(source, equalTo(decode));
     }
 
 }

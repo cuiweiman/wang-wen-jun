@@ -16,7 +16,8 @@ public final class Base64 {
     private final static String CODE_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789^!";
     private final static char[] CODE_DICT = CODE_STRING.toCharArray();
 
-    private Base64() { }
+    private Base64() {
+    }
 
     public static String encode(String plain) {
         Preconditions.checkNotNull(plain);
@@ -44,6 +45,52 @@ public final class Base64 {
         }
         return result.toString();
     }
+
+    /**
+     * 解码
+     *
+     * @param encode
+     * @return
+     */
+    public static String decode(final String encrypt) {
+        StringBuilder result = new StringBuilder();
+        String temp = encrypt;
+        int equalIndex = temp.indexOf("=");
+        if (equalIndex > 0) {
+            temp = temp.substring(0, equalIndex);
+        }
+        String base64Binary = toBase64Binary(temp);
+        // 每8位一组
+        for (int i = 0; i < base64Binary.length() / 8; i++) {
+            int begin = i * 8;
+            String binary = base64Binary.substring(begin, begin + 8);
+            char c = Character.toChars(Integer.parseInt(binary, 2))[0];
+            result.append(c);
+        }
+        return result.toString();
+    }
+
+    /**
+     * 按照Base64编码表，找到字母对应的10进制数，转换成二进制，再补齐6位；
+     * Base64二进制是6位一组，正常二进制是8位一组。
+     *
+     * @param source 入参
+     * @return 结果
+     */
+    private static String toBase64Binary(final String source) {
+        final StringBuilder binary = new StringBuilder();
+        for (int i = 0; i < source.length(); i++) {
+            int index = CODE_STRING.indexOf(source.charAt(i));
+            String charBin = Integer.toBinaryString(index);
+            int delta = 6 - charBin.length();
+            for (int j = 0; j < delta; j++) {
+                charBin = "0" + charBin;
+            }
+            binary.append(charBin);
+        }
+        return binary.toString();
+    }
+
 
     /**
      * 获取 字符对应的ASCII 数字的二进制数，并处理成 8位。
