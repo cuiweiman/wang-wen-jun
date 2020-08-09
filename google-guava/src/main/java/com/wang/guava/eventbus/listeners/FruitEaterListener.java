@@ -1,9 +1,9 @@
-package com.wang.guava.eventbus;
+package com.wang.guava.eventbus.listeners;
 
 import com.google.common.eventbus.Subscribe;
+import com.wang.guava.eventbus.events.Fruit;
+import com.wang.guava.eventbus.events.FruitApple;
 import lombok.extern.slf4j.Slf4j;
-
-import java.applet.Applet;
 
 /**
  * @description: Event继承关系 消费者

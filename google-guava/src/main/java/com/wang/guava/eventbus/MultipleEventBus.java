@@ -1,6 +1,7 @@
 package com.wang.guava.eventbus;
 
 import com.google.common.eventbus.EventBus;
+import com.wang.guava.eventbus.listeners.MultipleEventListener;
 
 /**
  * @description: 发送多种类型事件 的消息中线 注册中心

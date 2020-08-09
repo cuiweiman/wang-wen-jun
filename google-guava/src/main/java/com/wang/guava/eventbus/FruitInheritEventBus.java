@@ -1,6 +1,9 @@
 package com.wang.guava.eventbus;
 
 import com.google.common.eventbus.EventBus;
+import com.wang.guava.eventbus.events.Fruit;
+import com.wang.guava.eventbus.events.FruitApple;
+import com.wang.guava.eventbus.listeners.FruitEaterListener;
 
 /**
  * @description: Event继承关系 EventBus

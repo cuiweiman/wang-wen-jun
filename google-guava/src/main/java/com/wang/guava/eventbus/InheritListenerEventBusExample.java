@@ -1,6 +1,7 @@
 package com.wang.guava.eventbus;
 
 import com.google.common.eventbus.EventBus;
+import com.wang.guava.eventbus.listeners.ConcreteListener;
 
 /**
  * @description: Listener之间的继承关系

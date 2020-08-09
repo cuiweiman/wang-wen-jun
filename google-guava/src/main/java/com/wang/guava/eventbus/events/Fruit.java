@@ -1,4 +1,4 @@
-package com.wang.guava.eventbus;
+package com.wang.guava.eventbus.events;
 
 import com.google.common.base.MoreObjects;
 

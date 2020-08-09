@@ -1,6 +1,7 @@
 package com.wang.guava.eventbus;
 
 import com.google.common.eventbus.EventBus;
+import com.wang.guava.eventbus.listeners.SimpleListener;
 
 /**
  * 在这里 将 消费者(listener)注册给 事件总线中

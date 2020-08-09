@@ -1,4 +1,4 @@
-package com.wang.guava.eventbus;
+package com.wang.guava.eventbus.events;
 
 /**
  * @description: Event继承关系.Apple继承自Fruit

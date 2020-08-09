@@ -1,4 +1,4 @@
-package com.wang.guava.eventbus;
+package com.wang.guava.eventbus.listeners;
 
 import com.google.common.eventbus.Subscribe;
 import lombok.extern.slf4j.Slf4j;
