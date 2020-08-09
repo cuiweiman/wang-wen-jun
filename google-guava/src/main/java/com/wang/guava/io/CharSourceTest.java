@@ -1,9 +1,7 @@
 package com.wang.guava.io;
 
 import com.google.common.collect.ImmutableList;
-import com.google.common.io.CharSink;
 import com.google.common.io.CharSource;
-import com.google.common.io.Files;
 import org.junit.Test;
 
 import java.io.IOException;
