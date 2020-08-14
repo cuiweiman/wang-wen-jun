@@ -10,13 +10,19 @@ import java.util.concurrent.ExecutorService;
  */
 public class MyDispatcher {
 
+    /**
+     * 多线程服务 执行任务
+     */
     private final Executor executorService;
 
+    /**
+     * 异常处理
+     */
     private final MyEventExceptionHandler exceptionHandler;
 
     public static final Executor SEQ_EXECUTOR_SERVICE = SeqExecutorService.INSTANCE;
 
-    public static final Executor PRE_THREAD_EXECUTOR_SERVICE = PreThreadExecutorService.INSTANCE;
+    public static final Executor PER_THREAD_EXECUTOR_SERVICE = PerThreadExecutorService.INSTANCE;
 
     private MyDispatcher(Executor executorService, MyEventExceptionHandler exceptionHandler) {
         this.executorService = executorService;
@@ -26,7 +32,7 @@ public class MyDispatcher {
     /**
      * 事件 分发给 订阅者
      *
-     * @param bus        事件 上下文
+     * @param bus        事件总线
      * @param myRegister 订阅者存储类
      * @param event      事件
      * @param topic      订阅的主题
@@ -37,7 +43,7 @@ public class MyDispatcher {
     }
 
     /**
-     * 如果是 线程资源，则关闭
+     * 如果是 ExecutorService 资源，则需要关闭
      */
     public void close() {
         if (executorService instanceof ExecutorService) {
@@ -54,11 +60,11 @@ public class MyDispatcher {
     }
 
     static MyDispatcher preDispatcher(MyEventExceptionHandler handler) {
-        return new MyDispatcher(PRE_THREAD_EXECUTOR_SERVICE, handler);
+        return new MyDispatcher(PER_THREAD_EXECUTOR_SERVICE, handler);
     }
 
     /**
-     * 将系统总线的事件，串行交给订阅者。单例
+     * 串行：将系统总线的事件，转交给订阅者。单例-饿汉式
      */
     private static class SeqExecutorService implements Executor {
         private final static SeqExecutorService INSTANCE = new SeqExecutorService();
@@ -69,8 +75,11 @@ public class MyDispatcher {
         }
     }
 
-    private static class PreThreadExecutorService implements Executor {
-        private final static PreThreadExecutorService INSTANCE = new PreThreadExecutorService();
+    /**
+     *
+     */
+    private static class PerThreadExecutorService implements Executor {
+        private final static PerThreadExecutorService INSTANCE = new PerThreadExecutorService();
 
         @Override
         public void execute(Runnable command) {
