@@ -1,5 +1,7 @@
 package com.wang.guava.eventbusself;
 
+import java.lang.reflect.Method;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 
@@ -38,7 +40,24 @@ public class MyDispatcher {
      * @param topic      订阅的主题
      */
     public void dispatch(Bus bus, MyRegister myRegister, Object event, String topic) {
+        ConcurrentLinkedQueue<MySubscriber> mySubscribers = myRegister.scanSubscriber(topic);
+        if (null == mySubscribers) {
+            if (exceptionHandler != null) {
+                //TODO implement the context
+                exceptionHandler.handle(new IllegalArgumentException("The topic " + topic + " not bind yet"), null);
+            }
+            return;
+        }
+        mySubscribers.stream()
+                .filter(mySubscriber -> !mySubscriber.isDisable())
+                .filter(mySubscriber -> {
+                    Method method = mySubscriber.getSubscribeMethod();
+                    Class<?> aClass = method.getParameterTypes()[0];
+                    return aClass.isAssignableFrom(event.getClass());
+                }).forEach(mySubscriber -> realInvokeSubscribe(mySubscriber, event, bus));
+    }
 
+    private void realInvokeSubscribe(MySubscriber mySubscriber, Object event, Bus bus) {
 
     }
 

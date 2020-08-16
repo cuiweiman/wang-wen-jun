@@ -43,12 +43,31 @@ class MyRegister {
      *
      * @param subscribe 订阅者
      */
-    public void unbind(Object subscribe) {
+    public void unbind(Object subscriber) {
+        subscriberContainer.forEach((key, queue) -> {
+            queue.forEach(s -> {
+                if (s.getSubscribeObject() == subscriber) {
+                    s.setDisable(true);
+                }
+            });
+        });
+    }
 
+    public ConcurrentLinkedQueue<MySubscriber> scanSubscriber(final String topic) {
+        return subscriberContainer.get(topic);
     }
 
     private void tigerSubscriber(Object subscriber, Method method) {
-
+        MySubscribe mySubscribe = method.getDeclaredAnnotation(MySubscribe.class);
+        String topic = mySubscribe.topic();
+        subscriberContainer.computeIfAbsent(topic, key -> new ConcurrentLinkedQueue<>());
+        // 上一行代码 等价于 如下if语句
+        /*ConcurrentLinkedQueue<MySubscriber> mySubscribers = subscriberContainer.get(topic);
+        if (mySubscribers == null) {
+            mySubscribers = new ConcurrentLinkedQueue<>();
+            subscriberContainer.put(topic, mySubscribers);
+        }*/
+        subscriberContainer.get(topic).add(new MySubscriber(subscriber, method));
     }
 
     /**

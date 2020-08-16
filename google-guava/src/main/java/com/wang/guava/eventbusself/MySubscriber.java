@@ -2,6 +2,8 @@ package com.wang.guava.eventbusself;
 
 import lombok.Getter;
 
+import java.lang.reflect.Method;
+
 /**
  * @description:
  * @author: wei·man cui
@@ -12,10 +14,16 @@ public class MySubscriber {
 
     private final Object subscribeObject;
 
-    private final Object subscribeMethod;
+    private final Method subscribeMethod;
 
-    public MySubscriber(Object subscribeObject, Object subscribeMethod) {
+    private boolean disable = false;
+
+    public MySubscriber(Object subscribeObject, Method subscribeMethod) {
         this.subscribeObject = subscribeObject;
         this.subscribeMethod = subscribeMethod;
+    }
+
+    public void setDisable(boolean disable) {
+        this.disable = disable;
     }
 }
