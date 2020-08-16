@@ -41,7 +41,7 @@ class MyRegister {
     /**
      * 将 事件总线 与 订阅者 解绑
      *
-     * @param subscribe 订阅者
+     * @param subscriber 订阅者
      */
     public void unbind(Object subscriber) {
         subscriberContainer.forEach((key, queue) -> {

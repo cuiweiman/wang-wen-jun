@@ -43,13 +43,12 @@ public class MyDispatcher {
         ConcurrentLinkedQueue<MySubscriber> mySubscribers = myRegister.scanSubscriber(topic);
         if (null == mySubscribers) {
             if (exceptionHandler != null) {
-                //TODO implement the context
-                exceptionHandler.handle(new IllegalArgumentException("The topic " + topic + " not bind yet"), null);
+                exceptionHandler.handle(new IllegalArgumentException("The topic " + topic + " not bind yet"),
+                        new BaseMyEventContext(bus.getBusName(), null, event));
             }
             return;
         }
-        mySubscribers.stream()
-                .filter(mySubscriber -> !mySubscriber.isDisable())
+        mySubscribers.stream().filter(mySubscriber -> !mySubscriber.isDisable())
                 .filter(mySubscriber -> {
                     Method method = mySubscriber.getSubscribeMethod();
                     Class<?> aClass = method.getParameterTypes()[0];
@@ -58,7 +57,17 @@ public class MyDispatcher {
     }
 
     private void realInvokeSubscribe(MySubscriber mySubscriber, Object event, Bus bus) {
-
+        Method subscribeMethod = mySubscriber.getSubscribeMethod();
+        Object subscribeObject = mySubscriber.getSubscribeObject();
+        executorService.execute(() -> {
+            try {
+                subscribeMethod.invoke(subscribeObject, event);
+            } catch (Exception e) {
+                if (null != exceptionHandler) {
+                    exceptionHandler.handle(e, new BaseMyEventContext(bus.getBusName(), mySubscriber, event));
+                }
+            }
+        });
     }
 
     /**
@@ -94,9 +103,7 @@ public class MyDispatcher {
         }
     }
 
-    /**
-     *
-     */
+    //FIXME
     private static class PerThreadExecutorService implements Executor {
         private final static PerThreadExecutorService INSTANCE = new PerThreadExecutorService();
 
@@ -105,4 +112,39 @@ public class MyDispatcher {
             new Thread(command).start();
         }
     }
+
+    private static class BaseMyEventContext implements MyEventContext {
+        private final String eventBusName;
+
+        private final MySubscriber subscriber;
+
+        private final Object event;
+
+        public BaseMyEventContext(String eventBusName, MySubscriber subscriber, Object event) {
+            this.eventBusName = eventBusName;
+            this.subscriber = subscriber;
+            this.event = event;
+        }
+
+        @Override
+        public String getSource() {
+            return this.eventBusName;
+        }
+
+        @Override
+        public Object getSubscriber() {
+            return subscriber != null ? subscriber.getSubscribeObject() : null;
+        }
+
+        @Override
+        public Method getSubscribe() {
+            return subscriber != null ? subscriber.getSubscribeMethod() : null;
+        }
+
+        @Override
+        public Object getEvent() {
+            return this.event;
+        }
+    }
+
 }

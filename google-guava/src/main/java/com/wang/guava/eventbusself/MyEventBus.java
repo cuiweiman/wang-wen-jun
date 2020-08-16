@@ -29,6 +29,10 @@ public class MyEventBus implements Bus {
         this(busName, null, MyDispatcher.SEQ_EXECUTOR_SERVICE);
     }
 
+    public MyEventBus(MyEventExceptionHandler exceptionHandler) {
+        this(DEFAULT_BUS_NAME, exceptionHandler, MyDispatcher.SEQ_EXECUTOR_SERVICE);
+    }
+
     public MyEventBus(String busName, MyEventExceptionHandler exceptionHandler, Executor executor) {
         this.busName = busName;
         this.exceptionHandler = exceptionHandler;
