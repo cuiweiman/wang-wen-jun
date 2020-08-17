@@ -15,6 +15,7 @@ public class MyEventBusExample {
         myEventBus.register(new MySimpleListener2());
         // myEventBus.post(" 测试系统总线 ");
         myEventBus.post(123, "self-topic");
+        myEventBus.post(456, "async-topic");
 
         MyEventBus myEventBusException = new MyEventBus((cause, context) -> {
             cause.printStackTrace();

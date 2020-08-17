@@ -33,7 +33,7 @@ public class MyEventBus implements Bus {
         this(DEFAULT_BUS_NAME, exceptionHandler, MyDispatcher.SEQ_EXECUTOR_SERVICE);
     }
 
-    public MyEventBus(String busName, MyEventExceptionHandler exceptionHandler, Executor executor) {
+    MyEventBus(String busName, MyEventExceptionHandler exceptionHandler, Executor executor) {
         this.busName = busName;
         this.exceptionHandler = exceptionHandler;
         this.dispatcher = MyDispatcher.newDispatcher(executor, exceptionHandler);
