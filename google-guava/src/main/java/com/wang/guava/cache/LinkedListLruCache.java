@@ -39,10 +39,10 @@ public class LinkedListLruCache<K, V> implements LruCache<K, V> {
         if (keys.size() >= limit) {
             // 移除 最老的元素
             K oldKey = keys.removeFirst();
-            V remove = cache.remove(key);
+            V remove = cache.remove(newKey);
         }
-        keys.add(key);
-        cache.put(key, value);
+        keys.add(newKey);
+        cache.put(newKey, newValue);
     }
 
     @Override

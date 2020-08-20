@@ -23,7 +23,7 @@ public class LinkedHashLruCache<K, V> implements LruCache<K, V> {
      */
     private static class InternalLruCache<K, V> extends LinkedHashMap<K, V> {
 
-        final private int limit;
+        private final int limit;
 
         public InternalLruCache(int limit) {
             super(16, 0.75f, true);
