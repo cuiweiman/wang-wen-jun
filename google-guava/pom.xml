@@ -56,6 +56,13 @@
             <version>1.6.6</version>
         </dependency>
 
+        <!--阅读Commons源码，了解 PhantomReference 使用场景：FileCleaningTracker-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.4</version>
+        </dependency>
+
     </dependencies>
 
 
