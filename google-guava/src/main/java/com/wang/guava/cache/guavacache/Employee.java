@@ -20,6 +20,11 @@ public class Employee {
     private final String empId;
 
     @Override
+    protected void finalize() throws Throwable {
+        System.out.println("The name 【 " + this.name + "will be GC 】");
+    }
+
+    @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("Name", this.getName())
