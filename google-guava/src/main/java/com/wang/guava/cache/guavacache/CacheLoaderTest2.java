@@ -72,6 +72,7 @@ public class CacheLoaderTest2 {
 
     /**
      * Weak Reference 弱引用 作为缓存的 Key和Value
+     * FullGC和MinorGC都会被回收
      */
     @Test
     public void testWeakKey() throws InterruptedException {
@@ -86,6 +87,26 @@ public class CacheLoaderTest2 {
         assertThat(cache.getIfPresent("Test"), nullValue());
         assertThat(cache.getIfPresent("Guava"), nullValue());
         System.out.println(cache.size());
+    }
+
+    /**
+     * Soft Reference 软引用,内存不足时，会被回收。
+     * 设置缓存元素为 1M， JVM设置128M的堆内存（缓存不到128M时即会GC），进行测试
+     * VM Option  -ea: -Xmx128M -Xms64M -XX:+PrintGCDetails
+     */
+    @Test
+    public void testSoftKey() throws InterruptedException {
+        LoadingCache<String, Employee> cache = CacheBuilder.newBuilder()
+                .expireAfterWrite(2, TimeUnit.SECONDS)
+                .softValues().build(createCacheLoader());
+        int i = 0;
+        for (; ; ) {
+            String key = "TestKey " + i;
+            String value = "Employee " + i;
+            cache.put(key, new Employee(value, value, value));
+            System.out.println("The Employee [" + (i++) + "] is store into cache");
+            TimeUnit.MILLISECONDS.sleep(600);
+        }
     }
 
     private CacheLoader<String, Employee> createCacheLoader() {

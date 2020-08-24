@@ -19,9 +19,16 @@ public class Employee {
 
     private final String empId;
 
+    private final byte[] data = new byte[1024 * 1024];
+
+    /**
+     * 垃圾回收时，与根索引的引用断开后，会执行finalize()方法，被标记为可回收
+     *
+     * @throws Throwable 错误
+     */
     @Override
     protected void finalize() throws Throwable {
-        System.out.println("The name 【 " + this.name + "will be GC 】");
+        System.out.println("The name 【 " + this.name + " will be GC 】");
     }
 
     @Override
