@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+
 /**
  * @description: Guava Collections Sort
  * @author: wei·man cui
@@ -29,12 +32,16 @@ public class CollectionSort {
      */
     @Test
     public void testOrderNaturalByNullFirstOrNullLast() {
+        List<Integer> ordered = Arrays.asList(1, 5, 6, 3, 7, 2, 8, 0);
+        Collections.sort(ordered);
+        System.out.println("是否按照自然顺序排序：" + Ordering.natural().isOrdered(ordered));
+
         List<Integer> list = Arrays.asList(1, 5, 6, 3, null, 7, 2, 8, 0);
         Collections.sort(list, Ordering.natural().nullsFirst());
         System.out.println(list);
+
         Collections.sort(list, Ordering.natural().nullsLast());
         System.out.println(list);
-        System.out.println("是否按照自然顺序排序：" + Ordering.natural().isOrdered(list));
     }
 
 }
