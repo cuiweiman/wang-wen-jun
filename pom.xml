@@ -21,6 +21,7 @@
         <module>csdn-trancaction</module>
         <module>design-patterns</module>
         <module>mockito</module>
+        <module>java-basic</module>
     </modules>
 
     <properties>
@@ -40,6 +41,12 @@
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>29.0-jre</version>
+            </dependency>
+
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
             </dependency>
 
 
