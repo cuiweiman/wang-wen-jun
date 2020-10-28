@@ -28,7 +28,7 @@ public class ReflectDemo {
         Object o = clazz.getDeclaredConstructor().newInstance();
 
         Method method = clazz.getMethod(methodName);
-        method.invoke(o, null);
+        method.invoke(o);
 
     }
 
