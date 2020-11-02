@@ -22,6 +22,7 @@
         <module>design-patterns</module>
         <module>mockito</module>
         <module>java-basic</module>
+        <module>java-crawler-demo</module>
     </modules>
 
     <properties>

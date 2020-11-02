@@ -1,6 +1,7 @@
 package com.wang.basic.crawler.httpclient;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -34,8 +35,9 @@ public class HttpClientTest {
         HttpClientTest test = new HttpClientTest();
         // test.httpClientGet();
         // test.httpClientParamGet();
-        test.httpClientPost();
-        test.httpClientParamPost();
+        test.httpClientConfig();
+        // test.httpClientPost();
+        // test.httpClientParamPost();
     }
 
 
@@ -84,6 +86,40 @@ public class HttpClientTest {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            try {
+                response.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                httpClient.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 配置请求信息
+     */
+    public void httpClientConfig() {
+        HttpGet httpGet = new HttpGet("http://www.itcast.cn");
+        RequestConfig config = RequestConfig.custom()
+                .setConnectTimeout(1000)
+                .setConnectionRequestTimeout(500)
+                .setSocketTimeout(10 * 1000)
+                .build();
+        httpGet.setConfig(config);
+        CloseableHttpResponse response = null;
+        try {
+            response = httpClient.execute(httpGet);
+            if (response.getStatusLine().getStatusCode() == 200) {
+                String content = EntityUtils.toString(response.getEntity(), "utf8");
+                System.out.println(content.length());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
             try {
                 response.close();
             } catch (IOException e) {
@@ -149,7 +185,7 @@ public class HttpClientTest {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 response.close();
             } catch (IOException e) {
