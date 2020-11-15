@@ -33,6 +33,7 @@
         <mysql.version>8.0.20</mysql.version>
         <fastjson.version>1.2.66</fastjson.version>
         <mockito.version>1.10.19</mockito.version>
+        <magic.version>0.7.4</magic.version>
     </properties>
 
     <dependencyManagement>
@@ -104,6 +105,19 @@
                 <version>${mockito.version}</version>
             </dependency>
             <!-- Mockito end -->
+
+            <!--Crawler WebMagic begin-->
+            <dependency>
+                <groupId>us.codecraft</groupId>
+                <artifactId>webmagic-core</artifactId>
+                <version>${magic.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>us.codecraft</groupId>
+                <artifactId>webmagic-extension</artifactId>
+                <version>${magic.version}</version>
+            </dependency>
+            <!--Crawler WebMagic end-->
 
         </dependencies>
     </dependencyManagement>

@@ -1,4 +1,4 @@
-package com.wang.webmagic.test;
+package com.wang.webmagic.demoa;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
@@ -7,6 +7,9 @@ import us.codecraft.webmagic.pipeline.FilePipeline;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 /**
+ * <p>
+ *     页面元素抽取方式：XPath、CSS、正则表达式
+ * </p>
  * @description: PageProcessor页面解析器
  * @author: wei·man cui
  * @date: 2020/11/2 11:21
