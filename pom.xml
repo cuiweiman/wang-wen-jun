@@ -23,6 +23,7 @@
         <module>mockito</module>
         <module>java-basic</module>
         <module>java-crawler-demo</module>
+        <module>elasticsearcy-module</module>
     </modules>
 
     <properties>
@@ -118,6 +119,11 @@
                 <version>${magic.version}</version>
             </dependency>
             <!--Crawler WebMagic end-->
+
+            <!--elastic-search begin-->
+
+
+            <!--elastic-search end-->
 
         </dependencies>
     </dependencyManagement>
