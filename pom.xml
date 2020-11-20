@@ -23,7 +23,8 @@
         <module>mockito</module>
         <module>java-basic</module>
         <module>java-crawler-demo</module>
-        <module>elasticsearcy-module</module>
+        <module>elasticsearch-module</module>
+        <module>Alipay</module>
     </modules>
 
     <properties>
@@ -124,6 +125,15 @@
 
 
             <!--elastic-search end-->
+
+            <!--ali pay begin-->
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>4.10.184.ALL</version>
+            </dependency>
+
+            <!--ali pay end-->
 
         </dependencies>
     </dependencyManagement>
