@@ -1,0 +1,10 @@
+server:
+  port: 8090
+  servlet:
+    context-path: /es
+
+es:
+  client:
+    host-and-port: localhost:9200
+    connect-time-out: 5
+    socket-time-out: 5

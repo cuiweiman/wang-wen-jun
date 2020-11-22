@@ -133,6 +133,11 @@
                 <artifactId>transport</artifactId>
                 <version>${es.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+                <version>${sprintboot.version}</version>
+            </dependency>
             <!--elastic-search end-->
 
             <!--ali pay begin-->
