@@ -36,6 +36,7 @@
         <fastjson.version>1.2.66</fastjson.version>
         <mockito.version>1.10.19</mockito.version>
         <magic.version>0.7.4</magic.version>
+        <es.version>7.10.0</es.version>
     </properties>
 
     <dependencyManagement>
@@ -122,8 +123,16 @@
             <!--Crawler WebMagic end-->
 
             <!--elastic-search begin-->
-
-
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${es.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>transport</artifactId>
+                <version>${es.version}</version>
+            </dependency>
             <!--elastic-search end-->
 
             <!--ali pay begin-->
