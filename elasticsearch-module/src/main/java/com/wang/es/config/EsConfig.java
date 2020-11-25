@@ -10,7 +10,7 @@ import org.springframework.data.elasticsearch.client.RestClients;
 import java.time.Duration;
 
 /**
- * @description: 使用基于 spring-data-elasticsearch 的 ElasticsearchRestTemplate 类操作 ES
+ * @description: 配置 ES 客户端连接信息
  * @date: 2020/11/22 22:08
  * @author: wei·man cui
  */
@@ -27,7 +27,7 @@ public class EsConfig {
     private Long socketTimeOut;
 
     @Bean
-    public RestHighLevelClient elasticsearchClient() {
+    public RestHighLevelClient restHighLevelClient() {
         ClientConfiguration config = ClientConfiguration.builder()
                 .connectedTo(hostAndPort)
                 .withConnectTimeout(Duration.ofSeconds(connectTimeOut))
