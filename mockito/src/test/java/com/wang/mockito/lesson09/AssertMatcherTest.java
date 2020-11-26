@@ -5,9 +5,9 @@ import org.junit.Test;
 import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.both;
 import static org.hamcrest.Matchers.either;
-import static org.junit.Assert.assertThat;
 
 
 /**
