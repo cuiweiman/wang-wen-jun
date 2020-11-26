@@ -28,12 +28,10 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!--Jsoup-->
+        <!--JSoup-->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.13.1</version>
-            <scope>compile</scope>
         </dependency>
 
         <!-- HttpClient -->

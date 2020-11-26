@@ -2,8 +2,8 @@ package com.wang.mockito.lesson10;
 
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.both;
-import static org.junit.Assert.assertThat;
 
 /**
  * @description: 自定义 Matcher 比较器

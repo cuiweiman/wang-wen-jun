@@ -12,5 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EsApplication {
     public static void main(String[] args) {
         SpringApplication.run(EsApplication.class, args);
+        System.out.println("ES 使用案例 启动成功");
     }
 }

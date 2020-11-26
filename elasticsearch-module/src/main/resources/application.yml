@@ -3,8 +3,17 @@ server:
   servlet:
     context-path: /es
 
+spring:
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
 es:
   client:
     host-and-port: localhost:9200
     connect-time-out: 5
     socket-time-out: 5
+

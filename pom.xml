@@ -38,6 +38,7 @@
         <mockito.version>1.10.19</mockito.version>
         <hutool.version>5.3.1</hutool.version>
         <magic.version>0.7.4</magic.version>
+        <jsoup.versoin>1.13.1</jsoup.versoin>
     </properties>
 
     <dependencyManagement>
@@ -124,6 +125,13 @@
                 <groupId>us.codecraft</groupId>
                 <artifactId>webmagic-extension</artifactId>
                 <version>${magic.version}</version>
+            </dependency>
+            <!--JSoup-->
+            <dependency>
+                <groupId>org.jsoup</groupId>
+                <artifactId>jsoup</artifactId>
+                <version>${jsoup.versoin}</version>
+                <scope>compile</scope>
             </dependency>
             <!--Crawler WebMagic end-->
 

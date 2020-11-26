@@ -9,6 +9,7 @@ spring:
     encoding: UTF-8
     prefix: classpath:/templates/
     suffix: .html
+    cache: false
 
 ali-pay:
   appId: 20161102007******
