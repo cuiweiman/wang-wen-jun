@@ -8,7 +8,6 @@ import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.fail;
 
 /**
  * @description: Guava Immutable Collections 不可变集合
@@ -19,14 +18,19 @@ public class ImmutableCollectionsTest {
 
     /**
      * 修改测试
+     * <p>
+     * Test(expected = UnsupportedOperationException.class)：
+     * 如果抛出 UnsupportedOperationException 异常，表示测试成功
+     * </p>
      */
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
+    // @Test(expected = UnsupportedOperationException.class)
     public void testOf() {
         ImmutableList<Integer> list = ImmutableList.of(1, 2, 3);
         assertThat(list, notNullValue());
-        // 不支持修改，excepted 处理 异常
-        list.add(4);
-        fail();
+        // 不支持修改，excepted 处理 异常。直接去除了 add() 方法
+        // list.add(4);
+        // fail();
     }
 
     /**
