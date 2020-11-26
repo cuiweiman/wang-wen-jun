@@ -24,7 +24,7 @@
         <module>java-basic</module>
         <module>java-crawler-demo</module>
         <module>elasticsearch-module</module>
-        <module>Alipay</module>
+        <module>ali-pay</module>
     </modules>
 
     <properties>
@@ -34,7 +34,9 @@
         <sprintboot.version>2.3.1.RELEASE</sprintboot.version>
         <mysql.version>8.0.20</mysql.version>
         <fastjson.version>1.2.66</fastjson.version>
+        <commons-lang3.version>3.11</commons-lang3.version>
         <mockito.version>1.10.19</mockito.version>
+        <hutool.version>5.3.1</hutool.version>
         <magic.version>0.7.4</magic.version>
     </properties>
 
@@ -85,6 +87,12 @@
             <!--csdn-transaction end-->
 
             <!-- common begin -->
+            <!-- commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
             <!-- lombok -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -96,6 +104,11 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
             <!-- common end -->
 

@@ -5,10 +5,11 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.wang.alipay.component.AliPayComponent;
 import com.wang.alipay.properties.AliPayProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,6 +35,9 @@ public class AliPayWebPayController {
     @Resource
     private AliPayProperties aliPayProperties;
 
+    @Resource
+    private AliPayComponent aliPayComponent;
+
     @GetMapping("/toPay")
     public void aliPayWebPay(HttpServletResponse response) throws IOException, AlipayApiException {
         AlipayTradePagePayModel model = new AlipayTradePagePayModel();
@@ -56,10 +60,10 @@ public class AliPayWebPayController {
     }
 
     @RequestMapping("/returnUrl")
-    public String returnUrl(HttpServletRequest request, HttpServletResponse response, ModelMap map) throws UnsupportedEncodingException, AlipayApiException {
+    public String returnUrl(HttpServletRequest request, HttpServletResponse response, Model map) throws UnsupportedEncodingException, AlipayApiException {
         response.setContentType("text/html;charset=" + aliPayProperties.getCharset());
 
-        boolean verifyResult = this.rsaCheckV1(request);
+        boolean verifyResult = aliPayComponent.rsaCheckV1(request);
         if (verifyResult) {
             // 商户订单号
             String outTradeNo = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
@@ -67,9 +71,9 @@ public class AliPayWebPayController {
             String tradeNo = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"), "UTF-8");
             // 支付总金额
             String totalAmount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"), "UTF-8");
-            map.put("outTradeNo", outTradeNo);
-            map.put("tradeNo", tradeNo);
-            map.put("totalAmount", totalAmount);
+            map.addAttribute("outTradeNo", outTradeNo);
+            map.addAttribute("tradeNo", tradeNo);
+            map.addAttribute("totalAmount", totalAmount);
             return "aliPayWebPaySuccess";
         }
         return "aliPayWebPayFail";

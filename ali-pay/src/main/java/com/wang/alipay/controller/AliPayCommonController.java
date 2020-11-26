@@ -1,8 +1,7 @@
 package com.wang.alipay.controller;
 
 import com.alipay.api.AlipayApiException;
-import com.alipay.api.internal.util.AlipaySignature;
-import com.wang.alipay.properties.AliPayProperties;
+import com.wang.alipay.component.AliPayComponent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -25,7 +22,7 @@ import java.util.Map;
 public class AliPayCommonController {
 
     @Resource
-    private AliPayProperties aliPayProperties;
+    private AliPayComponent aliPayComponent;
 
     /**
      * 支付异步通知
@@ -43,7 +40,7 @@ public class AliPayCommonController {
         parameterMap.forEach((key, value) -> notifyBuild.append(key).append("=").append(value[0]).append("\n"));
         log.info(notifyBuild.toString());
 
-        boolean flag = this.rsaCheckV1(request);
+        boolean flag = aliPayComponent.rsaCheckV1(request);
         if (flag) {
             /**
              * TODO 需要严格按照如下描述校验通知数据的正确性
@@ -92,31 +89,6 @@ public class AliPayCommonController {
             return "success";
         }
         return "fail";
-    }
-
-    /**
-     * 校验签名
-     *
-     * @param request 请求
-     * @return 结果
-     * @throws AlipayApiException 异常
-     */
-    public boolean rsaCheckV1(HttpServletRequest request) throws AlipayApiException {
-        Iterator<Map.Entry<String, String[]>> iterator = request.getParameterMap().entrySet().iterator();
-        Map<String, String> params = new HashMap<>();
-        while (iterator.hasNext()) {
-            Map.Entry<String, String[]> next = iterator.next();
-            String[] values = next.getValue();
-            String valueStr = "";
-            for (int i = 0; i < values.length; i++) {
-                valueStr = (i == values.length - 1) ? valueStr + values[i] : valueStr + values[i] + ",";
-            }
-            params.put(next.getKey(), valueStr);
-        }
-        return AlipaySignature.rsaCheckV1(params,
-                aliPayProperties.getPublicKey(),
-                aliPayProperties.getCharset(),
-                aliPayProperties.getSignType());
     }
 
 
