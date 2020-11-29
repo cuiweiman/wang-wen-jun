@@ -41,7 +41,7 @@ public class HtmlParseUtil {
 
     public static void main(String[] args) throws IOException {
         HtmlParseUtil util = new HtmlParseUtil();
-        List<JdGoods> list = util.parseJdGood("心理学");
+        List<JdGoods> list = util.parseJdGood("java");
         System.out.println(list.size());
         list.forEach(System.out::println);
     }

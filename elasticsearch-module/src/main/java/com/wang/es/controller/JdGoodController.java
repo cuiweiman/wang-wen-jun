@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description:
@@ -30,9 +31,16 @@ public class JdGoodController {
 
     @GetMapping("/search/{keyWord}/{pageNo}/{pageSize}")
     public List<JdGoods> searchPage(@PathVariable String keyWord,
-                                    @PathVariable int pageNo,
-                                    @PathVariable int pageSize) throws IOException {
+                                     @PathVariable int pageNo,
+                                     @PathVariable int pageSize) throws IOException {
         return jdGoodService.searchPage(keyWord, pageNo, pageSize);
+    }
+
+    @GetMapping("/searchPageHighLight/{keyWord}/{pageNo}/{pageSize}")
+    public List<Map<String, Object>> searchPageHighLight(@PathVariable String keyWord,
+                                                @PathVariable int pageNo,
+                                                @PathVariable int pageSize) throws IOException {
+        return jdGoodService.searchPageHighLight(keyWord, pageNo, pageSize);
     }
 
 }
