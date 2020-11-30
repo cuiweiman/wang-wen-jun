@@ -16,8 +16,8 @@ import javax.annotation.Resource;
  */
 @Slf4j
 @Controller
-@RequestMapping("/wabPay")
-public class AliPayWabPayController {
+@RequestMapping("/wapPay")
+public class AliPayWapPayController {
 
     @Resource
     private AlipayClient alipayClient;
