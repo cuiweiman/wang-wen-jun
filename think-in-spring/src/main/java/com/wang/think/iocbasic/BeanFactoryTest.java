@@ -5,6 +5,10 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -29,6 +33,31 @@ public class BeanFactoryTest {
         BeanFactory beanFactory = new XmlBeanFactory(new ClassPathResource("beanFactoryTest.xml"));
         MyTestBean myTestBean = (MyTestBean) beanFactory.getBean("myTestBean");
         assertEquals("testStr", myTestBean.getTestStr());
+    }
+
+    /**
+     * 测试加载资源文件，获取内容
+     *
+     * @throws IOException 异常
+     */
+    @Test
+    public void testLoadResource() throws IOException {
+        ClassPathResource pathResource = new ClassPathResource("beanFactoryTest.xml");
+        System.out.println(pathResource.getFilename());
+        System.out.println(pathResource.getPath());
+        System.out.println(pathResource.getURL().toString());
+        System.out.println(pathResource.getURI().toString());
+        System.out.println(pathResource.getDescription());
+        System.out.println(pathResource.exists());
+
+        try (InputStream inputStream = pathResource.getInputStream();
+             FileOutputStream file = new FileOutputStream("E:/beanFactoryTest.xml");) {
+            byte[] b = new byte[1024];
+            int length;
+            while ((length = inputStream.read(b)) > 0) {
+                file.write(b, 0, length);
+            }
+        }
     }
 
 }
