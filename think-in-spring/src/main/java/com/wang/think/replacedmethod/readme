@@ -1,0 +1,4 @@
+replaced-method 子元素标签的功能：
+    在运行时用 新的方法 替换 现有的方法
+replaced-method 子元素标签的用法：
+    replaced-method 可以动态的替换返回实体 bean，而且还可以动态地更改原有方法的逻辑。
