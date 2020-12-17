@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+
+    <!--子元素 property 的xml 案例-->
+
+    <bean id="test" class="com.wang.think.replacedmethod.Main">
+        <property name="testStr" value="testValue"/>
+    </bean>
+
+    <bean id="test2" class="com.wang.think.replacedmethod.Main" scope="prototype" abstract="false"
+          lazy-init="false" autowire="default" depends-on="a" autowire-candidate="false" primary="true">
+        <qualifier type="com.wang.think.iocbasic.MyTestBean" value="test"/>
+    </bean>
+
+    <bean id="a" name="aName">
+        <description>描述</description>
+        <property name="pName">
+            <list>
+                <value>aa</value>
+                <value>bb</value>
+            </list>
+        </property>
+        <constructor-arg ref="test"></constructor-arg>
+    </bean>
+
+
+    <bean id="instanceFactoryBean" class="example.chapter3.InstanceFactoryBean"/>
+    <bean id="currentTime" factory-bean="instanceFactoryBean" factory-method="createTime"/>
+
+    <bean id="anyWay" init-method="initMethod" destroy-method="destoryMethod">
+        <mybean:user username="test"/>
+    </bean>
+
+</beans>
