@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<schema targetNamespace="http://www.lexueba.com/schema/user"
+        xmlns="http://www.lexueba.com/schema/user"
+        elementFormDefault="qualified">
+
+    <!--XSD 文件是 XML DTD 的代替者，使用 XML Schema 编写-->
+    <element name="user">
+        <complexType>
+            <attribute name="id" type="string"/>
+            <attribute name="userName" type="string"/>
+            <attribute name="email" type="string"/>
+        </complexType>
+    </element>
+</schema>

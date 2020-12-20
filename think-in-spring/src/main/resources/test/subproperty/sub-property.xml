@@ -26,6 +26,7 @@
         <constructor-arg ref="test"></constructor-arg>
     </bean>
 
+    <alias name="a" alias="A" />
 
     <bean id="instanceFactoryBean" class="example.chapter3.InstanceFactoryBean"/>
     <bean id="currentTime" factory-bean="instanceFactoryBean" factory-method="createTime"/>
