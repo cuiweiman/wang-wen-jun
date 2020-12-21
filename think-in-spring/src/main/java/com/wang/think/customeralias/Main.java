@@ -3,8 +3,6 @@ package com.wang.think.customeralias;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import javax.annotation.Resource;
-
 /**
  * @description: 测试类
  * @date: 2020/12/20 23:52

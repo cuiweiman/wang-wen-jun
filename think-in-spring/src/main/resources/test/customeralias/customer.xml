@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.Springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:myname="http://www.lexueba.com/schema/user"
+       xmlns:custom="http://www.test.org/schema/user"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.Springframework.org/schema/beans/Spring-beans.xsd
-        http://www.lexueba.com/schema/user
-        http://www.lexueba.com/schema/user.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.test.org/schema/user http://www.test.org/schema/user.xsd">
 
-    <myname:user id="testBean" userName="beanName" email="emial@qq.com" />
+    <custom:user id="testBean" userName="aaa" email="emial@qq.com" />
 
 </beans>

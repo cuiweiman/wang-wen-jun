@@ -20,25 +20,28 @@ public class UserBeanDefinitionParser extends AbstractSingleBeanDefinitionParser
      * @return 类型
      */
     @Override
+    @SuppressWarnings("rawtypes")
     protected Class getBeanClass(Element element) {
         return User.class;
     }
 
+
     /**
-     * 从 element 中提取 属性值，并设置到对应的元素中，解析完成后 将bean注册到 beanFactory 中
-     *
+     * 解析XML元素自定义标签属性，并放入 BeanDefinitionHolder中
      * @param element 元素
-     * @param bean    bean
+     * @param builder BeanDefinition信息存放的容器
      */
-    protected void doParser(Element element, BeanDefinitionBuilder bean) {
+    @Override
+    protected void doParse(Element element, BeanDefinitionBuilder builder) {
         String userName = element.getAttribute("userName");
         String email = element.getAttribute("email");
         if (StringUtils.hasText(userName)) {
-            bean.addPropertyValue("userName", userName);
+            builder.addPropertyValue("userName", userName);
         }
         if (StringUtils.hasText(email)) {
-            bean.addPropertyValue("email", email);
+            builder.addPropertyValue("email", email);
         }
+
     }
 
 }

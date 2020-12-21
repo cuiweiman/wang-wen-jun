@@ -1,6 +1,6 @@
-<?xml version="1.0"?>
-<schema targetNamespace="http://www.lexueba.com/schema/user"
-        xmlns="http://www.lexueba.com/schema/user"
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://www.test.org/schema/user"
         elementFormDefault="qualified">
 
     <!--XSD 文件是 XML DTD 的代替者，使用 XML Schema 编写-->
