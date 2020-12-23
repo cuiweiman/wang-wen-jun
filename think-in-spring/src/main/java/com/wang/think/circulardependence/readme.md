@@ -17,12 +17,21 @@ Spring 容器循环依赖包括 构造器循环依赖、Setter循环依赖。首
 
 Spring 容器将每一个正在创建的 bean 标识符 放在 “当前创建的bean池”中 ({@link org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#singletonsCurrentlyInCreation})，在创建 bean 过程中若发现 bean 已经在该缓存池中了，将抛出 BeanCurrentlyInCreationException 异常 表示循环依赖；而对于创建完毕的bean，将会从该容器池中移除掉。
 
-- setter循环依赖
+- setter循环依赖：com.wang.think.circulardependence.CircularSetterTest
+> 通过setter注入方式构成的循环依赖。对于setter注入造成的依赖是通过 Spring 容器提前暴露刚完成构造器注入，但未完成其它步骤（如setter注入）的bean来完成的，而且只能解决单例作用域 bean 的循环依赖。通过提前暴露一个单例工厂方法，从而使其它bean 能引用到该 bean。
+> 如：org.springframework.beans.factory.support.DefaultSingletonBeanRegistry#addSingletonFactory
 
+1. Spring 容器创建单例 testA bean，首先根据无参构造器创建 bean，并暴露一个 ObjectFactory 用于返回提前暴露的一个创建中的 bean，并将 testA 标识符放到 当前正在创建bean缓存池 中，然后进行 setter 注入 testB；
+2. Spring 容器创建单例 testB bean，首先根据无参构造器创建 bean，并暴露一个 ObjectFactory 用于返回提前暴露的一个创建中的 bean，并将 testB 标识符放到 当前正在创建bean缓存池 中，然后进行 setter 注入 testC；
+3. Spring 容器创建单例 testC bean，首先根据无参构造器创建 bean，并暴露一个 ObjectFactory 用于返回提前暴露的一个创建中的 bean，并将 testC 标识符放到 当前正在创建bean缓存池 中，然后进行 setter 注入 testA；
+    在注入A时，由于提前暴露了 beanA 的 ObjectFactory，从而使它返回 一个 提前暴露的创建中的 bean，完成了 testC 的创建。
+4. 然后在一次注入 testB、testA，完成 setter 注入。（循环依赖由于 testA 的 ObjectFactory 提前暴露，而打破。） 
 
+- prototype 范围的依赖处理：com.wang.think.circulardependence.CircularPrototypeTest 
+> prototype 作用域的bean，Spring容器无法完成依赖注入，因为 Spring 容器不缓存 prototype 作用域的 bean ，因此不会提前暴露一个创建中的 ObjectFactory。 
 
-- prototype 范围的依赖处理 
-
+对于 prototype 作用域的bean 的循环依赖，可以通过 “setAllowCircularReferences(false)” 来禁用循环依赖。
+org.springframework.context.support.AbstractRefreshableApplicationContext#allowCircularReferences
 
 
 

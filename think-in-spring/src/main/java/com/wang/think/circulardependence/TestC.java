@@ -9,10 +9,21 @@ public class TestC {
 
     private TestA testA;
 
+    public TestC() {
+    }
+
+    /**
+     * 构造器 循环依赖，无法解决
+     *
+     * @param testA 参数
+     */
     public TestC(TestA testA) {
         this.testA = testA;
     }
 
+    /**
+     * setter 方式注入的循环依赖，可以解决（提前暴露了 ObjectFactory）
+     */
     public void c() {
         testA.a();
     }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="testA" class="com.wang.think.circulardependence.TestA">
+        <property name="testB" ref="testB"/>
+    </bean>
+
+    <bean id="testB" class="com.wang.think.circulardependence.TestB">
+        <property name="testC" ref="testC"/>
+    </bean>
+
+    <bean id="testC" class="com.wang.think.circulardependence.TestC">
+        <property name="testA" ref="testA"/>
+    </bean>
+
+</beans>
