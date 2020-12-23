@@ -1,3 +1,11 @@
+[很好地关于 循环依赖 的博文](https://blog.csdn.net/chen2526264/article/details/80673598)
+
+> 当循环依赖的bean都是通过属性注入依赖的时候，根据 bean 的作用域是 singleton 还是 prototype，会有不同的表现：
+> - 如果循环依赖的bean都是singleton，那么无论先获取哪个bean，都能成功。
+> - 如果循环依赖的bean都是prototype，那么无论先获取哪个bean，都会失败。
+> - 如果循环依赖的bean中有singleton，也有prototype，那么当先获取的那个bean是singleton时，就会成功，否则失败。
+(在创建singleton 范围的bean 时，会提前暴露 ObjectFactory，供依赖的bean使用，而prototype范围不会。但是 prototype 可以禁用 循环依赖)
+
 
 ## 循环依赖
 ### 定义

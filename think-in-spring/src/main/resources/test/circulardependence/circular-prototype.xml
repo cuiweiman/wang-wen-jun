@@ -3,15 +3,15 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="testA" class="com.wang.think.circulardependence.TestA">
+    <bean id="testA" class="com.wang.think.circulardependence.TestA" scope="prototype">
         <property name="testB" ref="testB"/>
     </bean>
 
-    <bean id="testB" class="com.wang.think.circulardependence.TestB">
+    <bean id="testB" class="com.wang.think.circulardependence.TestB" scope="prototype">
         <property name="testC" ref="testC"/>
     </bean>
 
-    <bean id="testC" class="com.wang.think.circulardependence.TestC">
+    <bean id="testC" class="com.wang.think.circulardependence.TestC" scope="prototype">
         <property name="testA" ref="testA"/>
     </bean>
 
