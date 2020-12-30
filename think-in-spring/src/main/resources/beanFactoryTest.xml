@@ -9,7 +9,7 @@
 
     <bean id="hello" class="com.wang.think.aware.Hello"/>
 
-    <bean id="car" class="com.wang.think.initmethod.Car" init-method="init">
+    <bean id="car" class="com.wang.think.initmethod.Car" init-method="init" destroy-method="destroyMethod">
         <property name="color" value="纯的彩色"/>
     </bean>
 

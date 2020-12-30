@@ -1,5 +1,6 @@
 package com.wang.think.initmethod;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -22,5 +23,6 @@ public class InitMethodTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("beanFactoryTest.xml");
         Car car = (Car) context.getBean("car");
         System.out.println(car.getColor());
+
     }
 }
