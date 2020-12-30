@@ -5,4 +5,8 @@
 
     <bean id="myTestBean" class="com.wang.think.iocbasic.MyTestBean"/>
 
+    <bean id="test" class="com.wang.think.aware.Test"/>
+
+    <bean id="hello" class="com.wang.think.aware.Hello"/>
+
 </beans>
