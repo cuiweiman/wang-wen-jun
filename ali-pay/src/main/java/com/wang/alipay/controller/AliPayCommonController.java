@@ -1,8 +1,18 @@
 package com.wang.alipay.controller;
 
 import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.domain.AlipayTradeCloseModel;
+import com.alipay.api.domain.AlipayTradeFastpayRefundQueryModel;
+import com.alipay.api.domain.AlipayTradeRefundModel;
+import com.alipay.api.request.AlipayTradeCloseRequest;
+import com.alipay.api.request.AlipayTradeFastpayRefundQueryRequest;
+import com.alipay.api.request.AlipayTradeRefundRequest;
+import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.wang.alipay.component.AliPayComponent;
+import com.wang.alipay.enums.CurrencyEnum;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +33,9 @@ public class AliPayCommonController {
 
     @Resource
     private AliPayComponent aliPayComponent;
+
+    @Resource
+    private AlipayClient alipayClient;
 
     /**
      * 支付异步通知
@@ -91,5 +104,58 @@ public class AliPayCommonController {
         return "fail";
     }
 
+
+    @RequestMapping("/queryOrderStatus/{outTradeNo}")
+    public AlipayTradeQueryResponse query(@PathVariable String outTradeNo) throws AlipayApiException {
+        return aliPayComponent.queryTradeStatus(outTradeNo);
+    }
+
+    @RequestMapping("/refund/{outTradeNo}")
+    public Object refund(@PathVariable String outTradeNo) throws AlipayApiException {
+        final AlipayTradeQueryResponse query = aliPayComponent.queryTradeStatus(outTradeNo);
+
+        final AlipayTradeRefundModel refundModel = new AlipayTradeRefundModel();
+        refundModel.setOutTradeNo(query.getOutTradeNo());
+        refundModel.setRefundAmount(query.getTotalAmount());
+        refundModel.setTradeNo(query.getTradeNo());
+        refundModel.setRefundReason("不想要了");
+        refundModel.setRefundCurrency(CurrencyEnum.RMB.getCurrency());
+
+        final AlipayTradeRefundRequest refundRequest = new AlipayTradeRefundRequest();
+        refundRequest.setBizModel(refundModel);
+
+        return alipayClient.execute(refundRequest);
+    }
+
+    @RequestMapping("/refundQuery/{outTradeNo}")
+    public Object refundQuery(@PathVariable String outTradeNo) throws AlipayApiException {
+        final AlipayTradeFastpayRefundQueryModel refundQueryModel = new AlipayTradeFastpayRefundQueryModel();
+        refundQueryModel.setOutTradeNo(outTradeNo);
+        refundQueryModel.setOutRequestNo(outTradeNo);
+
+        final AlipayTradeFastpayRefundQueryRequest refundQueryRequest = new AlipayTradeFastpayRefundQueryRequest();
+        refundQueryRequest.setBizModel(refundQueryModel);
+
+        return alipayClient.execute(refundQueryRequest).getBody();
+    }
+
+    /**
+     * 关闭交易
+     * 用于交易创建后，用户在一定时间内未进行支付，可调用该接口直接将未付款的交易进行关闭。
+     *
+     * @param outTradeNo 商户订单号
+     * @return 结果
+     * @throws AlipayApiException 异常
+     */
+    @RequestMapping("/close/{outTradeNo}")
+    public Object close(@PathVariable String outTradeNo) throws AlipayApiException {
+        final AlipayTradeCloseModel closeModel = new AlipayTradeCloseModel();
+        closeModel.setOutTradeNo(outTradeNo);
+
+        final AlipayTradeCloseRequest closeRequest = new AlipayTradeCloseRequest();
+        closeRequest.setBizModel(closeModel);
+
+        return alipayClient.execute(closeRequest);
+    }
 
 }

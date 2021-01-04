@@ -1,7 +1,11 @@
 package com.wang.alipay.component;
 
 import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.domain.AlipayTradeQueryModel;
 import com.alipay.api.internal.util.AlipaySignature;
+import com.alipay.api.request.AlipayTradeQueryRequest;
+import com.alipay.api.response.AlipayTradeQueryResponse;
 import com.wang.alipay.properties.AliPayProperties;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +25,9 @@ public class AliPayComponent {
 
     @Resource
     private AliPayProperties aliPayProperties;
+
+    @Resource
+    private AlipayClient alipayClient;
 
     /**
      * 校验签名
@@ -45,6 +52,14 @@ public class AliPayComponent {
                 aliPayProperties.getPublicKey(),
                 aliPayProperties.getCharset(),
                 aliPayProperties.getSignType());
+    }
+
+    public AlipayTradeQueryResponse queryTradeStatus(String outTradeNo) throws AlipayApiException {
+        final AlipayTradeQueryModel model = new AlipayTradeQueryModel();
+        model.setOutTradeNo(outTradeNo);
+        AlipayTradeQueryRequest request = new AlipayTradeQueryRequest();
+        request.setBizModel(model);
+        return alipayClient.execute(request);
     }
 
 

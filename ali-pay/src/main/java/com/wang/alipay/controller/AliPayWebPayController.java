@@ -1,12 +1,12 @@
 package com.wang.alipay.controller;
 
-import cn.hutool.core.util.IdUtil;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.wang.alipay.component.AliPayComponent;
 import com.wang.alipay.properties.AliPayProperties;
+import com.wang.alipay.utils.IdGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +41,9 @@ public class AliPayWebPayController {
     @GetMapping("/toPay")
     public void aliPayWebPay(HttpServletResponse response) throws IOException, AlipayApiException {
         AlipayTradePagePayModel model = new AlipayTradePagePayModel();
-        model.setOutTradeNo(IdUtil.simpleUUID());
+        final String seriesNum = IdGenerator.seriesNum();
+        log.info("商户订单号= {}", seriesNum);
+        model.setOutTradeNo(seriesNum);
         model.setSubject("沙箱测试订单商品名称");
         model.setTotalAmount("10.00");
         model.setBody("这个商品是沙箱测试订单，这里是商品描述");
