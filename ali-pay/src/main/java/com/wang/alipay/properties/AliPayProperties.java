@@ -27,6 +27,8 @@ public class AliPayProperties {
 
     private String returnUrl;
 
+    private String timeOutExpress;
+
     private String charset = "UTF-8";
 
     private String format = "JSON";

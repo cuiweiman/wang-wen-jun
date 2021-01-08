@@ -18,4 +18,5 @@ ali-pay:
   gatewayUrl: https://openapi.alipaydev.com/gateway.do
   notifyUrl: http://j3596067n4.qicp.vip/alipaydev/aliPay/notifyUrl
   returnUrl: http://j3596067n4.qicp.vip/alipaydev/webPay/returnUrl
+  timeOutExpress: 15m
 

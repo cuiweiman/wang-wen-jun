@@ -22,6 +22,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
+ * 支付成功的异步通知 {@link #notifyUrl(HttpServletRequest)} 中，trade_status有两种状态： TRADE_SUCCESS、TRADE_FINISHED、TRADE_CLOSE。
+ * TRADE_SUCCESS：顾客支付后，商家还可以进行退款操作，即该交易并没有彻底关闭，卖家还能进一步操作。
+ * TRADE_FINISHED：交易结束，不可退款。支付宝维持 TRADE_SUCCESS 状态会维持三个月（建议联系客服检查签约的时间设置），退款有效期超时后，支付宝会再次发送 异步通知。
+ * TRADE_CLOSE： 未付款交易超时关闭，或支付完成后全额退款。
+ *
  * @description: 支付宝通用接口
  * @author: wei·man cui
  * @date: 2020/11/26 11:00

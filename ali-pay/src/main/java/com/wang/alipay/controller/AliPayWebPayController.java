@@ -48,10 +48,8 @@ public class AliPayWebPayController {
         model.setTotalAmount("10.00");
         model.setBody("这个商品是沙箱测试订单，这里是商品描述");
         model.setProductCode("FAST_INSTANT_TRADE_PAY");
-        // 绝对超时时间，超时后 支付宝不会对 该订单进行处理，无法支付。
-        model.setTimeExpire("2021-01-07 15:30:00");
-        // 代表用户正确输入密码，支付宝受理这笔订单业务，开始计时15分钟，在已签约支付宝代扣的业务情况下，则是轮询扣费的轮询定时时间，并非 订单过期时间。
-        // model.setTimeoutExpress("2h");
+        // 设置支付超时，订单关闭时间
+        model.setTimeoutExpress(aliPayProperties.getTimeOutExpress());
 
         AlipayTradePagePayRequest payRequest = new AlipayTradePagePayRequest();
         payRequest.setReturnUrl(aliPayProperties.getReturnUrl());
