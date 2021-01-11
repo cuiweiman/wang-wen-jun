@@ -1,5 +1,6 @@
 package com.wang.alipay.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradePagePayModel;
@@ -45,9 +46,11 @@ public class AliPayWebPayController {
         log.info("商户订单号= {}", seriesNum);
         model.setOutTradeNo(seriesNum);
         model.setSubject("沙箱测试订单商品名称");
-        model.setTotalAmount("10.00");
+        model.setTotalAmount("1.00");
         model.setBody("这个商品是沙箱测试订单，这里是商品描述");
         model.setProductCode("FAST_INSTANT_TRADE_PAY");
+        model.setQrPayMode("4");
+        model.setQrcodeWidth(206L);
         // 设置支付超时，订单关闭时间
         model.setTimeoutExpress(aliPayProperties.getTimeOutExpress());
 
@@ -57,6 +60,7 @@ public class AliPayWebPayController {
         payRequest.setBizModel(model);
 
         String form = alipayClient.pageExecute(payRequest).getBody();
+        log.info(form);
         response.setContentType("text/html;charset=" + aliPayProperties.getCharset());
         response.getWriter().write(form);
         response.getWriter().flush();
@@ -69,6 +73,7 @@ public class AliPayWebPayController {
 
         boolean verifyResult = aliPayComponent.rsaCheckV1(request);
         if (verifyResult) {
+            log.info("returnRul={}", JSON.toJSONString(request.getParameterMap()));
             // 商户订单号
             String outTradeNo = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"), "UTF-8");
             // 支付宝交易号
