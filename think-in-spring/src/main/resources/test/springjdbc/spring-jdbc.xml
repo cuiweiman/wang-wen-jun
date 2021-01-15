@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <!--连接池启动时的初始值与最大值-->
+        <property name="initialSize" value="10"/>
+        <property name="maxTotal" value="200"/>
+        <!--最大空闲值。经过一个高峰时间后，连接池可以慢慢将空闲的连接释放掉，直到 maxIdle 为止-->
+        <property name="maxIdle" value="10"/>
+        <!--最小空闲值。当空闲的连接数少于阈值 minIdle 时，连接池就会申请一些连接，以免洪峰来时来不及申请-->
+        <property name="minIdle" value="1"/>
+    </bean>
+
+    <!--将 服务类 注册到 Spring Bean Factory 中-->
+    <bean id="userService" class="com.wang.think.springjdbc.UserServiceImpl">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
