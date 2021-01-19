@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- https://mybatis.org/mybatis-3/zh/index.html -->
+<!--XML 配置文件中包含了对 MyBatis 系统的核心设置，包括获取数据库连接实例的数据源（DataSource）以及决定事务作用域和控制方式的事务管理器（TransactionManager）。-->
+<!-- MyBatis配置文件要素： -->
+<!--
+configuration：根元素
+properties：定义配置外在化
+settings：一些全局性的配置
+typeAliases：一些类定义的别名
+typeHandlers：定义类型处理，也就是定义Java类型与数据库类型的转换关系
+objectFactory：指定结果集对象的实例 是如何创建的。
+plugins：MyBatis 的插件，插件可以修改MyBatis的内部运行规则。
+environment：配置 MyBatis 的环境。
+transactionManager：事务管理器。
+dataSource：数据源。
+mappers：指定映射文件或映射类。
+-->
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false"/>
+        <setting name="useGeneratedKeys" value="true"/>
+        <setting name="defaultExecutorType" value="REUSE"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="com.wang.think.mybatisonly.UserPo" alias="UserPo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="jdbc"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="test/mybatis-only/UserPoMapper.xml"/>
+    </mappers>
+
+</configuration>

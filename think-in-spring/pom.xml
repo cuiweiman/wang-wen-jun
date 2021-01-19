@@ -54,6 +54,12 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+        <!-- mybatis -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+
         <!-- commons-dbcp2 连接池 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
