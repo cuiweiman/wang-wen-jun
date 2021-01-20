@@ -20,6 +20,10 @@ public class EnglishBook extends Book implements BeanClassLoaderAware, Applicati
         return bookSystem;
     }
 
+    public EnglishBook() {
+        System.out.println("构造函数被调用了");
+    }
+
     public void setBookSystem(String bookSystem) {
         System.out.println("【EnglishBook】设置 EnglishBook#bookSystem 的属性值 ");
         this.bookSystem = bookSystem;
