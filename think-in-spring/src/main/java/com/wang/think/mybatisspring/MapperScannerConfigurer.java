@@ -1,11 +1,5 @@
 package com.wang.think.mybatisspring;
 
-import static org.springframework.util.Assert.notNull;
-
-import java.lang.annotation.Annotation;
-import java.util.Map;
-import java.util.Optional;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.mapper.ClassPathMapperScanner;
@@ -23,6 +17,12 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
+
+import java.lang.annotation.Annotation;
+import java.util.Map;
+import java.util.Optional;
+
+import static org.springframework.util.Assert.notNull;
 
 /**
  * 此类简化了 Spring.xml 中对于 Mapper映射文件 的配置（参考：test/mybatis-spring/spring.xml）。
@@ -42,9 +42,10 @@ import org.springframework.util.StringUtils;
  * 主要分析本类实现的三个接口方法：{@link InitializingBean#afterPropertiesSet()}、
  * {@link BeanDefinitionRegistryPostProcessor#postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)}，
  * 以及这个接口的 父接口：{@link BeanFactoryPostProcessor#postProcessBeanFactory(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)}，
+ * 即：{@link #afterPropertiesSet()}、{@link #postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)}
+ * 和{@link #postProcessBeanFactory(ConfigurableListableBeanFactory)}，
  * <p>
- * 即：{@link #afterPropertiesSet()}、{@link #postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)} ()}
- * 和{@link #postProcessBeanFactory(ConfigurableListableBeanFactory)}
+ * 经过查看可得知，实现入口主要在 {@link #postProcessBeanDefinitionRegistry(BeanDefinitionRegistry)} 方法中。
  *
  *
  * <p>
@@ -324,6 +325,7 @@ public class MapperScannerConfigurer
      */
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
+        // ★★ processPropertyPlaceHolders 属性处理
         if (this.processPropertyPlaceHolders) {
             processPropertyPlaceHolders();
         }
@@ -343,12 +345,31 @@ public class MapperScannerConfigurer
         if (StringUtils.hasText(lazyInitialization)) {
             scanner.setLazyInitialization(Boolean.valueOf(lazyInitialization));
         }
+        /*
+         ★★ 根据之前属性的配置，注册生成对应的 过滤器，控制扫描结果。
+         1. annotationClass 属性处理：若annotationClass不为空，表示用户配置了该属性，那么要根据此属性生成过滤器来达到用户想要的效果。
+         而封装此属性的过滤器就是 AnnotationTypeFilter，它来保证在扫描对应Java文件时，只接受标记有注解为 annotationClass 的接口。
+         2. markerInterface 属性处理：封装此属性的过滤器就是实现 AssignableTypeFilter 接口的局部类，表示扫描过程中只接受 实现了 markerInterface接口的接口。
+         3. 全局默认处理：若前两个属性存在任何一个，acceptAllInterfaces 的值都会改变。但若都没有，那么 Spring 会使用默认过滤器
+         实现 TypeFilter 接口的局部类，旨在接受所有的接口文件。
+         4. package-info.java的处理：默认不作为逻辑实现接口，排除在外。使用 TypeFilter 接口的局部类来实现 match 方法。
+         5. 定义的 过滤器都被记录在了 ClassPathMapperScanner#addIncludeFilter 和 ClassPathMapperScanner#addExcludeFilter 容器中。
+         */
         scanner.registerFilters();
+        // 扫描 Java 文件。
         scanner.scan(
                 StringUtils.tokenizeToStringArray(this.basePackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS));
     }
 
-    /*
+    /**
+     * BeanDefinitionRegistries 在应用程序启动的早期调用，在 BeanFactoryPostProcessors 之前调用。
+     * 这意味着 PropertyResourceConfigurers 将不会被加载，并且此类的属性替换都将失败。
+     * 要避免这种情况，请找到上下文中定义的所有 PropertyResourceConfigurer，并在此类的 bean 定义上运行它们。然后更新值。
+     * <p>
+     * 1. 找到所有已经注册的 {@link PropertyResourceConfigurer} 类型的 bean；
+     * 2. 模拟Spring中的环境来使用处理器。这里通过使用 new DefaultListableBeanFactory(); 来模拟 Spring 中的环境（完成处理器的调用后便失效），
+     * 将映射的 bean。
+     * <p>
      * BeanDefinitionRegistries are called early in application startup, before BeanFactoryPostProcessors. This means that
      * PropertyResourceConfigurers will not have been loaded and any property substitution of this class' properties will
      * fail. To avoid this, find any PropertyResourceConfigurers defined in the context and run them on this class' bean
