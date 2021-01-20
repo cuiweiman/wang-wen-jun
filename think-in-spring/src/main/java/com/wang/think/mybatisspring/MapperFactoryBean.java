@@ -17,11 +17,13 @@ import org.springframework.dao.support.DaoSupport;
  * 同样的，由于实现了 {@link FactoryBean} 接口，在调用 getBean() 方法获取实例时，实际上是会调用本类中的 {@link #getObject()}方法。
  * <p>
  * 当 *Mapper.java 即映射文件较多时，我们可以使用 MapperScannerConfigurer 来扫描特定的包，自动帮我们成批的创建 映射器，配置如下：
+ * <pre class="code">
  * {@code
- * <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
- * <property name="basePackage" value="com.wang.think.mybatisspring"/>
- * </bean>
+ *  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+ *      <property name="basePackage" value="com.wang.think.mybatisspring"/>
+ *  </bean>
  * }
+ * </pre>
  * 实现原理需前往阅读{@link org.mybatis.spring.mapper.MapperScannerConfigurer}
  * <p>
  * BeanFactory that enables injection of MyBatis mapper interfaces. It can be set up with a SqlSessionFactory or a

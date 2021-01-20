@@ -39,8 +39,9 @@
     </bean>
 
 
-    <!--当 Mapper 映射器较多时，我们可以使用 MapperScannerConfigurer 来扫描特定的包，自动帮我们成批的创建 映射器。-->
+    <!--当 Mapper 映射器较多时，我们可以使用 {@see MapperScannerConfigurer} 来扫描特定的包，自动帮我们成批的创建 映射器。-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--basePackage属性可以为映射接口设置基本的包路径，如果有多个包路径可以用“分号”或“逗号”作为分隔符-->
         <property name="basePackage" value="com.wang.think.mybatisspring"/>
     </bean>
 
