@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd" default-lazy-init="true">
+    <!--
+        classpath 和 classpath* 区别：
+        classpath：
+        1. 只会到class路径中查找文件;
+        2. 只会从第一个classpath中加载。
+
+        classpath*：
+        1. 不仅包含class路径，还包括jar文件中(class路径)进行查找，会从所有的classpath中加载；
+        2. 如果要加载的资源，不在当前ClassLoader的路径里，那么用classpath:前缀是找不到的，这种情况下就需要使用classpath*:前缀；
+        3. 在多个classpath中存在同名资源，都需要加载，那么用classpath:只会加载第一个，这种情况下也需要用classpath*:前缀
+    -->
+
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
+        <!--连接池启动时的初始值与最大值-->
+        <property name="initialSize" value="10"/>
+        <property name="maxTotal" value="200"/>
+        <property name="maxWaitMillis" value="1000"/>
+        <!--最大空闲值。经过一个高峰时间后，连接池可以慢慢将空闲的连接释放掉，直到 maxIdle 为止-->
+        <property name="maxIdle" value="10"/>
+        <!--最小空闲值。当空闲的连接数少于阈值 minIdle 时，连接池就会申请一些连接，以免洪峰来时来不及申请-->
+        <property name="minIdle" value="1"/>
+        <!--开启 默认自动提交-->
+        <property name="defaultAutoCommit" value="true"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:test/mybatis-spring/mybatis-config.xml"/>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="userMapperPo" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.wang.think.mybatisspring.UserPoMapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
+
+</beans>
