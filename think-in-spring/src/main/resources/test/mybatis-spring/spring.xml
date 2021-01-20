@@ -38,9 +38,15 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="userMapperPo" class="org.mybatis.spring.mapper.MapperFactoryBean">
+
+    <!--当 Mapper 映射器较多时，我们可以使用 MapperScannerConfigurer 来扫描特定的包，自动帮我们成批的创建 映射器。-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.wang.think.mybatisspring"/>
+    </bean>
+
+    <!--<bean id="userMapperPo" class="org.mybatis.spring.mapper.MapperFactoryBean">
         <property name="mapperInterface" value="com.wang.think.mybatisspring.UserPoMapper"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    </bean>
+    </bean>-->
 
 </beans>
