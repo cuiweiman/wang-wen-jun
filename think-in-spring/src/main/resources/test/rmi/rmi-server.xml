@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--服务端-->
+    <bean id="helloRmiServiceImpl" class="com.wang.think.rmi.HelloRmiServiceImpl"/>
+
+    <!--将 实现类 配置成一个 RMI 接口服务-->
+    <bean id="myRmi" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <!--服务类-->
+        <property name="service" ref="helloRmiServiceImpl"/>
+        <!--服务名-->
+        <property name="serviceName" value="helloRmi"/>
+        <!--服务接口-->
+        <property name="serviceInterface" value="com.wang.think.rmi.HelloRmiService"/>
+        <!--服务注册的端口-->
+        <property name="registryPort" value="1088"/>
+        <!--参考 RmiServiceExporter，自定义设定属性-->
+    </bean>
+
+</beans>

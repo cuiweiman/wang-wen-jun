@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--客户端（发起 远程过程调用）-->
+
+    <bean id="myClient" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://127.0.0.1:1088/helloRmi"/>
+        <property name="serviceInterface" value="com.wang.think.rmi.HelloRmiService"/>
+    </bean>
+
+</beans>
