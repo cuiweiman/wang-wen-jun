@@ -13,6 +13,7 @@ public class Receiver {
     public static void main(String[] args) throws Exception {
         ConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
         Connection connection = connectionFactory.createConnection();
+        connection.start();
         Session session = connection.createSession(Boolean.TRUE, Session.AUTO_ACKNOWLEDGE);
         Destination destination = session.createQueue("my-queue");
         MessageConsumer consumer = session.createConsumer(destination);
