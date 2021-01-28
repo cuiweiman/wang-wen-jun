@@ -26,6 +26,7 @@
         <module>elasticsearch-module</module>
         <module>ali-pay</module>
         <module>think-in-spring</module>
+        <module>think-in-springboot</module>
     </modules>
 
     <properties>

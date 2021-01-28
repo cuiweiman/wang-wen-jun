@@ -1,0 +1,3 @@
+# Auto Config
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.wang.boot.starter.HelloServiceAutoConfig
