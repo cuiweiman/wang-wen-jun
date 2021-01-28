@@ -77,6 +77,14 @@
                 <artifactId>spring-boot-starter-test</artifactId>
                 <version>${sprintboot.version}</version>
             </dependency>
+
+            <!-- spring-boot-starter-activemq -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-activemq</artifactId>
+                <version>${sprintboot.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
@@ -167,7 +175,6 @@
                 <artifactId>mybatis</artifactId>
                 <version>${mybatis.version}</version>
             </dependency>
-
 
 
         </dependencies>
