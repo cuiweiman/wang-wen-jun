@@ -1,9 +1,6 @@
 package com.wang.boot;
 
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.Banner;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.AutoConfigurationImportSelector;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,9 +8,16 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.*;
 import org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext;
 import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ConfigurationClass;
+import org.springframework.context.annotation.ConfigurationClassParser;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.type.AnnotationMetadata;
+
+import java.util.function.Predicate;
 
 /**
  * Sprig事件和监听器
@@ -35,15 +39,24 @@ import org.springframework.core.type.AnnotationMetadata;
  * 如果想在SpringBoot 启动时传入一些参数进行业务逻辑处理，可以去实现 ApplicationRunner 接口或者 CommandLineRunner 接口的
  * run() 方法，并且可以通过 @Order({@link Order}) 注解 保证执行顺序，Order 注解的 数值越小，执行的优先级越高。
  * <p>
+ * spring.factories 的加载原理：{@link AutoConfigurationImportSelector#selectImports(AnnotationMetadata)}
+ * 在应用启动过程中，有一个硬编码的逻辑会扫描各个包中的 META-INF/spring.factories 文件，并将其中的配置 整合到 Spring 中。
+ * <p>
  * SpringBootApplication 注解：将当前类所在包路径作为基准目录，扫描并加载基准目录下所有的类以及子目录下的类。
  * 等价于 @EnableAutoConfiguration：自动配置机制，
  * + @ComponentScan：扫描项目中所有的组件（包括 @Component、@Service、@Repository）
  * + @Configuration：是 Spring 提供的一个注解，代替传统的 xml 配置文件，将Spring框架中的 xml 文件以Java类的形式替代。
  * {@link EnableAutoConfiguration} SpringBoot全局开关，自动导入配置机制：{@link AutoConfigurationImportSelector#isEnabled(AnnotationMetadata)}
+ * {@link ComponentScan}:很多注解的实现逻辑： {@link ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, ConfigurationClassParser.SourceClass, Predicate)}
  *
  * @description:
  * @author: wei·man cui
  * @date: 2021/1/28 17:42
+ * @see SpringApplication#run(java.lang.String...) SpringBoot 启动方法
+ * @see SpringApplication#createApplicationContext() 创建合适的 ApplicationContext
+ * @see SpringApplication#prepareContext(ConfigurableApplicationContext, ConfigurableEnvironment, SpringApplicationRunListeners, ApplicationArguments, Banner)
+ * 使用 ApplicationContext 加载 bean。
+ * @see SpringApplication#refreshContext(ConfigurableApplicationContext) Spring 扩展属性的 加载。
  */
 @SpringBootApplication
 public class MainApplication {
@@ -65,6 +78,8 @@ public class MainApplication {
         SpringApplication app = new SpringApplication(MainApplication.class);
         // 关闭 banner 打印
         // app.setBannerMode(Banner.Mode.OFF);
+        // 优雅关闭：注册一个 JVM 的 shutdownHook 钩子函数。应用崩溃挂掉时，清空IOC容器，释放资源等操作
+        app.setRegisterShutdownHook(Boolean.TRUE);
         app.run(args);
     }*/
 
@@ -78,12 +93,20 @@ public class MainApplication {
      *
      * @param args main参数
      */
-    public static void main(String[] args) {
+    public static void test(String[] args) {
         new SpringApplicationBuilder(MainApplication.class)
                 // 关闭 banner 打印
                 .bannerMode(Banner.Mode.OFF)
                 .web(WebApplicationType.SERVLET)
-                .run(args);
+                .run(args)
+                /*
+                   注册一个 JVM 的 shutdownHook 钩子函数。
+                   通过注册 钩子函数 实现优雅关闭：java程序运行在JVM上，有很多情况可能会突然崩溃掉，比如OOM、用户强制退出、业务其他报错。。。
+                   等一系列的问题可能导致进程挂掉。如果进程在运行一些很重要的内容，比如事务操作之类的，很有可能导致事务的不一致性问题。
+                   所以，实现应用的优雅关闭是比较重要的，起码可以在关闭之前做一些记录补救操作。
+                   注册 钩子函数后，可以在 doClose() 方法中做一些自定义的 清空IOC容器，各种 关闭资源操作 或者 destroy 销毁操作 等。
+                 */
+                .registerShutdownHook();
     }
 
 }
