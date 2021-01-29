@@ -11,8 +11,8 @@ import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebSe
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ConfigurationClass;
-import org.springframework.context.annotation.ConfigurationClassParser;
+// import org.springframework.context.annotation.ConfigurationClass;
+// import org.springframework.context.annotation.ConfigurationClassParser;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.type.AnnotationMetadata;
