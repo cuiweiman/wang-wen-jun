@@ -4,12 +4,16 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.autoconfigure.AutoConfigurationImportSelector;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.event.*;
+import org.springframework.boot.web.reactive.context.AnnotationConfigReactiveWebServerApplicationContext;
+import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.annotation.Order;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.core.type.AnnotationMetadata;
 
 /**
  * Sprig事件和监听器
@@ -22,8 +26,10 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
  * 5. {@link ApplicationFailedEvent}：启动过程中出现异常时触发。
  * <p>
  * SpringBoot的容器 ApplicationContext：
- * SpringBoot启动时会选择合适的 ApplicationContext 实现类，默认情况下，如果是 WEB 应用，则会创建
- * {@link AnnotationConfigWebApplicationContext}，否则创建{@link AnnotationConfigApplicationContext}。
+ * SpringBoot启动时会选择合适的 ApplicationContext 实现类，默认情况下，创建 {@link AnnotationConfigApplicationContext}
+ * 如果是 WEB 应用，则会创建 {@link AnnotationConfigServletWebServerApplicationContext};
+ * 如果是 webflux 应用，则会创建 {@link AnnotationConfigReactiveWebServerApplicationContext}。
+ *
  * <p>
  * SpringBoot 的 {@link ApplicationRunner}接口和 {@link CommandLineRunner}接口：
  * 如果想在SpringBoot 启动时传入一些参数进行业务逻辑处理，可以去实现 ApplicationRunner 接口或者 CommandLineRunner 接口的
@@ -33,6 +39,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
  * 等价于 @EnableAutoConfiguration：自动配置机制，
  * + @ComponentScan：扫描项目中所有的组件（包括 @Component、@Service、@Repository）
  * + @Configuration：是 Spring 提供的一个注解，代替传统的 xml 配置文件，将Spring框架中的 xml 文件以Java类的形式替代。
+ * {@link EnableAutoConfiguration} SpringBoot全局开关，自动导入配置机制：{@link AutoConfigurationImportSelector#isEnabled(AnnotationMetadata)}
  *
  * @description:
  * @author: wei·man cui
