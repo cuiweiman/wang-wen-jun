@@ -1,3 +1,19 @@
 spring:
   banner:
     location: banner.txt
+  redis:
+    host: 127.0.0.1
+    password: sosms_2019
+    # 连接超时（毫秒）
+    timeout: 1000
+    # lettuce 连接池
+    lettuce:
+      pool:
+        # 最大连接数
+        max-active: 100
+        # 最大阻塞等待时间
+        max-wait: -1
+        # 最小空闲连接
+        min-idle: 0
+        # 最大空闲连接
+        max-idle: 20
