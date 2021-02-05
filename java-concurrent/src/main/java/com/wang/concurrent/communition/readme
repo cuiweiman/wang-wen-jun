@@ -1,0 +1,3 @@
+线程通讯
+Object：wait、notify、notifyAll
+Condition：await、signal、signalAll
