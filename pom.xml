@@ -22,6 +22,7 @@
         <module>think-in-spring</module>
         <module>think-in-springboot</module>
         <module>java-concurrent</module>
+        <module>netty-basic</module>
     </modules>
 
     <properties>
