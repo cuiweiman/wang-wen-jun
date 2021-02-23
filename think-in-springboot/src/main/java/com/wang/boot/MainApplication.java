@@ -93,7 +93,7 @@ public class MainApplication {
      *
      * @param args main参数
      */
-    public static void test(String[] args) {
+    public static void main(String[] args) {
         new SpringApplicationBuilder(MainApplication.class)
                 // 关闭 banner 打印
                 .bannerMode(Banner.Mode.OFF)
