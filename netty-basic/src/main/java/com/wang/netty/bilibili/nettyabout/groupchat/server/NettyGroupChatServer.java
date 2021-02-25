@@ -20,7 +20,7 @@ public class NettyGroupChatServer {
         this.port = port;
     }
 
-    public void beginChat() {
+    public void startServer() {
         EventLoopGroup bossEventLoop = new NioEventLoopGroup();
         NioEventLoopGroup workerEventLoop = new NioEventLoopGroup();
         try {
@@ -29,9 +29,10 @@ public class NettyGroupChatServer {
                     .channel(NioServerSocketChannel.class)
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
-                    .childHandler(new NettyGroupChatInitializer());
+                    .childHandler(new NettyGroupChatServerInitializer());
 
             final ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+            System.out.println("[服务器]启动成功");
             channelFuture.channel().closeFuture().sync();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -42,7 +43,7 @@ public class NettyGroupChatServer {
     }
 
     public static void main(String[] args) {
-        new NettyGroupChatServer(8989).beginChat();
+        new NettyGroupChatServer(8989).startServer();
     }
 
 }
