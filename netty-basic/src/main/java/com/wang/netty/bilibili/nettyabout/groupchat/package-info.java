@@ -10,7 +10,10 @@
  * </p>
  * ChannelHandler 生命周期： ChannelHandlerContext 管理
  * 1. {@link io.netty.channel.ChannelHandlerAdapter#handlerAdded(io.netty.channel.ChannelHandlerContext)}：ChannelHandler 添加到 ChannelPipeline 时 触发；
- * 2. {@link io.netty.channel.ChannelHandlerAdapter#handlerRemoved(io.netty.channel.ChannelHandlerContext)}：ChannelPipeline 移除 ChannelHandler 时 触发
+ * 2. {@link io.netty.channel.ChannelHandlerAdapter#handlerRemoved(io.netty.channel.ChannelHandlerContext)}：ChannelPipeline 移除 ChannelHandler 时 触发。
+ * <p>
+ * <p> 事件触发 执行顺序
+ * channelRegistered() ——> handlerAdded() ——> channelActive() ——> channelInactive() ——> handlerRemoved() ——> channelUnregistered()
  *
  * @description: 简单的 客户端与服务端 聊天室
  * @author: wei·man cui
