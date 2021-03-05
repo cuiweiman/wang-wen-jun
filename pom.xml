@@ -23,6 +23,7 @@
         <module>think-in-springboot</module>
         <module>java-concurrent</module>
         <module>netty-basic</module>
+        <module>rocketmq-basic</module>
     </modules>
 
     <properties>
@@ -39,6 +40,7 @@
         <hutool.version>5.3.1</hutool.version>
         <magic.version>0.7.4</magic.version>
         <jsoup.versoin>1.13.1</jsoup.versoin>
+        <rocketmq.version>4.7.0</rocketmq.version>
     </properties>
 
     <dependencyManagement>
@@ -178,6 +180,14 @@
                 <artifactId>commons-compress</artifactId>
                 <version>1.20</version>
             </dependency>
+
+            <!-- rocket mq-client -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
