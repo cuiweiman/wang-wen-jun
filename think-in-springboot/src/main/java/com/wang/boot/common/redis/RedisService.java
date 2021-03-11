@@ -1,4 +1,4 @@
-package com.wang.boot.limiting2.service;
+package com.wang.boot.common.redis;
 
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;

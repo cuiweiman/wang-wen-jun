@@ -3,7 +3,7 @@ package com.wang.boot.limiting2.interceptor;
 import com.alibaba.fastjson.JSON;
 import com.wang.boot.limiting.utils.IpUtils;
 import com.wang.boot.limiting2.annotation.AccessLimit;
-import com.wang.boot.limiting2.service.RedisService;
+import com.wang.boot.common.redis.RedisService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;

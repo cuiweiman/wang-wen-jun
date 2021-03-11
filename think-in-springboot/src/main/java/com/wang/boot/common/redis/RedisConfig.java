@@ -1,4 +1,4 @@
-package com.wang.boot.limiting.config;
+package com.wang.boot.common.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
