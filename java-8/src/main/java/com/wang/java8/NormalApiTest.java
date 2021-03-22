@@ -1,6 +1,7 @@
 package com.wang.java8;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,15 @@ public class NormalApiTest {
     @Before
     public void before() {
         list = Lists.newArrayList("1", "2", "3");
+    }
+
+    @Test
+    public void test() {
+        String msg = ",123456";
+        final List<String> strings = Splitter.on(",").splitToList(msg);
+        System.out.println(strings);
+        final String[] split = msg.split(",");
+        Arrays.stream(split).forEach(System.out::println);
     }
 
     @Test
