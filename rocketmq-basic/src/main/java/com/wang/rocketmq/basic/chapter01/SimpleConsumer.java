@@ -1,13 +1,9 @@
 package com.wang.rocketmq.basic.chapter01;
 
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
-import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.client.exception.MQClientException;
-import org.apache.rocketmq.common.message.MessageExt;
-
-import java.util.List;
 
 /**
  * @description: 消息消费
@@ -16,21 +12,17 @@ import java.util.List;
  */
 public class SimpleConsumer {
 
-    private static final String NAME_SERVER = "192.168.0.108:9876";
+    private static final String NAME_SERVER = "139.196.184.230:9876";
 
     public static void consumer(String group, String topic, String tags) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(group);
         consumer.setNamesrvAddr(NAME_SERVER);
         consumer.subscribe(topic, tags);
-        consumer.registerMessageListener(new MessageListenerConcurrently() {
-            @Override
-            public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msg, ConsumeConcurrentlyContext context) {
-                String s = new String(msg.get(0).getBody());
-                System.out.printf("%s Receive New Messages: %s %s %n", Thread.currentThread().getName(), msg, s);
-
-                // 标记该消息已经被成功消费
-                return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
-            }
+        consumer.registerMessageListener((MessageListenerConcurrently) (msg, context) -> {
+            String s = new String(msg.get(0).getBody());
+            System.out.printf("%s Receive New Messages: %s %s %n", Thread.currentThread().getName(), msg, s);
+            // 标记该消息已经被成功消费
+            return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
         });
         consumer.start();
         System.out.println("Consumer Started");
@@ -38,7 +30,7 @@ public class SimpleConsumer {
 
     public static void main(String[] args) throws MQClientException {
         // consumer("SYNC_PRODUCER_TEST", "SYNC_TOPIC", "SYNC_TAGS");
-        // consumer("ASYNC_PRODUCER_TEST", "ASYNC_TOPIC", "ASYNC_TAGS");
-        consumer("ONE_WAY_PRODUCER_TEST", "ONE_WAY_TOPIC", "ONE_WAY_TAGS");
+        consumer("ASYNC_PRODUCER_TEST", "ASYNC_TOPIC", "ASYNC_TAGS");
+        // consumer("ONE_WAY_PRODUCER_TEST", "ONE_WAY_TOPIC", "ONE_WAY_TAGS");
     }
 }

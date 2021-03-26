@@ -7,12 +7,13 @@ import org.apache.rocketmq.common.CountDownLatch2;
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.remoting.common.RemotingHelper;
 
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 同步消息：可靠性同步的发送方式使用比较广泛，比如：重要的消息通知，短信通知等。
- * 发送异步消息：使用在对响应时间敏感的业务场景，不容忍长时间等地待 Broker 响应。
- * 单向发送消息：不特别关心发送结果的场景。如日志发送。
+ * 1. 同步消息：可靠性同步的发送方式使用比较广泛，比如：重要的消息通知，短信通知等。
+ * 2. 发送异步消息：使用在对响应时间敏感的业务场景，不容忍长时间等地待 Broker 响应。
+ * 3. 单向发送消息：不特别关心发送结果的场景。如日志发送。
  *
  * @description: 消息生产者：发送同步消息；发送异步消息；单向发送消息。
  * @author: wei·man cui
@@ -24,7 +25,7 @@ public class SimpleProducer {
      * 发送的消息数量
      */
     private static final Integer MSG_COUNT = 100;
-    private static final String NAME_SERVER = "192.168.0.108:9876";
+    private static final String NAME_SERVER = "139.196.184.230:9876";
 
 
     /**
@@ -33,11 +34,11 @@ public class SimpleProducer {
      * @throws Exception 异常
      */
     public static void syncProducer() throws Exception {
-        // 实例化 消息生产者 Producer，负责生产消息，发送消息
+        // 实例化 消息生产者 InOrderProducer，负责生产消息，发送消息
         DefaultMQProducer producer = new DefaultMQProducer("SYNC_PRODUCER_TEST");
         // 设置 NameServer 地址
         producer.setNamesrvAddr(NAME_SERVER);
-        // 启动 Producer 实例
+        // 启动 InOrderProducer 实例
         producer.start();
         for (int i = 0; i < MSG_COUNT; i++) {
             // 设置消息主题，主题是消息订阅的基本单位。设置消息标识，区分同一个主题下不同类型的消息。
@@ -65,7 +66,7 @@ public class SimpleProducer {
         for (int i = 0; i < MSG_COUNT; i++) {
             final int index = i;
             Message msg = new Message("ASYNC_TOPIC", "ASYNC_TAGS"
-                    , "Order_ID_1880", "Hello World".getBytes(RemotingHelper.DEFAULT_CHARSET));
+                    , "Order_ID_1880", "Hello World".getBytes(StandardCharsets.UTF_8));
             // SendCallback 接收异步返回结果的 回调
             producer.send(msg, new SendCallback() {
                 @Override
@@ -105,8 +106,8 @@ public class SimpleProducer {
 
     public static void main(String[] args) throws Exception {
         // syncProducer();
-        // asyncProducer();
-        oneWayProducer();
+        asyncProducer();
+        // oneWayProducer();
     }
 
 
