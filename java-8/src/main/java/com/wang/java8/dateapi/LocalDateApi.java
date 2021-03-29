@@ -3,7 +3,6 @@ package com.wang.java8.dateapi;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalUnit;
 
 /**
  * @description: LocalDate API 常用API介绍
@@ -19,7 +18,8 @@ public class LocalDateApi {
         // testDuration();
         // testPeriod();
         // testDateFormat();
-        testParse();
+        // testParse();
+        getZonedTime();
     }
 
     private static void testDateFormat() {
@@ -90,6 +90,16 @@ public class LocalDateApi {
         System.out.println("一年的第多少天：" + localDate.getDayOfYear() + "；一个月的第多少天：" + localDate.getDayOfMonth() + "；星期：" + localDate.getDayOfWeek());
 
         System.out.println("【ChronoField】" + localDate.get(ChronoField.DAY_OF_YEAR));
+    }
+
+    /**
+     * 获取 UTC 0 时区的时间，格式为 yyyyMMddHHmmss
+     */
+    private static void getZonedTime() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        final LocalDateTime now = LocalDateTime.now(ZoneOffset.UTC);
+        final String format = dtf.format(now);
+        System.out.println(format);
     }
 
 }
