@@ -24,6 +24,7 @@
         <module>java-concurrent</module>
         <module>netty-basic</module>
         <module>rocketmq-basic</module>
+        <module>kafka-basic</module>
     </modules>
 
     <properties>
