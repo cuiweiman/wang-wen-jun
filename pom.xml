@@ -197,6 +197,12 @@
                 <version>${redisson.version}</version>
             </dependency>
 
+            <!-- zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>3.6.2</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
