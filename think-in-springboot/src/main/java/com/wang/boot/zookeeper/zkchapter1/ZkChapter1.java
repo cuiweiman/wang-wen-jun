@@ -1,4 +1,4 @@
-package com.wang.boot.zookeeper;
+package com.wang.boot.zookeeper.zkchapter1;
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
@@ -14,7 +14,8 @@ import java.util.concurrent.CountDownLatch;
  * @date: 2021/4/2 17:13
  */
 public class ZkChapter1 implements Watcher {
-    private String CONNECT_STRING = "172.16.12.148:2181,172.16.12.149:2181,172.16.12.150:2181";
+    // private String CONNECT_STRING = "172.16.12.148:2181,172.16.12.149:2181,172.16.12.150:2181";
+    private String CONNECT_STRING = "192.168.0.103:22181,192.168.0.104:22181,192.168.0.105:22181";
     private Integer SESSION_TIMEOUT = 2000;
     private ZooKeeper zookeeper;
     private CountDownLatch countDownLatch = new CountDownLatch(1);
@@ -147,9 +148,16 @@ public class ZkChapter1 implements Watcher {
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException, KeeperException {
         ZkChapter1 zkDemo = new ZkChapter1();
         zkDemo.connectZookeeper(zkDemo.CONNECT_STRING);
+        zkDemo.createNode("/App", "Sun");
+        String data = zkDemo.getData("/App");
+        System.out.println("【ZNode】/App " + data);
+        zkDemo.createNode("/App2", "cui");
+        List<String> children = zkDemo.getChildren("/App2");
+        System.out.println(zkDemo.getCTime("/App2") + ": " + children);
+        zkDemo.closeConnection();
     }
 }
 
