@@ -28,6 +28,11 @@ public class DataMonitor implements AsyncCallback.StatCallback {
         zk.exists(zNode, true, this, null);
     }
 
+    /**
+     * 根据事件类型进行判断 和执行
+     *
+     * @param event 事件
+     */
     public void handler(WatchedEvent event) {
         String path = event.getPath();
         if (event.getType() == Watcher.Event.EventType.None) {
@@ -48,10 +53,18 @@ public class DataMonitor implements AsyncCallback.StatCallback {
         }
     }
 
+    /**
+     * 方法被服务器端执行，响应给客户端后，触发
+     *
+     * @param code 响应码
+     * @param path 路径
+     * @param ctx  参数
+     * @param stat 参数
+     */
     @Override
-    public void processResult(int i, String s, Object o, Stat stat) {
+    public void processResult(int code, String path, Object ctx, Stat stat) {
         boolean exists = false;
-        switch (i) {
+        switch (code) {
             case KeeperException.Code
                     .Ok:
                 exists = true;
@@ -65,7 +78,7 @@ public class DataMonitor implements AsyncCallback.StatCallback {
             case KeeperException.Code
                     .NoAuth:
                 dead = true;
-                listener.closing(i);
+                listener.closing(code);
                 break;
             default:
                 zk.exists(zNode, true, this, null);
@@ -76,7 +89,8 @@ public class DataMonitor implements AsyncCallback.StatCallback {
             try {
                 b = zk.getData(zNode, false, null);
             } catch (KeeperException | InterruptedException e) {
-                e.printStackTrace();
+                // e.printStackTrace();
+                return;
             }
         }
         boolean flag = (Objects.isNull(b) && b != prevData)
