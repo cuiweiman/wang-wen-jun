@@ -43,6 +43,7 @@
         <jsoup.versoin>1.13.1</jsoup.versoin>
         <rocketmq.version>4.7.0</rocketmq.version>
         <redisson.version>3.15.0</redisson.version>
+        <org.apache.curator>5.1.0</org.apache.curator>
     </properties>
 
     <dependencyManagement>
@@ -202,6 +203,13 @@
                 <groupId>org.apache.zookeeper</groupId>
                 <artifactId>zookeeper</artifactId>
                 <version>3.6.2</version>
+            </dependency>
+
+            <!-- zk 高级客户端 -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-framework</artifactId>
+                <version>${org.apache.curator}</version>
             </dependency>
 
         </dependencies>
