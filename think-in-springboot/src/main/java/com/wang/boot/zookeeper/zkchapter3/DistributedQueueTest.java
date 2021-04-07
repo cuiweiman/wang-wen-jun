@@ -7,7 +7,9 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.junit.jupiter.api.Test;
 
 import java.io.Serializable;
-import java.util.Random;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @description: 测试
@@ -15,10 +17,13 @@ import java.util.Random;
  * @date: 2021/4/7 10:07
  */
 public class DistributedQueueTest {
-    private static final String CONNECT_STRING = "172.16.12.148:2181,172.16.12.149:2181,172.16.12.150:2181";
+    private static final String CONNECT_STRING = "192.168.96.128";
+
+    Lock lock = new ReentrantLock();
+    Condition condition = lock.newCondition();
 
     @Test
-    public void testDistributedQueue() throws InterruptedException {
+    public void testDistributedQueue() throws Exception {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(3000, 5);
         // CuratorFramework client = CuratorFrameworkFactory.newClient(CONNECT_STRING, retryPolicy);
         CuratorFramework client = CuratorFrameworkFactory.builder()
@@ -29,9 +34,16 @@ public class DistributedQueueTest {
 
         DistributedQueue<SendObject> queue = new DistributedQueue<>(client, "/Queue");
 
-        new Thread(new ConsumerThread(queue)).start();
+        SendObject sendObject = new SendObject(String.valueOf(100), "content" + 100);
+        queue.offer(sendObject);
+        System.out.println("发送一条消息成功：" + sendObject);
+
+        SendObject poll = queue.poll();
+        System.out.println("消费一条消息成功：" + poll);
+
+       /* new Thread(new ConsumerThread(queue)).start();
         new Thread(new ProducerThread(queue)).start();
-        Thread.currentThread().join();
+        Thread.currentThread().join();*/
     }
 }
 
@@ -42,13 +54,12 @@ class ConsumerThread implements Runnable {
         this.queue = queue;
     }
 
-    private Random random = new Random(10);
+    private static final Integer LOOP = 100;
 
     @Override
     public void run() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < LOOP; i++) {
             try {
-                Thread.sleep(random.nextInt() * 1000);
                 SendObject sendObject = queue.poll();
                 System.out.println("消费一条消息成功：" + sendObject);
             } catch (Exception e) {
@@ -66,13 +77,12 @@ class ProducerThread implements Runnable {
         this.queue = queue;
     }
 
-    private Random random = new Random(10);
+    private static final Integer LOOP = 100;
 
     @Override
     public void run() {
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < LOOP; i++) {
             try {
-                Thread.sleep(random.nextInt() * 1000);
                 SendObject sendObject = new SendObject(String.valueOf(i), "content" + i);
                 queue.offer(sendObject);
                 System.out.println("发送一条消息成功：" + sendObject);

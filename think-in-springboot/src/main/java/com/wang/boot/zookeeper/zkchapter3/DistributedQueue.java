@@ -50,7 +50,7 @@ public class DistributedQueue<T> {
         try {
             final Stat stat = client.checkExists().forPath(root);
             if (Objects.isNull(stat)) {
-                client.create().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(root);
+                client.create().withMode(CreateMode.PERSISTENT).forPath(root);
             }
         } catch (Exception e) {
             e.printStackTrace();
