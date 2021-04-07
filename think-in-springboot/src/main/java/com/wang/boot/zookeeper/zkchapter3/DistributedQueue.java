@@ -1,10 +1,9 @@
 package com.wang.boot.zookeeper.zkchapter3;
 
 import lombok.extern.slf4j.Slf4j;
-import org.I0Itec.zkclient.ExceptionUtil;
-import org.I0Itec.zkclient.exception.ZkNoNodeException;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.zookeeper.CreateMode;
+import org.apache.zookeeper.data.Stat;
 import org.springframework.util.CollectionUtils;
 
 import java.io.ByteArrayInputStream;
@@ -26,7 +25,7 @@ public class DistributedQueue<T> {
     /**
      * 用于操作zookeeper集群
      */
-    protected final CuratorFramework zkClient;
+    protected final CuratorFramework client;
 
     /**
      * 代表根节点
@@ -38,9 +37,24 @@ public class DistributedQueue<T> {
      */
     protected static final String NODE_NAME = "n_";
 
-    public DistributedQueue(CuratorFramework zkClient, String root) {
-        this.zkClient = zkClient;
+    public DistributedQueue(CuratorFramework client, String root) {
+        this.client = client;
         this.root = root;
+        init();
+    }
+
+    /**
+     * 判断 root 节点是否存在
+     */
+    public void init() {
+        try {
+            final Stat stat = client.checkExists().forPath(root);
+            if (Objects.isNull(stat)) {
+                client.create().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(root);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -50,7 +64,7 @@ public class DistributedQueue<T> {
      */
     public int size() {
         try {
-            return zkClient.getChildren().forPath(root).size();
+            return client.getChildren().forPath(root).size();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
@@ -64,7 +78,7 @@ public class DistributedQueue<T> {
      */
     public boolean isEmpty() {
         try {
-            return CollectionUtils.isEmpty(zkClient.getChildren().forPath(root));
+            return CollectionUtils.isEmpty(client.getChildren().forPath(root));
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -83,15 +97,12 @@ public class DistributedQueue<T> {
         String nodeFullPath = root.concat("/").concat(NODE_NAME);
         try {
             // 创建 持久的有序节点
-            zkClient.create().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(nodeFullPath);
-        } catch (ZkNoNodeException e) {
-            // root 节点不存在，创建后再 存放元素
-            zkClient.create().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(root);
-            offer(element);
+            client.create().withMode(CreateMode.PERSISTENT_SEQUENTIAL).forPath(nodeFullPath, objectToByte(element));
+            return true;
         } catch (Exception e) {
-            throw ExceptionUtil.convertToRuntimeException(e);
+            e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     /**
@@ -103,7 +114,7 @@ public class DistributedQueue<T> {
     public T poll() {
         try {
             // 取出 root 节点下所有的 子节点
-            final List<String> children = zkClient.getChildren().forPath(root);
+            final List<String> children = client.getChildren().forPath(root);
             if (CollectionUtils.isEmpty(children)) {
                 return null;
             }
@@ -116,18 +127,16 @@ public class DistributedQueue<T> {
             T node = null;
             for (String nodeName : children) {
                 String nodeFullPath = root.concat("/").concat(nodeName);
-                node = (T) byteToObject(zkClient.getData().forPath(nodeFullPath));
-                zkClient.delete().forPath(nodeFullPath);
+                node = (T) byteToObject(client.getData().forPath(nodeFullPath));
+                client.delete().forPath(nodeFullPath);
                 if (Objects.nonNull(node)) {
                     break;
                 }
             }
             return node;
-        } catch (ZkNoNodeException e) {
-            log.error("", e);
-            return null;
         } catch (Exception e) {
-            throw ExceptionUtil.convertToRuntimeException(e);
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -165,5 +174,22 @@ public class DistributedQueue<T> {
         return obj;
     }
 
-
+    /**
+     * Object 转byte
+     *
+     * @param obj 对象
+     * @return 字节数组
+     */
+    private byte[] objectToByte(Object obj) {
+        byte[] bytes = null;
+        try (ByteArrayOutputStream bo = new ByteArrayOutputStream();
+             ObjectOutputStream oo = new ObjectOutputStream(bo)) {
+            oo.writeObject(obj);
+            bytes = bo.toByteArray();
+        } catch (Exception e) {
+            log.error("translation" + e.getMessage());
+            e.printStackTrace();
+        }
+        return bytes;
+    }
 }

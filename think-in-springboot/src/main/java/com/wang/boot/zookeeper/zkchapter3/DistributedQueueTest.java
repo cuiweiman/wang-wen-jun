@@ -20,9 +20,14 @@ public class DistributedQueueTest {
     @Test
     public void testDistributedQueue() throws InterruptedException {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(3000, 5);
-        CuratorFramework zkClient = CuratorFrameworkFactory.newClient(CONNECT_STRING, retryPolicy);
+        // CuratorFramework client = CuratorFrameworkFactory.newClient(CONNECT_STRING, retryPolicy);
+        CuratorFramework client = CuratorFrameworkFactory.builder()
+                .connectString(CONNECT_STRING)
+                .retryPolicy(retryPolicy)
+                .build();
+        client.start();
 
-        DistributedQueue<SendObject> queue = new DistributedQueue<>(zkClient, "/Queue");
+        DistributedQueue<SendObject> queue = new DistributedQueue<>(client, "/Queue");
 
         new Thread(new ConsumerThread(queue)).start();
         new Thread(new ProducerThread(queue)).start();
