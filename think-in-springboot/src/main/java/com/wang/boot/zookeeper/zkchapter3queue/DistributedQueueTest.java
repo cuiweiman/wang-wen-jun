@@ -1,4 +1,4 @@
-package com.wang.boot.zookeeper.zkchapter3;
+package com.wang.boot.zookeeper.zkchapter3queue;
 
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
@@ -17,7 +17,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * @date: 2021/4/7 10:07
  */
 public class DistributedQueueTest {
-    private static final String CONNECT_STRING = "192.168.96.128";
+    // private static final String CONNECT_STRING = "192.168.96.128";
+    private static final String CONNECT_STRING = "192.168.0.108:22181,192.168.0.109:22181,192.168.0.110:22181";
 
     Lock lock = new ReentrantLock();
     Condition condition = lock.newCondition();

@@ -1,4 +1,4 @@
-package com.wang.boot.zookeeper.zkchapter3;
+package com.wang.boot.zookeeper.zkchapter3queue;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
