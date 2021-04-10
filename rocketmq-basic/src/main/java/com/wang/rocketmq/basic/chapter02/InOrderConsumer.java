@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class InOrderConsumer {
 
-    private static final String NAME_SERVER = "139.196.184.230:9876";
+    private static final String NAME_SERVER = "192.168.0.108:9876";
 
     public static void main(String[] args) throws Exception {
 
