@@ -70,4 +70,9 @@ public class OrdersServiceTest {
     }
 
 
+    @Test
+    public void testException() {
+        service.saveOrderRuntimeException2(8888L);
+    }
+
 }

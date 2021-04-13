@@ -6,7 +6,6 @@ import com.wang.transaction.repository.OrdersDetailRepository;
 import com.wang.transaction.repository.OrdersRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -153,4 +152,28 @@ public class OrdersService {
     }
 
 
+    /**
+     * 测试 rollbackFor 为 Exception 异常，而 抛出的是 RuntimeException，会回滚么？
+     * 测试验证：会.
+     * 因为 RuntimeException 继承自 Exception……
+     *
+     * @param orderId 订单 ID
+     */
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
+    public void saveOrderRuntimeException2(Long orderId) {
+        Orders orders = new Orders();
+        orders.setOrderId(orderId);
+        orders.setMerchantId(100L);
+        orders.setUserId(100L);
+        orders.setOrderStatus(0);
+        orders.setOrderNote("订单写入");
+        ordersRepository.save(orders);
+        OrdersDetail detail = new OrdersDetail();
+        detail.setOrderId(orderId);
+        detail.setGoodsId(100L);
+        detail.setGoodsNote("订单写入-足球");
+        ordersDetailRepository.save(detail);
+        // 运行时异常，触发事务回滚
+        throw new RuntimeException();
+    }
 }
