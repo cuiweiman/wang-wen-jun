@@ -11,13 +11,15 @@ import org.springframework.boot.web.servlet.context.AnnotationConfigServletWebSe
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-// import org.springframework.context.annotation.ConfigurationClass;
-// import org.springframework.context.annotation.ConfigurationClassParser;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.type.AnnotationMetadata;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
+
+// import org.springframework.context.annotation.ConfigurationClass;
+// import org.springframework.context.annotation.ConfigurationClassParser;
 
 /**
  * Sprig事件和监听器
@@ -90,23 +92,27 @@ public class MainApplication {
      * WebApplicationType.NONE：应用程序不应作为web应用程序运行，也不应启动嵌入式web服务器。
      * WebApplicationType.SERVLET：应用程序应作为基于servlet的web应用程序运行，并应启动嵌入式servlet web服务器。对应 spring-webmvc
      * WebApplicationType.REACTIVE：webflux响应式类型，非阻塞的 web 框架，可以让web应用可以tcp长连接传输流数据。对应 spring-webflux
+     * <p>
+     * {@link SpringApplicationBuilder#registerShutdownHook(boolean)}:注册一个 JVM 的 shutdownHook 钩子函数。
+     * 通过注册 钩子函数 实现优雅关闭：java程序运行在JVM上，有很多情况可能会突然崩溃掉，比如OOM、用户强制退出、业务其他报错。。。
+     * 等一系列的问题可能导致进程挂掉。如果进程在运行一些很重要的内容，比如事务操作之类的，很有可能导致事务的不一致性问题。
+     * 所以，实现应用的优雅关闭是比较重要的，起码可以在关闭之前做一些记录补救操作。
+     * 注册 钩子函数后，可以在 doClose() 方法中做一些自定义的 清空IOC容器，各种 关闭资源操作 或者 destroy 销毁操作 等。
      *
      * @param args main参数
      */
     public static void main(String[] args) {
-        new SpringApplicationBuilder(MainApplication.class)
+        /*new SpringApplicationBuilder(MainApplication.class)
                 // 关闭 banner 打印
                 .bannerMode(Banner.Mode.OFF)
                 .web(WebApplicationType.SERVLET)
                 .run(args)
-                /*
-                   注册一个 JVM 的 shutdownHook 钩子函数。
-                   通过注册 钩子函数 实现优雅关闭：java程序运行在JVM上，有很多情况可能会突然崩溃掉，比如OOM、用户强制退出、业务其他报错。。。
-                   等一系列的问题可能导致进程挂掉。如果进程在运行一些很重要的内容，比如事务操作之类的，很有可能导致事务的不一致性问题。
-                   所以，实现应用的优雅关闭是比较重要的，起码可以在关闭之前做一些记录补救操作。
-                   注册 钩子函数后，可以在 doClose() 方法中做一些自定义的 清空IOC容器，各种 关闭资源操作 或者 destroy 销毁操作 等。
-                 */
-                .registerShutdownHook();
+                .registerShutdownHook();*/
+
+        ConfigurableApplicationContext context = SpringApplication.run(MainApplication.class, args);
+        String[] beanDefinitionNames = context.getBeanDefinitionNames();
+        Arrays.stream(beanDefinitionNames).forEach(System.out::println);
+
     }
 
 }

@@ -19,7 +19,8 @@ public class RedisSonConfig {
         Config config = new Config();
         config.useSingleServer()
                 .setAddress("redis://localhost:6379")
-                .setPassword("sosms_2019")
+                // .setPassword("sosms_2019")
+                .setPassword("cuiweiman")
                 .setDatabase(0);
         return (Redisson) Redisson.create(config);
     }

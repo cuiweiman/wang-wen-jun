@@ -3,7 +3,7 @@ spring:
     location: banner.txt
   redis:
     host: 127.0.0.1
-    password: sosms_2019
+    password: cuiweiman # sosms_2019
     # 连接超时（毫秒）
     timeout: 1000
     # lettuce 连接池
