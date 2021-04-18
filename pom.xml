@@ -158,6 +158,12 @@
                 <version>${spring-mybatis.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-webflux</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+
             <!-- mybatis -->
             <dependency>
                 <groupId>org.mybatis</groupId>

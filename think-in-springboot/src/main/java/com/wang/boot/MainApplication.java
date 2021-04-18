@@ -15,7 +15,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.type.AnnotationMetadata;
 
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 // import org.springframework.context.annotation.ConfigurationClass;
@@ -102,16 +101,17 @@ public class MainApplication {
      * @param args main参数
      */
     public static void main(String[] args) {
-        /*new SpringApplicationBuilder(MainApplication.class)
+        new SpringApplicationBuilder(MainApplication.class)
                 // 关闭 banner 打印
                 .bannerMode(Banner.Mode.OFF)
-                .web(WebApplicationType.SERVLET)
+                // .web(WebApplicationType.SERVLET)
+                .web(WebApplicationType.REACTIVE)
                 .run(args)
-                .registerShutdownHook();*/
+                .registerShutdownHook();
 
-        ConfigurableApplicationContext context = SpringApplication.run(MainApplication.class, args);
+        /*ConfigurableApplicationContext context = SpringApplication.run(MainApplication.class, args);
         String[] beanDefinitionNames = context.getBeanDefinitionNames();
-        Arrays.stream(beanDefinitionNames).forEach(System.out::println);
+        Arrays.stream(beanDefinitionNames).forEach(System.out::println);*/
 
     }
 
