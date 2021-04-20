@@ -37,4 +37,13 @@ public class OrdersDetailService {
     }
 
 
+    public void saveDetail2(Long orderId) {
+        OrdersDetail detail = new OrdersDetail();
+        detail.setOrderId(orderId);
+        detail.setGoodsId(100L);
+        detail.setGoodsNote("订单写入-足球");
+        repository.save(detail);
+        // throw new RuntimeException("异常发生，数据会回滚");
+    }
+
 }

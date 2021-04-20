@@ -176,4 +176,16 @@ public class OrdersService {
         // 运行时异常，触发事务回滚
         throw new RuntimeException();
     }
+
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
+    public void saveOrderRuntimeException3(Long orderId) {
+        Orders orders = new Orders();
+        orders.setOrderId(orderId);
+        orders.setMerchantId(100L);
+        orders.setUserId(100L);
+        orders.setOrderStatus(0);
+        orders.setOrderNote("订单写入");
+        ordersRepository.save(orders);
+        detailService.saveDetail2(orderId);
+    }
 }

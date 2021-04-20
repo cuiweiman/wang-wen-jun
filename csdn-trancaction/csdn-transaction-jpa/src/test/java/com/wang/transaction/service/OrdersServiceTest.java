@@ -20,6 +20,8 @@ public class OrdersServiceTest {
     @Resource
     private OrdersService service;
 
+    @Resource
+    private OrdersDetailService detailService;
 
     @Resource
     private OrderService2 service2;
@@ -75,4 +77,12 @@ public class OrdersServiceTest {
         service.saveOrderRuntimeException2(8888L);
     }
 
+    /**
+     * 事务测试：有 事务注解的 方法，调用其他 Service 中没有服务注解的方法，会回滚么？
+     * 结论：会回滚
+     */
+    @Test
+    public void testPropagation() {
+        service.saveOrderRuntimeException3(9988L);
+    }
 }
