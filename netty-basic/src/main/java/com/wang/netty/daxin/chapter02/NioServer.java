@@ -1,5 +1,7 @@
 package com.wang.netty.daxin.chapter02;
 
+import com.wang.netty.daxin.chapter02.eventloop.NioEventLoopGroup;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SelectionKey;
@@ -10,6 +12,9 @@ import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 
 /**
+ * 监听客户端连接；
+ * 读写事件交由 {@link NioEventLoopGroup} 管理
+ *
  * @description: 服务端
  * @author: wei·man cui
  * @date: 2021/4/21 17:58
@@ -27,7 +32,7 @@ public class NioServer {
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("[服务端]服务器启动成功，等待连接……");
 
-
+            NioEventLoopGroup eventLoopGroup = new NioEventLoopGroup();
             while (true) {
                 final int select = selector.select();
                 // 发生了 IO 事件，OP_ACCEPT/OP_READ/OP_WRITE/OP_CONNECT
@@ -39,7 +44,7 @@ public class NioServer {
                             final SocketChannel channel = serverSocketChannel.accept();
                             System.out.println("[服务端]接收到客户端连接：" + channel.getRemoteAddress());
                             channel.configureBlocking(false);
-
+                            eventLoopGroup.register(channel, SelectionKey.OP_READ);
                         }
                         iterator.remove();
                     }

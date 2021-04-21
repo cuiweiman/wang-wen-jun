@@ -1,4 +1,6 @@
-package com.wang.netty.daxin.chapter02;
+package com.wang.netty.daxin.chapter02.eventloop;
+
+import com.wang.netty.daxin.chapter02.channel.NioChannel;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;
@@ -58,7 +60,7 @@ public class NioEventLoop implements Runnable {
                 final SelectionKey selectionKey = channel.register(selector, keyOps);
                 // 附加 NioChannel 对象，其中保存了 SocketChannel 和 当前 NioEventLoop 对象
                 // 便于 NioEventLoop 事件监听 和 读写分发 的解耦
-                // selectionKey.attachment(nioChannel);
+                selectionKey.attach(nioChannel);
             } catch (ClosedChannelException e) {
                 throw new RuntimeException(e);
             }
@@ -84,9 +86,9 @@ public class NioEventLoop implements Runnable {
                         SelectionKey selectionKey = iterator.next();
                         NioChannel nioChannel = (NioChannel) selectionKey.attachment();
                         if (selectionKey.isReadable()) {
-                            // nioChannel.read(selectionKey);
+                            nioChannel.read(selectionKey);
                         } else if (selectionKey.isWritable()) {
-                            // nioChannel.write(selectionKey);
+                            nioChannel.write(selectionKey);
                         }
                         iterator.remove();
                     }
