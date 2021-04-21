@@ -12,6 +12,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 /**
+ * 问题：selector 线程中 注册的 监听事件过多，会有很大压力，因此 要分散压力
+ * 优化：{@link NioServerSocketChannel2}
+ *
  * @description: 非阻塞IO的  ServerSocketChannel
  * @author: wei·man cui
  * @date: 2021/4/20 17:40

@@ -10,25 +10,17 @@ import java.nio.channels.spi.SelectorProvider;
 import java.util.Iterator;
 
 /**
- * 问题：selector 线程中 注册的 监听事件过多，会有很大压力，因此 要分散压力
- * <p>
- * 优化：使用一个 selector 处理客户端的连接；
- * 再使用 EventLoop 管理 另一个 selector 监听 客户端通道中的 读/写事件。
- * <p>
- * 即 一个 selector 监听 acceptable 事件；
- * 使用另一个 selector 监听 readable 事件；
- * <p>
- * 最终优化：—— Netty
- * 1. 使用 一个 Selector 线程管理 客户端的连接请求。
- * 2. 使用 EventLoopGroup 管理 多个 EventLoop（EventLoop 对应 Selector 的监听事件），
- * 所有的 事件读写请求，轮询的分配个 EventLoop 的 selector 线程中
- * {@link NioServerSocketChannel3}
+ * 最终优化结果：
+ * 1. ServerSocketChannel 向 selector 注册 监听 客户端的 连接事件
+ * 2. {@link EventLoopGroup} 管理 EventLoop 线程，负责 将 SocketChannel 的 读写事件 注册到 selector 中。
+ * 3. {@link EventLoop2} 监听到 读写事件后，将 数据 分发给 {@link MyChannel}处理。
+ * 4. {@link MyChannel} 中的 Pipeline 维护了 链式处理器，最终数据交由 链式处理器中的 各个处理器节点一次处理。
  *
- * @description: 非阻塞IO的  ServerSocketChannel
+ * @description: EventLoopGroup 管理多个 EventLoop
  * @author: wei·man cui
- * @date: 2021/4/20 17:40
+ * @date: 2021/4/21 13:28
  */
-public class NioServerSocketChannel2 {
+public class NioServerSocketChannel3 {
 
     public static void main(String[] args) {
         try (ServerSocketChannel serverSocketChannel = ServerSocketChannel.open()) {
@@ -42,7 +34,7 @@ public class NioServerSocketChannel2 {
             serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("[服务端]服务端启动成功，等待连接……");
 
-            EventLoop eventLoop = new EventLoop();
+            EventLoopGroup eventLoopGroup = new EventLoopGroup();
 
             // 遍历所有的 监听事件，发生事件时做出相应
             while (true) {
@@ -59,7 +51,7 @@ public class NioServerSocketChannel2 {
                             // 并对客户端的套接字 进行 写事件监听
                             socketChannel.configureBlocking(false);
                             // 注册时 读事件 也需要注册到 EventLoop 中
-                            eventLoop.register(socketChannel, SelectionKey.OP_READ);
+                            eventLoopGroup.register(socketChannel, SelectionKey.OP_READ);
                         }
                         iterator.remove();
                     }
