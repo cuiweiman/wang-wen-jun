@@ -1,4 +1,4 @@
-package com.wang.netty.daxin.chapter02.handler;
+package com.wang.netty.daxin.chapter02model.handler;
 
 /**
  * @description: 处理器

@@ -1,4 +1,4 @@
-package com.wang.netty.daxin.chapter02.handler;
+package com.wang.netty.daxin.chapter02model.handler;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;

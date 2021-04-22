@@ -3,4 +3,4 @@
  * @author: wei·man cui
  * @date: 2021/4/21 17:57
  */
-package com.wang.netty.daxin.chapter02;
+package com.wang.netty.daxin.chapter02model;

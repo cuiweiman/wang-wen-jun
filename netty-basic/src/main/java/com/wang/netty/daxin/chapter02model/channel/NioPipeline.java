@@ -1,8 +1,8 @@
-package com.wang.netty.daxin.chapter02.channel;
+package com.wang.netty.daxin.chapter02model.channel;
 
-import com.wang.netty.daxin.chapter02.eventloop.NioEventLoop;
-import com.wang.netty.daxin.chapter02.handler.NioHandler;
-import com.wang.netty.daxin.chapter02.handler.NioHandlerContext;
+import com.wang.netty.daxin.chapter02model.eventloop.NioEventLoop;
+import com.wang.netty.daxin.chapter02model.handler.NioHandler;
+import com.wang.netty.daxin.chapter02model.handler.NioHandlerContext;
 
 import java.nio.ByteBuffer;
 
@@ -39,9 +39,9 @@ public class NioPipeline {
         NioHandlerContext handlerContext = new NioHandlerContext(handler, channel);
         NioHandlerContext prevCtx = this.tailCtx.prev;
         // 需要先修改 尾部前一个节点的 next 指针；尾部节点的 prev指针；
-        // 新增节点的 prev 指针；新增节点的 next 指针。
         prevCtx.next = handlerContext;
         this.tailCtx.prev = handlerContext;
+        // 再修改 新增节点的 prev 指针；新增节点的 next 指针。
         handlerContext.prev = prevCtx;
         handlerContext.next = this.tailCtx;
     }

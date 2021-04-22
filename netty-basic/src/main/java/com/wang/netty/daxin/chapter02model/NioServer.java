@@ -1,6 +1,6 @@
-package com.wang.netty.daxin.chapter02;
+package com.wang.netty.daxin.chapter02model;
 
-import com.wang.netty.daxin.chapter02.eventloop.NioEventLoopGroup;
+import com.wang.netty.daxin.chapter02model.eventloop.NioEventLoopGroup;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;

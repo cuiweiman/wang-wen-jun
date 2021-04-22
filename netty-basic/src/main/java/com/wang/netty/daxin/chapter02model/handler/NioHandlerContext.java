@@ -1,6 +1,6 @@
-package com.wang.netty.daxin.chapter02.handler;
+package com.wang.netty.daxin.chapter02model.handler;
 
-import com.wang.netty.daxin.chapter02.channel.NioChannel;
+import com.wang.netty.daxin.chapter02model.channel.NioChannel;
 
 import java.util.Objects;
 

@@ -1,8 +1,8 @@
-package com.wang.netty.daxin.chapter02.channel;
+package com.wang.netty.daxin.chapter02model.channel;
 
-import com.wang.netty.daxin.chapter02.eventloop.NioEventLoop;
-import com.wang.netty.daxin.chapter02.handler.NioHandler1;
-import com.wang.netty.daxin.chapter02.handler.NioHandler2;
+import com.wang.netty.daxin.chapter02model.eventloop.NioEventLoop;
+import com.wang.netty.daxin.chapter02model.handler.NioHandler1;
+import com.wang.netty.daxin.chapter02model.handler.NioHandler2;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

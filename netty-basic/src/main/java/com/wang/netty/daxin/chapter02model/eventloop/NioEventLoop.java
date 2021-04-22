@@ -1,6 +1,6 @@
-package com.wang.netty.daxin.chapter02.eventloop;
+package com.wang.netty.daxin.chapter02model.eventloop;
 
-import com.wang.netty.daxin.chapter02.channel.NioChannel;
+import com.wang.netty.daxin.chapter02model.channel.NioChannel;
 
 import java.io.IOException;
 import java.nio.channels.ClosedChannelException;

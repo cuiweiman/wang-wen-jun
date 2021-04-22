@@ -1,4 +1,4 @@
-package com.wang.netty.daxin.chapter02.eventloop;
+package com.wang.netty.daxin.chapter02model.eventloop;
 
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.atomic.AtomicInteger;
