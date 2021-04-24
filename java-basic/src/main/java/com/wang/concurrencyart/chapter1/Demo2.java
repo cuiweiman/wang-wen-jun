@@ -1,7 +1,5 @@
 package com.wang.concurrencyart.chapter1;
 
-import sun.awt.util.IdentityArrayList;
-
 /**
  * @description: 死锁
  * @date: 2021/2/1 23:16
