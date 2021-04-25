@@ -11,7 +11,6 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.DelimiterBasedFrameDecoder;
-import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 
@@ -60,8 +59,9 @@ public class DiscardServer {
                              */
                             // ch.pipeline().addLast("LengthFieldBasedFrameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 2, 0, 0));
 
-                            // 粘包 分隔符
-                            ByteBuf delimiter = Unpooled.copiedBuffer("]".getBytes());
+                            // 粘包 分隔符.{@link Unpooled#copiedBuffer}底层还是 wrappedBuffer();
+                            ByteBuf delimiter2 = Unpooled.copiedBuffer("]".getBytes());
+                            ByteBuf delimiter = Unpooled.wrappedBuffer("]".getBytes());
                             ch.pipeline().addLast(new DelimiterBasedFrameDecoder(2048 * 1024, delimiter));
 
                             // StringDecoder 继承自 入站处理器类，加入后即可不用再写 ByteBuf 转 String 的处理逻辑了

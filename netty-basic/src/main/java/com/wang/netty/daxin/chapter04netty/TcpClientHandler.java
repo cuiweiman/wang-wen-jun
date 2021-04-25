@@ -22,7 +22,7 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
             sb.append("Hei girl, I miss you.");
         }
         sb.append("]");
-//        sb.append("]\r\n");
+        // sb.append("]\r\n");
         ctx.writeAndFlush(Unpooled.copiedBuffer(sb.toString(), CharsetUtil.UTF_8));
     }
 
@@ -36,4 +36,6 @@ public class TcpClientHandler extends ChannelInboundHandlerAdapter {
         cause.printStackTrace();
         ctx.close();
     }
+
+
 }
