@@ -32,6 +32,8 @@ import java.lang.reflect.Proxy;
 @Slf4j
 public class RpcClientFactory {
 
+    private RpcClientMsgHandler handler = new RpcClientMsgHandler();
+
     /**
      * Netty 客户端连接，向服务端传递 要调用的 接口名、方法名、方法入参 等信息，
      * 并返回 服务生产者执行后的结果
@@ -51,7 +53,8 @@ public class RpcClientFactory {
                             ch.pipeline().addLast("ObjectEncoder", new ObjectEncoder());
                             ch.pipeline().addLast(new ObjectDecoder(Integer.MAX_VALUE,
                                     ClassResolvers.weakCachingResolver(null)));
-                            ch.pipeline().addLast(new RpcClientMsgHandler());
+                            // ch.pipeline().addLast(new RpcClientMsgHandler());
+                            ch.pipeline().addLast(handler);
                         }
                     });
             final ChannelFuture future = bootstrap.connect(ip, port).sync();
@@ -66,10 +69,11 @@ public class RpcClientFactory {
      * @return RpcServer
      */
     public RpcService getRpcService() {
-        // 生成 JDK 的动态代理
+        // 生成 JDK 的动态代理。{@code RpcServiceProxyHandler}动态代理{@code RpcService}接口，使得没有接口实现类也可以调用。
+        // 当然 RpcService 并非真的没有实现，只是在 消费者Client 端没有实现，在生产者 Procedure 端实现了。
         return (RpcService) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),
                 new Class[]{RpcService.class},
-                new RpcServiceProxyHandler()
+                new RpcServiceProxyHandler(handler)
         );
     }
 

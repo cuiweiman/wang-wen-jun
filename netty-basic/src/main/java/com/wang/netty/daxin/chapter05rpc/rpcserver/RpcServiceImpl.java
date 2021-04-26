@@ -16,4 +16,11 @@ public class RpcServiceImpl implements RpcService {
         log.info("[服务生产者]RpcServiceImpl#rpcLogin，入参{}，{}", name, password);
         return new User(true);
     }
+
+    @Override
+    public User findUserById(String id) {
+        User user = new User(true);
+        user.setName(user.getName() + "== " + id);
+        return user;
+    }
 }

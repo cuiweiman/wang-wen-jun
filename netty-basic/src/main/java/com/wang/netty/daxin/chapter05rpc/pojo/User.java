@@ -18,25 +18,24 @@ import java.util.Date;
 public class User implements Serializable {
     private String name;
     private Integer age;
-    private Date birthDay;
+    private String birthDay;
 
     public User(boolean flag) {
-        User user = new User();
         if (flag) {
-            user.setName("Jack");
-            user.setAge(18);
-            user.setBirthDay(new Date());
+            this.name = "Jack";
+            this.age = 18;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss ");
+            this.birthDay = sdf.format(new Date());
         }
     }
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss ");
-        final String format = sdf.format(this.birthDay);
+
         return "User{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
-                ", birthDay=" + format +
+                ", birthDay=" + birthDay +
                 '}';
     }
 }
