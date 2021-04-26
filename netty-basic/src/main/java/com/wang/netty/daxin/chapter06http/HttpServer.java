@@ -43,7 +43,7 @@ public class HttpServer {
                     });
             final ChannelFuture future = bootstrap.bind(port).sync();
             future.channel().closeFuture().addListener(channelFuture -> {
-                log.debug("[RPC 服务端] 关闭RPC服务器");
+                log.debug("[Http 服务端] 关闭服务器");
                 boosGroup.shutdownGracefully();
                 workGroup.shutdownGracefully();
             });
