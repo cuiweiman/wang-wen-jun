@@ -20,7 +20,8 @@ public class SecondHandler extends ChannelDuplexHandler {
         System.out.println("SecondHandler " + msg);
         // ctx.channel().write("I received your msg.");
         // ctx.channel().flush();
-        ctx.channel().writeAndFlush("I received your msg.");
+        // ctx.channel().writeAndFlush("[SecondHandler#channelRead] I received your msg.");
+        ctx.fireChannelRead(msg.toString());
     }
 
     @Override

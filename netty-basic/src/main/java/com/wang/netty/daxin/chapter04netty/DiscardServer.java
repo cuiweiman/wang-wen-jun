@@ -68,8 +68,9 @@ public class DiscardServer {
                             ch.pipeline().addLast("StringDecoder", new StringDecoder(StandardCharsets.UTF_8));
                             // StringEncoder 继承自 出站处理器类，加入后 不用再写 String 转 ByteBuf 的处理逻辑
                             ch.pipeline().addLast("StringEncoder", new StringEncoder(StandardCharsets.UTF_8));
-                            ch.pipeline().addLast(new DiscardServerHandler());
-                            ch.pipeline().addLast("SelfHandlerName", new SecondHandler());
+                            ch.pipeline().addLast("DiscardServerHandler", new DiscardServerHandler());
+                            ch.pipeline().addLast("SecondHandler", new SecondHandler());
+                            ch.pipeline().addLast("ThirdHandler", new ThirdHandler());
                         }
                     })
                     .option(ChannelOption.SO_BACKLOG, 128)
