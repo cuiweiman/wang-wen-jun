@@ -104,8 +104,8 @@ public class MainApplication {
         new SpringApplicationBuilder(MainApplication.class)
                 // 关闭 banner 打印
                 .bannerMode(Banner.Mode.OFF)
-                // .web(WebApplicationType.SERVLET)
-                .web(WebApplicationType.REACTIVE)
+                .web(WebApplicationType.SERVLET)
+                // .web(WebApplicationType.REACTIVE)
                 .run(args)
                 .registerShutdownHook();
 
