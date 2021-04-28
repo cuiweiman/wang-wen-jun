@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class WebSocketTextHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
-        log.debug(msg.text());
+        log.debug("[WebSocketTextHandler#channelRead0]读到数据：{}", msg.text());
+        ctx.fireChannelRead(msg);
     }
 }

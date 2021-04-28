@@ -49,8 +49,16 @@ public class WebSocketServer {
                                     .maxFramePayloadLength(Integer.MAX_VALUE)
                                     .checkStartsWith(true).build();
                             ch.pipeline().addLast("WebSocketHandler", new WebSocketServerProtocolHandler(wsConfig));
-                            ch.pipeline().addLast("WebSocketTextHandler", new WebSocketTextHandler());
-                            ch.pipeline().addLast("HandshakeEventHandler", HandshakeEventHandler.INSTANCE);
+                            // 将 客户端 消息 群发
+                            // ch.pipeline().addLast("HandshakeEventHandler", HandshakeEventHandler.INSTANCE);
+                            // ch.pipeline().addLast("WebSocketTextHandler", new WebSocketTextHandler());
+                            // ch.pipeline().addLast("WsTextHandler", new WsTextHandler());
+
+                            // 客户端 消息 点对点 单送
+                            ch.pipeline().addLast(HandshakeEventHandlerSingle.INSTANCE);
+
+
+
                         }
                     });
             final ChannelFuture future = bootstrap.bind(port).sync();
