@@ -1,5 +1,6 @@
 package com.wang.netty.daxin.chapter07ws;
 
+import com.wang.netty.daxin.chapter07ws.responsehandlersingle.WsTextSingleHandler;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -55,8 +56,8 @@ public class WebSocketServer {
                             // ch.pipeline().addLast("WsTextHandler", new WsTextHandler());
 
                             // 客户端 消息 点对点 单送
-                            ch.pipeline().addLast(HandshakeEventHandlerSingle.INSTANCE);
-
+                            ch.pipeline().addLast("HandshakeEventHandlerSingle", HandshakeEventHandlerSingle.INSTANCE);
+                            ch.pipeline().addLast("WsTextSingleHandler", new WsTextSingleHandler());
 
 
                         }
