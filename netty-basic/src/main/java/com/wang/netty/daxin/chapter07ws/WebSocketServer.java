@@ -50,6 +50,7 @@ public class WebSocketServer {
                                     .checkStartsWith(true).build();
                             ch.pipeline().addLast("WebSocketHandler", new WebSocketServerProtocolHandler(wsConfig));
                             ch.pipeline().addLast("WebSocketTextHandler", new WebSocketTextHandler());
+                            ch.pipeline().addLast("HandshakeEventHandler", HandshakeEventHandler.INSTANCE);
                         }
                     });
             final ChannelFuture future = bootstrap.bind(port).sync();
