@@ -37,6 +37,8 @@
         <mysql.version>8.0.20</mysql.version>
         <fastjson.version>1.2.66</fastjson.version>
         <commons-lang3.version>3.11</commons-lang3.version>
+        <commons.version>2.7</commons.version>
+        <guava.version>30.0-jre</guava.version>
         <mockito.version>1.10.19</mockito.version>
         <hutool.version>5.3.1</hutool.version>
         <magic.version>0.7.4</magic.version>
@@ -61,7 +63,7 @@
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
-                <version>30.0-jre</version>
+                <version>${guava.version}</version>
             </dependency>
 
             <dependency>
@@ -95,6 +97,11 @@
                 <version>2.9.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
 
             <!-- lombok -->
             <dependency>
