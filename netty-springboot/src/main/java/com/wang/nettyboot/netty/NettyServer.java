@@ -5,6 +5,8 @@ import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
+import io.netty.channel.epoll.EpollEventLoopGroup;
+import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioChannelOption;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -29,6 +31,37 @@ public class NettyServer {
     private NettyConfig nettyConfig;
 
     AtomicInteger countClientCount = new AtomicInteger(0);
+
+    /**
+     * 针对 Linux 平台优化：
+     * {@link io.netty.channel.epoll.EpollEventLoopGroup}
+     */
+    public void startLinux() {
+        EventLoopGroup bossGroup = new EpollEventLoopGroup(1);
+        EventLoopGroup workGroup = new EpollEventLoopGroup(128);
+        try {
+            final ServerBootstrap serverBootstrap = new ServerBootstrap();
+            serverBootstrap.group(bossGroup, workGroup)
+                    .channel(EpollServerSocketChannel.class)
+                    .handler(new LoggingHandler(LogLevel.DEBUG))
+                    .option(ChannelOption.ALLOCATOR, ByteBufAllocator.DEFAULT)
+                    .option(ChannelOption.SO_BACKLOG, 1024)
+                    .childOption(NioChannelOption.SO_RCVBUF, 8 * 1024)
+                    .childOption(NioChannelOption.SO_SNDBUF, 8 * 1024)
+                    .childOption(NioChannelOption.SO_KEEPALIVE, true)
+                    .childOption(ChannelOption.ALLOCATOR, ByteBufAllocator.DEFAULT)
+                    .childHandler(new NettyServerInitializer(countClientCount));
+            int port = nettyConfig.getServerPort();
+            serverBootstrap.bind(port).sync().channel().closeFuture().addListener(channelFuture -> {
+                log.info("Netty Server stop in gracefully...");
+                bossGroup.shutdownGracefully();
+                workGroup.shutdownGracefully();
+            });
+            log.info("Netty Server start on port: {}", port);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public void start() {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
