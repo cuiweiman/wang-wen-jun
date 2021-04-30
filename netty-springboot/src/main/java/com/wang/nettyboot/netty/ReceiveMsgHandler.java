@@ -1,5 +1,8 @@
 package com.wang.nettyboot.netty;
 
+import com.google.common.eventbus.AsyncEventBus;
+import com.wang.nettyboot.config.AsyncConfig;
+import com.wang.nettyboot.config.EventSubscribe;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +25,10 @@ public class ReceiveMsgHandler extends SimpleChannelInboundHandler<String> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-        log.info("[ReceiveMsgHandler#channelRead0]接收到信息：{}", msg);
+        log.info("[ReceiveMsgHandler#channelRead0] 接收到信息：{}", msg);
+        AsyncEventBus eventBus = new AsyncEventBus("EventBusName", new AsyncConfig().executorService());
+        eventBus.register(new EventSubscribe());
+        eventBus.post(msg);
     }
 
     @Override
