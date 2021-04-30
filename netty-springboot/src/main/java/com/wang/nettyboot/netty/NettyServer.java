@@ -1,6 +1,7 @@
 package com.wang.nettyboot.netty;
 
 import com.wang.nettyboot.config.NettyConfig;
+import com.wang.nettyboot.netty.initializer.SslServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelOption;
@@ -50,7 +51,9 @@ public class NettyServer {
                     .childOption(NioChannelOption.SO_SNDBUF, 8 * 1024)
                     .childOption(NioChannelOption.SO_KEEPALIVE, true)
                     .childOption(ChannelOption.ALLOCATOR, ByteBufAllocator.DEFAULT)
-                    .childHandler(new NettyServerInitializer(countClientCount));
+                    // .childHandler(new NettyServerInitializer(countClientCount));
+                    // 对 Netty 进行 SSL 加密
+                    .childHandler(new SslServerInitializer());
             int port = nettyConfig.getServerPort();
             serverBootstrap.bind(port).sync().channel().closeFuture().addListener(channelFuture -> {
                 log.info("Netty Server stop in gracefully...");
