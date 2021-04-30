@@ -25,6 +25,7 @@
         <module>netty-basic</module>
         <module>rocketmq-basic</module>
         <module>kafka-basic</module>
+        <module>netty-springboot</module>
     </modules>
 
     <properties>

@@ -1,0 +1,18 @@
+server:
+  port: 8899
+  servlet:
+    context-path: /nettys
+
+spring:
+  servlet:
+    multipart:
+      enabled: false
+
+netty:
+  server:
+    port: 9100
+
+
+
+
+
