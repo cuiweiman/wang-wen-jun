@@ -1,7 +1,9 @@
 package com.wang.java8.common;
 
+import com.google.common.collect.Lists;
 import com.wang.java8.lambda.Apple;
 import com.wang.java8.stream.Dish;
+import com.wang.java8.stream.PumpInfo;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,4 +31,16 @@ public class DataUtil {
             new Dish("prawns", false, 300, Dish.Type.FISH),
             new Dish("salmon", false, 450, Dish.Type.FISH)
     );
+
+
+    public static List<PumpInfo> pumpDataList = Lists.newArrayList(
+            new PumpInfo("贵水一号泵房", "一号泵组", "一号泵机", "电流"),
+            new PumpInfo("贵水一号泵房", "一号泵组", "一号泵机", "电压"),
+            new PumpInfo("贵水一号泵房", "一号泵组", "一号泵机", "出水量"),
+            new PumpInfo("贵水一号泵房", "一号泵组", "二号泵机", "进水量"),
+            new PumpInfo("贵水一号泵房", "一号泵组", "二号泵机", "电流"),
+            new PumpInfo("贵水一号泵房", "二号泵组", "一号泵机", "电流"),
+            new PumpInfo("贵水二号泵房", "一号泵组", "一号泵机", "电流")
+    );
+
 }

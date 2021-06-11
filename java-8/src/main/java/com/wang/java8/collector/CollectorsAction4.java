@@ -1,10 +1,17 @@
 package com.wang.java8.collector;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.wang.java8.common.DataUtil;
 import com.wang.java8.stream.Dish;
+import com.wang.java8.stream.PumpInfo;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
 
@@ -20,9 +27,10 @@ public class CollectorsAction4 {
         // testToConcurrentMap();
         // testToConcurrentMapWithBinaryOperator();
         // testToConcurrentMapWithBinaryOperatorAndSupplier();
-        testToMap();
-        testToSet();
-        testToList();
+        // testToMap();
+        // testToSet();
+        // testToList();
+        testGroupingBy();
     }
 
 
@@ -93,6 +101,50 @@ public class CollectorsAction4 {
     private static void testToList() {
         Optional.ofNullable(DataUtil.menuList.stream().filter(Dish::isVegetarian).collect(
                 Collectors.toList())).ifPresent(System.out::println);
+    }
+
+    private static void testGroupingBy() {
+        HashMap<String, List<PumpInfo>> map = DataUtil.pumpDataList.stream().collect(Collectors.groupingBy(pumpInfo ->
+                new PumpInfo(pumpInfo.getHouseName(), pumpInfo.getGroupName(), pumpInfo.getPumpName())
+                        .toString(), HashMap::new, Collectors.toList()));
+        map.forEach((k, v) -> {
+            System.out.print(k + " ==== ");
+            System.out.println(v);
+        });
+        System.out.println("========================================");
+        List<Map<String, Object>> result = Lists.newArrayList();
+        // 泵房分组
+        Map<String, List<PumpInfo>> pumpHouseMap =
+                DataUtil.pumpDataList.stream().collect(Collectors.groupingBy(PumpInfo::getHouseName));
+        pumpHouseMap.forEach((pumpHouseName, houseList) -> {
+            Map<String, Object> pumpHouseData = Maps.newHashMap();
+            pumpHouseData.put("houseName", pumpHouseName);
+            List<Map<String, Object>> groupDataList = Lists.newArrayList();
+            // 泵组分组
+            Map<String, List<PumpInfo>> pumpGroupMap =
+                    houseList.stream().collect(Collectors.groupingBy(PumpInfo::getGroupName));
+            pumpGroupMap.forEach((pumpGroupName, groupList) -> {
+                Map<String, Object> pumpGroupData = Maps.newHashMap();
+                pumpGroupData.put("pumpGroupName", pumpGroupName);
+                List<Map<String, Object>> pumpDataList = Lists.newArrayList();
+                // 泵机分组
+                Map<String, List<PumpInfo>> pumpMap =
+                        groupList.stream().collect(Collectors.groupingBy(PumpInfo::getPumpName));
+                pumpMap.forEach((pumpName, pumpList) -> {
+                    List<String> indicatorList =
+                            pumpList.stream().map(PumpInfo::getParam).collect(Collectors.toList());
+                    Map<String, Object> pumpData = Maps.newHashMap();
+                    pumpData.put("pumpName", pumpName);
+                    pumpData.put("indicatorsNameList", indicatorList);
+                    pumpDataList.add(pumpData);
+                });
+                pumpGroupData.put("pumpNameList", pumpDataList);
+                groupDataList.add(pumpGroupData);
+            });
+            pumpHouseData.put("pumpGroup", groupDataList);
+            result.add(pumpHouseData);
+        });
+        System.out.println(result.toString());
     }
 
 }
