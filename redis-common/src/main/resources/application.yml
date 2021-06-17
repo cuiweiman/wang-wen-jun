@@ -1,0 +1,13 @@
+server:
+  port: 9736
+
+spring:
+  redis:
+    host: *
+    port: *
+    password: *
+    connection-pool-size: 100
+    idle-connection-timeout: 10000
+    connect-timeout: 30000
+    timeout: 10000
+    database: 10

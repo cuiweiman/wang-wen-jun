@@ -27,6 +27,7 @@
         <module>kafka-basic</module>
         <module>netty-springboot</module>
         <module>apache-doris</module>
+        <module>redis-common</module>
     </modules>
 
     <properties>
@@ -226,7 +227,6 @@
                 <artifactId>curator-framework</artifactId>
                 <version>${org.apache.curator}</version>
             </dependency>
-
 
 
         </dependencies>
