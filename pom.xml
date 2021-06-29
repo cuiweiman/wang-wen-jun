@@ -28,6 +28,7 @@
         <module>netty-springboot</module>
         <module>apache-doris</module>
         <module>redis-common</module>
+        <module>tsdb-basic</module>
     </modules>
 
     <properties>
@@ -49,6 +50,8 @@
         <rocketmq.version>4.7.0</rocketmq.version>
         <redisson.version>3.15.0</redisson.version>
         <org.apache.curator>5.1.0</org.apache.curator>
+        <tsdb.version>0.10.169</tsdb.version>
+        <opencsv.version>5.0</opencsv.version>
     </properties>
 
     <dependencyManagement>
@@ -91,6 +94,17 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-csv</artifactId>
+                <version>1.8</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.opencsv</groupId>
+                <artifactId>opencsv</artifactId>
+                <version>${opencsv.version}</version>
             </dependency>
 
             <!-- commons-pool2 -->
@@ -226,6 +240,13 @@
                 <groupId>org.apache.curator</groupId>
                 <artifactId>curator-framework</artifactId>
                 <version>${org.apache.curator}</version>
+            </dependency>
+
+            <!--TSDB-->
+            <dependency>
+                <groupId>com.baidubce</groupId>
+                <artifactId>bce-java-sdk</artifactId>
+                <version>${tsdb.version}</version>
             </dependency>
 
 

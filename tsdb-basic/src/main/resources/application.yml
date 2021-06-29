@@ -1,0 +1,13 @@
+server:
+  port: 9877
+  servlet:
+    context-path: /tsdb
+
+tsdb:
+  access-key-id: *
+  secret-access-key: *
+  endpoint: *
+  connection-timeout-in-millis: 5000
+  max-connections: 100
+  socket-buffer-size-in-bytes: 10485760
+  socket-timeout-in-millis: 5000
