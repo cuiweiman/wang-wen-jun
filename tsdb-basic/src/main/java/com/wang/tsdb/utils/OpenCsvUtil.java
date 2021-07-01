@@ -1,15 +1,19 @@
 package com.wang.tsdb.utils;
 
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.HeaderColumnNameMappingStrategy;
+import com.opencsv.exceptions.CsvException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URLEncoder;
@@ -67,6 +71,55 @@ public class OpenCsvUtil {
             log.error("IOException: {}", e.getMessage());
             return false;
         }
+    }
+
+    /**
+     * 解析无固定格式的 csv data
+     *
+     * @param inputStream inputStream
+     * @return data
+     */
+    public static boolean readFromCsv(InputStream inputStream) {
+        try (InputStreamReader in = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+            CSVReader reader = new CSVReader(in);
+            List<String[]> allRecords = reader.readAll();
+            for (String[] records : allRecords) {
+                for (String filed : records) {
+                    log.info("filed= {}", filed);
+                }
+            }
+            reader.close();
+            return true;
+        } catch (IOException | CsvException e) {
+            log.error("IOException {}", e.getMessage());
+            throw new RuntimeException();
+        }
+    }
+
+
+    /**
+     * export data to csv
+     *
+     * @param headerList   field headers
+     * @param lineDataList line data array
+     * @return byte[]
+     */
+    public static byte[] writeToBytes(List<String> headerList,
+                                      List<String[]> lineDataList) {
+        byte[] bytes = null;
+        try (final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+             final OutputStreamWriter outputStreamWriter =
+                     new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+             final CSVWriter csvWriter = new CSVWriter(outputStreamWriter)) {
+            csvWriter.writeNext(headerList.toArray(new String[0]));
+            csvWriter.writeAll(lineDataList);
+            csvWriter.close();
+            outputStream.flush();
+            bytes = outputStream.toByteArray();
+        } catch (IOException e) {
+            log.error("IOException: {}", e.toString());
+        }
+        return bytes;
     }
 
 }

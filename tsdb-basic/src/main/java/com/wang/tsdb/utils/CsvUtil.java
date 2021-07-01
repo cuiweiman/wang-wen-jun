@@ -65,14 +65,14 @@ public class CsvUtil {
      */
     public static boolean exportToCsv(String fileName,
                                       List<String> headerList,
-                                      List<Object[]> lineDataList) {
+                                      List<String[]> lineDataList) {
         try (FileOutputStream fileOutputStream = new FileOutputStream("/Users/cuiweiman/Documents/".concat(fileName));
              OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "GBK")) {
             // 初始化 CSVFormat
             CSVFormat format = CSVFormat.DEFAULT.withHeader(headerList.toArray(new String[0]));
             //创建CSVPrinter对象
             CSVPrinter printer = new CSVPrinter(outputStreamWriter, format);
-            for (Object[] lineData : lineDataList) {
+            for (String[] lineData : lineDataList) {
                 printer.printRecord(lineData);
             }
             printer.close(true);
