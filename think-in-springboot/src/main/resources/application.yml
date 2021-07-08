@@ -2,8 +2,9 @@ spring:
   banner:
     location: banner.txt
   redis:
-    host: 127.0.0.1
-    password: cuiweiman # sosms_2019
+    host: ip
+    password: *
+    port: 6379
     # 连接超时（毫秒）
     timeout: 1000
     # lettuce 连接池
