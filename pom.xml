@@ -46,7 +46,7 @@
         <mockito.version>1.10.19</mockito.version>
         <hutool.version>5.3.1</hutool.version>
         <magic.version>0.7.4</magic.version>
-        <jsoup.versoin>1.13.1</jsoup.versoin>
+        <jsoup.versoin>1.14.2</jsoup.versoin>
         <rocketmq.version>4.7.0</rocketmq.version>
         <redisson.version>3.15.0</redisson.version>
         <org.apache.curator>5.1.0</org.apache.curator>
@@ -211,7 +211,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-compress</artifactId>
-                <version>1.20</version>
+                <version>1.21</version>
             </dependency>
 
             <!-- rocket mq-client -->
