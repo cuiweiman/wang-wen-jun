@@ -1,4 +1,4 @@
-package com.wang.wx.response;
+package com.wang.wx.model.response;
 
 import com.wang.wx.enums.ResponseStatus;
 import com.wang.wx.exception.GlobalException;
@@ -19,6 +19,10 @@ public class ResultVO {
     private String msg;
 
     private Object data;
+
+    public static ResultVO success() {
+        return success(ResponseStatus.SUCCESS.getCode(), ResponseStatus.SUCCESS.getMsg());
+    }
 
     public static ResultVO success(Integer code, String msg) {
         return ResultVO.builder().code(code).msg(msg).build();

@@ -9,6 +9,8 @@ spring:
     name: @artifactId@
     version: @project.version@
 
+swagger:
+  switch: true
 
 wechat:
   app-id: test

@@ -245,7 +245,7 @@ public class SqlSessionFactoryBean
      * <p>
      * Since 2.0.1, allow to specify a wildcard such as {@code com.example.*.model}.
      *
-     * @param typeAliasesPackage package to scan for domain objects
+     * @param typeAliasesPackage package to scan for model objects
      * @since 1.0.1
      */
     public void setTypeAliasesPackage(String typeAliasesPackage) {
@@ -253,10 +253,10 @@ public class SqlSessionFactoryBean
     }
 
     /**
-     * Super class which domain objects have to extend to have a type alias created. No effect if there is no package to
+     * Super class which model objects have to extend to have a type alias created. No effect if there is no package to
      * scan configured.
      *
-     * @param typeAliasesSuperType super class for domain objects
+     * @param typeAliasesSuperType super class for model objects
      * @since 1.1.2
      */
     public void setTypeAliasesSuperType(Class<?> typeAliasesSuperType) {

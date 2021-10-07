@@ -1,6 +1,7 @@
 package com.wang.wx.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @description: global exception
@@ -8,6 +9,7 @@ import lombok.Data;
  * @date: 2021/10/7 13:03
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class GlobalException extends RuntimeException {
 
     private final Integer code;
@@ -22,7 +24,7 @@ public class GlobalException extends RuntimeException {
     public GlobalException(Integer code, String msg, Throwable cause) {
         super(cause);
         this.code = code;
-        this.msg= msg;
+        this.msg = msg;
     }
 
 }
