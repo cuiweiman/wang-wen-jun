@@ -29,6 +29,7 @@
         <module>apache-doris</module>
         <module>redis-common</module>
         <module>tsdb-basic</module>
+        <module>wx-demo</module>
     </modules>
 
     <properties>

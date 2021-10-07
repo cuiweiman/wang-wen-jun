@@ -1,0 +1,25 @@
+server:
+  servlet:
+    context-path: /wechat
+  port: 8060
+
+
+spring:
+  application:
+    name: @artifactId@
+    version: @project.version@
+
+
+wechat:
+  app-id: test
+  app-secret: test
+
+
+
+
+
+
+
+
+
+

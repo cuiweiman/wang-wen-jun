@@ -1,0 +1,7 @@
+${AnsiColor.BRIGHT_RED}
+----------------------------------
+  project: ${spring.application.name}
+  version: ${spring.application.version}
+  springboot : ${spring-boot.version}
+----------------------------------
+

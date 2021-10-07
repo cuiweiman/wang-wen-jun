@@ -1,0 +1,25 @@
+server:
+  servlet:
+    context-path: /wechat
+  port: 8060
+
+
+spring:
+  application:
+    name: wx-demo
+    version: 1.0-SNAPSHOT
+
+
+wechat:
+  app-id: test
+  app-secret: test
+
+
+
+
+
+
+
+
+
+
