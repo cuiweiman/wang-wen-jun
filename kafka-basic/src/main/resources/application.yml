@@ -1,0 +1,36 @@
+server:
+  servlet:
+    context-path: /kafka
+  port: 8070
+
+
+spring:
+  application:
+    name: @artifactId@
+    version: @project.version@
+
+swagger:
+  switch: true
+
+custom:
+  kafka:
+    bootstrap: localhost:9092
+    acks: all
+    retries: 1
+    batchSize: "16384"
+    linger: "1"
+
+template:
+  templates:
+    - {"templateId": "1", "templateFilePath": "/Users/cuiweiman/PersonalProjects/wang-wen-jun/kafka-basic/src/main/resources/template/template.json", "active": true}
+    - {"templateId": "2", "templateFilePath": "", "active": false}
+  template-result-type: 0
+  result-file-path: "/Users/cuiweiman/PersonalProjects/wang-wen-jun/kafka-basic/src/main/resources/template/template-result.json"
+
+
+
+
+
+
+
+
