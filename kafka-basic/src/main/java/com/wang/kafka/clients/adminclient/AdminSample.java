@@ -114,7 +114,7 @@ public class AdminSample {
      */
     public static void createTopic() {
         final AdminClient adminClient = createAdminClient();
-        // 副本集数量
+        // 副本集数量,有多个broker时，每个topic-partition会创建rs个副本均匀的分散在broker中，保障数据安全
         short rs = 1;
         final NewTopic newTopic = new NewTopic(OUTPUT_TOPIC, 1, rs);
         final CreateTopicsResult topics = adminClient.createTopics(Lists.newArrayList(newTopic));

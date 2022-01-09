@@ -17,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Kafka流计算：类似于 数据处理的 规则引擎：
  * 可参考官网 Demo：https://kafka.apache.org/10/documentation/streams/quickstart
- *
+ * <p>
  * 1. Producer 发送的消息到一个Topic中；
  * 2. 定义好流计算过程(类似于编辑好数据处理的规则引擎)，并启动。
  * 3. Consumer 接收到 Topic 的消息，并经过 KafkaStream 流计算处理，由SinkProcessor处理器将处理好的消息发到Producer中
@@ -64,13 +64,12 @@ public class StreamSample {
 
         // 构建 Stream
         final StreamsBuilder builder = new StreamsBuilder();
-        wordCountStream(builder);
+        // wordCountStream(builder);
+        forEachStream(builder);
 
         // 创建 KafkaStreams 并启动
         final KafkaStreams streams = new KafkaStreams(builder.build(), properties);
-
         final CountDownLatch latch = new CountDownLatch(1);
-
         // 在jvm中增加一个关闭的钩子，当jvm关闭的时候，会执行系统中已经设置的所有通过方法addShutdownHook添加的钩子。
         // 当系统执行完这些钩子后，jvm才会关闭。所以这些钩子可以在jvm关闭的时候进行内存清理、对象销毁等操作。
         Runtime.getRuntime().addShutdownHook(new Thread("streams-word-count-shutdown-hook") {
@@ -90,17 +89,17 @@ public class StreamSample {
     }
 
     /**
+     * 流式计算：
      * 构建 Word Count Stream 的 StreamBuilder 流计算
      */
     public static void wordCountStream(final StreamsBuilder builder) {
         // 不断从 INPUT_TOPIC 中获取数据，并追加到流上的一个抽象对象
         KStream<String, String> source = builder.stream(INPUT_TOPIC);
         // KTable 是数据集合的抽象对象
-        // flatMapValues -> 将一行数据拆分为多行数据
         /*
-            key 1 , value Hello   -> Hello 1  World 2
-            key 2 , value World
-            key 3 , value World
+            flatMapValues -> 将一行数据拆分为多行数据：
+            如 key 1, value hello world stream，数据按照 " " 空格拆分，变成：
+            key 1, value hello; key 2 ,value world; key 3 value stream.
          */
         KTable<String, Long> count = source
                 .flatMapValues(value -> Arrays.asList(value.toLowerCase(Locale.getDefault()).split(" ")))
@@ -108,6 +107,17 @@ public class StreamSample {
                 .groupBy((key, value) -> value).count();
 
         count.toStream().to(OUTPUT_TOPIC, Produced.with(Serdes.String(), Serdes.Long()));
+    }
+
+
+    /**
+     * flatMapValues 算子演示
+     * 无需消费消息，Producer发出消息后，输入流会直接打印在控制台上
+     */
+    public static void forEachStream(final StreamsBuilder builder) {
+        KStream<String, String> source = builder.stream(INPUT_TOPIC);
+        source.flatMapValues(value -> Arrays.asList(value.toLowerCase(Locale.getDefault()).split(" ")))
+                .foreach((key, value) -> System.out.println(key + ": " + value));
     }
 
 }
