@@ -42,7 +42,7 @@ public class AccountLoginControllerTest {
     public void login() {
         Account account = new Account();
         Mockito.when(request.getParameter("userName")).thenReturn("Sun");
-        Mockito.when(request.getParameter("password")).thenReturn("123456");
+        Mockito.when(request.getParameter("password")).thenReturn("***");
         Mockito.when(accountDao.findAccount(anyString(), anyString())).thenReturn(account);
         assertThat(accountLoginController.login(request), equalTo("index"));
     }
@@ -50,7 +50,7 @@ public class AccountLoginControllerTest {
     @Test
     public void login505() {
         Mockito.when(request.getParameter("userName")).thenReturn("Sun");
-        Mockito.when(request.getParameter("password")).thenReturn("123456");
+        Mockito.when(request.getParameter("password")).thenReturn("***");
         Mockito.when(accountDao.findAccount(anyString(), anyString())).thenThrow(UnsupportedOperationException.class);
         assertThat(accountLoginController.login(request), equalTo("505"));
     }

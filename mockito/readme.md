@@ -55,7 +55,7 @@
 public void login() {
     Account account = new Account();
     Mockito.when(request.getParameter("userName")).thenReturn("Sun");
-    Mockito.when(request.getParameter("password")).thenReturn("123456");
+    Mockito.when(request.getParameter("password")).thenReturn("***");
     // Mockito.when(accountDao.findAccount(anyString(), anyString())).thenReturn(account);
     // assertThat(accountLoginController.login(request), equalTo("index"));
 

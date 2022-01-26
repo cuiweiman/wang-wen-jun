@@ -13,7 +13,7 @@ import org.redisson.config.Config;
 public class RedisSonBloomFilter {
     public static void main(String[] args) {
         Config config = new Config();
-        config.useSingleServer().setAddress("redis://127.0.0.1:6379").setPassword("cuiweiman");
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379").setPassword("***");
         //构造 RedisSon
         RedissonClient redisson = Redisson.create(config);
 

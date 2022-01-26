@@ -552,10 +552,10 @@ keytool -keystore server.keystore.jks -alias imoockafka -import -file cert-signe
 listeners=PLAINTEXT://127.0.0.1:9092,SSL://127.0.0.1:8989
 advertiesd.listeners=PLAINTEXT://127.0.0.1:9092,SSL://127.0.0.1:8989
 ssl.keystore.location=/ca-tmp/server.keystore.jkd
-ssl.keystore.password=cuiwei
-ssl.key.password=cuiwei
+ssl.keystore.password=***
+ssl.key.password=******
 ssl.truststore.location=/ca-tmp/server.truststore.jkd
-ssl.truststore.password=cuiwei
+ssl.truststore.password=***
 ```
 
 **测试SSL是否成功**
@@ -568,7 +568,7 @@ openssl s_client -debug -connect 127.0.0.0:8989 -tls1
 security.protocol=SSL
 ssl.endpoint.identification.algorithm=
 ssl.truststore.location=/ca-tmp2/client.truststore.jks
-ssl.truststore.password=cuiwei
+ssl.truststore.password=***
 ```
 
 
