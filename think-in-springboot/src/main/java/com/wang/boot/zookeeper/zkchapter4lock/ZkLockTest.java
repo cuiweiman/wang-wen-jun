@@ -6,13 +6,13 @@ import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 
 /**
- * @description: zk 分布式锁测试
+ * @description: zk Curator 框架实现分布式锁测试
  * @date: 2021/4/7 22:58
  * @author: wei·man cui
  */
 public class ZkLockTest {
     public static void main(String[] args) {
-        String hostPort = "192.168.0.108:22181,192.168.0.109:22181,192.168.0.110:22181";
+        String hostPort = "127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183";
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(2000, 2000);
         CuratorFramework client = CuratorFrameworkFactory.builder()
                 .retryPolicy(retryPolicy)

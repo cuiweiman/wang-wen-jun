@@ -30,6 +30,7 @@
         <module>redis-common</module>
         <module>tsdb-basic</module>
         <module>wx-demo</module>
+        <module>zookeeper-demo</module>
     </modules>
 
     <properties>
