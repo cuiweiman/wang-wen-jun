@@ -8,7 +8,7 @@
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=utf8&amp;allowMultiQueries=true&amp;zeroDateTimeBehavior=convertToNull&amp;serverTimezone=GMT%2B8"/>
         <property name="username" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value="*****"/>
         <!--连接池启动时的初始值与最大值-->
         <property name="initialSize" value="10"/>
         <property name="maxTotal" value="200"/>

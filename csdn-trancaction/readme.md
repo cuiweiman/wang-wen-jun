@@ -236,14 +236,14 @@ spring:
       driverClassName: com.mysql.cj.jdbc.Driver
       jdbcUrl: jdbc:mysql://localhost:3306/orders?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
       username: root
-      password: zxcvbnm123
+      password: *****
       jpa.dialect: org.hibernate.dialect.MySQL5Dialect
 
     store:
       driverClassName: com.mysql.cj.jdbc.Driver
       jdbcUrl: jdbc:mysql://localhost:3306/orders?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
       username: root
-      password: zxcvbnm123
+      password: *****
       jpa.dialect: org.hibernate.dialect.MySQL5Dialect
   jpa:
     show-sql: true
