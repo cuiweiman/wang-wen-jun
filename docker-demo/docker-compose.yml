@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  redis:
+    image: "library/redis:alpine"
+  docker-compose-demo:
+    build: .
+    image: docker-compose-demo
+    depends_on:
+      - redis
+    ports:
+      - "8080:8080"

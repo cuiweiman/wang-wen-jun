@@ -31,6 +31,7 @@
         <module>tsdb-basic</module>
         <module>wx-demo</module>
         <module>zookeeper-demo</module>
+        <module>docker-demo</module>
     </modules>
 
     <properties>
