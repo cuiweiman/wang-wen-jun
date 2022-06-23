@@ -11,7 +11,7 @@ import org.apache.rocketmq.client.exception.MQClientException;
  * @author: wei·man cui
  */
 public class ScheduledMessageConsumer {
-    private static final String NAME_SERVER = "192.168.0.108:9876";
+    private static final String NAME_SERVER = "ip:port";
 
     public static void main(String[] args) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ScheduledProducerGroup");

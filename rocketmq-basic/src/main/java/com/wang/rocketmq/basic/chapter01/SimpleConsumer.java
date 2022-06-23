@@ -12,7 +12,7 @@ import org.apache.rocketmq.client.exception.MQClientException;
  */
 public class SimpleConsumer {
 
-    private static final String NAME_SERVER = "139.196.184.230:9876";
+    private static final String NAME_SERVER = "ip:port";
 
     public static void consumer(String group, String topic, String tags) throws MQClientException {
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(group);

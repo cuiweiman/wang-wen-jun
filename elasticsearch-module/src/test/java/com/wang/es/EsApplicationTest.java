@@ -1,8 +1,6 @@
 package com.wang.es;
 
-import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @description: 测试父类
@@ -10,6 +8,5 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author: wei·man cui
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class EsApplicationTest {
 }

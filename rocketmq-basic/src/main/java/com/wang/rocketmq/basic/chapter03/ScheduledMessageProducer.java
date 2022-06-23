@@ -13,7 +13,7 @@ import org.apache.rocketmq.remoting.exception.RemotingException;
  */
 public class ScheduledMessageProducer {
 
-    private static final String NAME_SERVER = "192.168.0.108:9876";
+    private static final String NAME_SERVER = "ip:port";
 
     public static void main(String[] args) throws MQClientException, RemotingException, InterruptedException, MQBrokerException {
         DefaultMQProducer producer = new DefaultMQProducer("ScheduledProducerGroup");

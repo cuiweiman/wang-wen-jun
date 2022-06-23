@@ -1,9 +1,9 @@
 package com.wang.redis.cache;
 
 import com.wang.redis.RedisCommonAppTest;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
 import java.util.HashSet;
@@ -19,11 +19,11 @@ public class SetOperationTest extends RedisCommonAppTest {
     public void testBasic() {
         setOperation.addAll(key1, set1);
 
-        Assert.assertTrue(setOperation.add(key1, ele3));
-        Assert.assertTrue(setOperation.addAll(key2, set2));
+        Assertions.assertTrue(setOperation.add(key1, ele3));
+        Assertions.assertTrue(setOperation.addAll(key2, set2));
         setOperation.addAll(key3, set3);
 
-        Assert.assertFalse(setOperation.tryAdd(key1, ele1, ele3, ele5, ele7, ele9));
+        Assertions.assertFalse(setOperation.tryAdd(key1, ele1, ele3, ele5, ele7, ele9));
 
         System.out.print(" random 3 : ");
         setOperation.random(key1, 3).forEach(System.out::print);
@@ -33,7 +33,7 @@ public class SetOperationTest extends RedisCommonAppTest {
 
         System.out.println("removeRandom: " + setOperation.removeRandom(key1));
 
-        Assert.assertTrue(setOperation.del(key1));
+        Assertions.assertTrue(setOperation.del(key1));
 
         System.out.print("readAll : ");
         setOperation.readAll(key1).forEach(System.out::print);
@@ -79,7 +79,7 @@ public class SetOperationTest extends RedisCommonAppTest {
     private Set<String> set2 = new HashSet<>();
     private Set<String> set3 = new HashSet<>();
 
-    @Before
+    @BeforeAll
     public void init() {
         key1 = "tags:hobby:1001";
         key2 = "tags:hobby:1002";

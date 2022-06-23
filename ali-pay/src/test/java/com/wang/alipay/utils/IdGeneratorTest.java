@@ -1,7 +1,7 @@
 package com.wang.alipay.utils;
 
 import com.wang.alipay.AliPayApplicationTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;

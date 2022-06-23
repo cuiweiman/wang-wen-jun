@@ -1,10 +1,8 @@
 package com.wang.transaction.service;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
@@ -14,7 +12,6 @@ import javax.annotation.Resource;
  * @date: 2020/7/3 10:44
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class OrdersServiceTest {
 
     @Resource
@@ -26,7 +23,7 @@ public class OrdersServiceTest {
     @Resource
     private OrderService2 service2;
 
-    @Before
+    @BeforeAll
     public void deleteAll() {
         service.deleteAll();
     }

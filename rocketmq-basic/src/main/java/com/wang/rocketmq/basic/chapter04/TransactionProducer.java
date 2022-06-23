@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * @author: wei·man cui
  */
 public class TransactionProducer {
-    private static final String NAME_SERVER = "192.168.0.108:9876";
+    private static final String NAME_SERVER = "ip:port";
 
     public static void main(String[] args) throws Exception {
 

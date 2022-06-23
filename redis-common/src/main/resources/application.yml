@@ -3,9 +3,9 @@ server:
 
 spring:
   redis:
-    host: *
-    port: *
-    password: *
+    host:
+    port:
+    password:
     connection-pool-size: 100
     idle-connection-timeout: 10000
     connect-timeout: 30000

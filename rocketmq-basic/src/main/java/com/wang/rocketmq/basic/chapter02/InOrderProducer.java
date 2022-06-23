@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class InOrderProducer {
 
-    private static final String NAME_SERVER = "192.168.0.108:9876";
+    private static final String NAME_SERVER = "ip:port";
 
     public static void main(String[] args) throws Exception {
         DefaultMQProducer producer = new DefaultMQProducer("Order_Msg_Producer");

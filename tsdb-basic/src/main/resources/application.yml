@@ -4,9 +4,9 @@ server:
     context-path: /tsdb
 
 tsdb:
-  access-key-id: *
-  secret-access-key: *
-  endpoint: *
+  access-key-id:
+  secret-access-key:
+  endpoint:
   connection-timeout-in-millis: 5000
   max-connections: 100
   socket-buffer-size-in-bytes: 10485760

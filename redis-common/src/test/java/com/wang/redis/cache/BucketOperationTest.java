@@ -3,7 +3,7 @@ package com.wang.redis.cache;
 import com.wang.redis.RedisCommonAppTest;
 import com.wang.redis.config.RedisBasicComponent;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.redisson.api.DeletedObjectListener;
 import org.redisson.api.ExpiredObjectListener;
 import org.redisson.api.ObjectListener;

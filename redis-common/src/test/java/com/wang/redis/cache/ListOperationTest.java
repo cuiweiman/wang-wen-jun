@@ -1,10 +1,9 @@
 package com.wang.redis.cache;
 
 import com.wang.redis.RedisCommonAppTest;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.annotation.Resource;
-
 import java.util.ArrayList;
 import java.util.List;
 

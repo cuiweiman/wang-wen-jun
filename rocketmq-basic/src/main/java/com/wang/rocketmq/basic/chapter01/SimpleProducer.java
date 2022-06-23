@@ -25,7 +25,7 @@ public class SimpleProducer {
      * 发送的消息数量
      */
     private static final Integer MSG_COUNT = 100;
-    private static final String NAME_SERVER = "139.196.184.230:9876";
+    private static final String NAME_SERVER = "ip:port";
 
 
     /**
