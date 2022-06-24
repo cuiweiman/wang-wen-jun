@@ -1,8 +1,8 @@
 package com.wang.boot.starter;
 
 import com.wang.boot.MainApplicationTest;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -18,7 +18,7 @@ public class HelloServiceTest extends MainApplicationTest {
     @Test
     public void sayHello() {
         System.out.println(helloService.sayHello());
-        Assert.assertEquals("hello!", helloService.sayHello());
+        Assertions.assertEquals("hello!", helloService.sayHello());
     }
 
 }

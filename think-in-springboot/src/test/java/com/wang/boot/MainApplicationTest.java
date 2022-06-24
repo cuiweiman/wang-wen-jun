@@ -1,10 +1,8 @@
 package com.wang.boot;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * @description:
@@ -12,12 +10,11 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date: 2021/1/28 17:44
  */
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class MainApplicationTest {
 
     @Test
     public void test() {
-        Assert.assertTrue(Boolean.TRUE);
+        Assertions.assertTrue(Boolean.TRUE);
     }
 
 }
