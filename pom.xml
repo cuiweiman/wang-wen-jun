@@ -45,7 +45,7 @@
         <fastjson.version>1.2.83</fastjson.version>
         <commons-lang3.version>3.11</commons-lang3.version>
         <commons.version>2.7</commons.version>
-        <guava.version>30.0-jre</guava.version>
+        <guava.version>32.0.0-jre</guava.version>
         <mockito.version>1.10.19</mockito.version>
         <hutool.version>5.3.1</hutool.version>
         <magic.version>0.7.4</magic.version>
